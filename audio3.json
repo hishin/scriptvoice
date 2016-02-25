@@ -1,0 +1,1377 @@
+{
+	"transcript": [
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "as",
+              0.9999999999999349
+            ],
+            [
+              "much",
+              0.9999999999999347
+            ],
+            [
+              "as",
+              0.9999999999999344
+            ],
+            [
+              "I",
+              0.9999999999998689
+            ],
+            [
+              "wish",
+              0.999999999999869
+            ],
+            [
+              "I",
+              0.9999999999998692
+            ],
+            [
+              "could",
+              0.9999999999998691
+            ],
+            [
+              "say",
+              0.9999999999999346
+            ],
+            [
+              "that",
+              0.9999999999999346
+            ],
+            [
+              "I’m",
+              0.6688725545092692
+            ],
+            [
+              "enjoying",
+              0.9955412237453386
+            ],
+            [
+              "a",
+              0.8127313973067666
+            ],
+            [
+              "nice",
+              0.9953182849326087
+            ],
+            [
+              "warm",
+              0.9999999999999404
+            ],
+            [
+              "vacation",
+              0.8067093093120901
+            ],
+            [
+              "on",
+              0.9669099344323551
+            ],
+            [
+              "a",
+              0.49927685693695906
+            ],
+            [
+              "beach",
+              0.994322926793119
+            ],
+            [
+              "I’m",
+              0.19668135060279027
+            ],
+            [
+              "not",
+              0.4511012927915857
+            ]
+          ],
+          "confidence": 0.889,
+          "transcript": "as much as I wish I could say that I’m enjoying a nice warm vacation on a beach I’m not ",
+          "timestamps": [
+            [
+              "as",
+              7.1,
+              7.38
+            ],
+            [
+              "much",
+              7.38,
+              7.76
+            ],
+            [
+              "as",
+              7.76,
+              7.91
+            ],
+            [
+              "I",
+              7.91,
+              8.06
+            ],
+            [
+              "wish",
+              8.06,
+              8.35
+            ],
+            [
+              "I",
+              8.35,
+              8.43
+            ],
+            [
+              "could",
+              8.43,
+              8.63
+            ],
+            [
+              "say",
+              8.63,
+              9.11
+            ],
+            [
+              "that",
+              9.67,
+              9.84
+            ],
+            [
+              "I’m",
+              9.84,
+              9.97
+            ],
+            [
+              "enjoying",
+              9.97,
+              10.39
+            ],
+            [
+              "a",
+              10.39,
+              10.46
+            ],
+            [
+              "nice",
+              10.46,
+              10.86
+            ],
+            [
+              "warm",
+              10.86,
+              11.24
+            ],
+            [
+              "vacation",
+              11.24,
+              11.86
+            ],
+            [
+              "on",
+              11.86,
+              12
+            ],
+            [
+              "a",
+              12,
+              12.07
+            ],
+            [
+              "beach",
+              12.07,
+              12.64
+            ],
+            [
+              "I’m",
+              12.83,
+              13.05
+            ],
+            [
+              "not",
+              13.05,
+              13.46
+            ]
+          ]
+        },
+        {
+          "transcript": "as much as I wish I could say that I’m enjoying a nice warm vacation on a beach I knock "
+        },
+        {
+          "transcript": "as much as I wish I could say that I’m enjoying a nice warm vacation on the beach I’m not "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 0
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "and",
+              0.39372642228863175
+            ],
+            [
+              "that",
+              0.196100643800537
+            ],
+            [
+              "she",
+              0.8427374727211644
+            ],
+            [
+              "here",
+              0.9826986179225349
+            ],
+            [
+              "at",
+              0.9999999999999835
+            ],
+            [
+              "MIT",
+              0.99624673342646
+            ],
+            [
+              "and",
+              0.7751875008512354
+            ],
+            [
+              "cold",
+              0.8093999036257004
+            ],
+            [
+              "Boston",
+              0.754696630498461
+            ]
+          ],
+          "confidence": 0.823,
+          "transcript": "and that she here at MIT and cold Boston ",
+          "timestamps": [
+            [
+              "and",
+              14.16,
+              14.31
+            ],
+            [
+              "that",
+              14.31,
+              14.48
+            ],
+            [
+              "she",
+              14.48,
+              14.65
+            ],
+            [
+              "here",
+              14.65,
+              15.16
+            ],
+            [
+              "at",
+              15.5,
+              15.66
+            ],
+            [
+              "MIT",
+              15.66,
+              16.33
+            ],
+            [
+              "and",
+              16.39,
+              16.63
+            ],
+            [
+              "cold",
+              16.63,
+              17.02
+            ],
+            [
+              "Boston",
+              17.02,
+              17.61
+            ]
+          ]
+        },
+        {
+          "transcript": "I’m actually here at MIT and cold Boston "
+        },
+        {
+          "transcript": "and then she here at MIT and cold Boston "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 1
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "so",
+              0.9999999999998691
+            ],
+            [
+              "how",
+              0.9924697413684552
+            ],
+            [
+              "did",
+              0.8192737928453899
+            ],
+            [
+              "this",
+              0.9999999999998997
+            ],
+            [
+              "little",
+              0.9999999999998999
+            ],
+            [
+              "cardboard",
+              0.9999999999998731
+            ],
+            [
+              "box",
+              0.9999999999998691
+            ],
+            [
+              "made",
+              0.5646654408417235
+            ],
+            [
+              "me",
+              0.9637221200700264
+            ],
+            [
+              "feel",
+              0.9999999999998582
+            ],
+            [
+              "like",
+              0.9999999999998722
+            ],
+            [
+              "I’m",
+              0.6891796895733096
+            ],
+            [
+              "miles",
+              0.999999999999883
+            ],
+            [
+              "away",
+              0.9999999999998799
+            ],
+            [
+              "from",
+              0.9999999999998714
+            ],
+            [
+              "where",
+              0.9999999999998527
+            ],
+            [
+              "I",
+              0.9999999999998441
+            ],
+            [
+              "actually",
+              0.9592792049910656
+            ],
+            [
+              "am",
+              0.23352995425437678
+            ]
+          ],
+          "confidence": 0.917,
+          "transcript": "so how did this little cardboard box made me feel like I’m miles away from where I actually am ",
+          "timestamps": [
+            [
+              "so",
+              19.92,
+              20.12
+            ],
+            [
+              "how",
+              20.12,
+              20.36
+            ],
+            [
+              "did",
+              20.36,
+              20.57
+            ],
+            [
+              "this",
+              20.57,
+              20.75
+            ],
+            [
+              "little",
+              20.75,
+              20.97
+            ],
+            [
+              "cardboard",
+              20.97,
+              21.51
+            ],
+            [
+              "box",
+              21.51,
+              21.84
+            ],
+            [
+              "made",
+              21.84,
+              21.99
+            ],
+            [
+              "me",
+              21.99,
+              22.11
+            ],
+            [
+              "feel",
+              22.11,
+              22.48
+            ],
+            [
+              "like",
+              22.48,
+              22.75
+            ],
+            [
+              "I’m",
+              22.75,
+              22.88
+            ],
+            [
+              "miles",
+              22.88,
+              23.22
+            ],
+            [
+              "away",
+              23.22,
+              23.48
+            ],
+            [
+              "from",
+              23.48,
+              23.73
+            ],
+            [
+              "where",
+              23.73,
+              23.88
+            ],
+            [
+              "I",
+              23.88,
+              24.03
+            ],
+            [
+              "actually",
+              24.03,
+              24.52
+            ],
+            [
+              "am",
+              24.52,
+              24.83
+            ]
+          ]
+        },
+        {
+          "transcript": "so how did this little cardboard box made me feel like I’m miles away from where I actually end "
+        },
+        {
+          "transcript": "so how did this little cardboard box made me feel like I’m miles away from where I actually in "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 2
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "how",
+              1
+            ],
+            [
+              "did",
+              0.9493643964082474
+            ],
+            [
+              "it",
+              0.3615151269352124
+            ],
+            [
+              "create",
+              0.9869449530789159
+            ],
+            [
+              "a",
+              0.986944953078913
+            ],
+            [
+              "virtual",
+              0.7811388575988937
+            ],
+            [
+              "environment",
+              0.9895554636886637
+            ]
+          ],
+          "confidence": 0.907,
+          "transcript": "how did it create a virtual environment ",
+          "timestamps": [
+            [
+              "how",
+              25.81,
+              26
+            ],
+            [
+              "did",
+              26,
+              26.16
+            ],
+            [
+              "it",
+              26.16,
+              26.28
+            ],
+            [
+              "create",
+              26.28,
+              26.61
+            ],
+            [
+              "a",
+              26.61,
+              26.65
+            ],
+            [
+              "virtual",
+              26.65,
+              27.04
+            ],
+            [
+              "environment",
+              27.04,
+              27.77
+            ]
+          ]
+        },
+        {
+          "transcript": "how did he create a virtual environment "
+        },
+        {
+          "transcript": "how did you create a virtual environment "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 3
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "well",
+              0.7047940197929102
+            ],
+            [
+              "let’s",
+              0.603423542585343
+            ],
+            [
+              "open",
+              1
+            ],
+            [
+              "this",
+              1
+            ],
+            [
+              "box",
+              1
+            ],
+            [
+              "up",
+              0.9902130388586576
+            ]
+          ],
+          "confidence": 0.906,
+          "transcript": "well let’s open this box up ",
+          "timestamps": [
+            [
+              "well",
+              28.7,
+              28.91
+            ],
+            [
+              "let’s",
+              28.91,
+              29.17
+            ],
+            [
+              "open",
+              29.17,
+              29.56
+            ],
+            [
+              "this",
+              29.56,
+              29.77
+            ],
+            [
+              "box",
+              29.77,
+              30.14
+            ],
+            [
+              "up",
+              30.14,
+              30.49
+            ]
+          ]
+        },
+        {
+          "transcript": "while it’s open this box up "
+        },
+        {
+          "transcript": "well it’s open this box up "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 4
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "and",
+              1
+            ],
+            [
+              "look",
+              0.660601337958645
+            ],
+            [
+              "inside",
+              0.9972439829193921
+            ]
+          ],
+          "confidence": 0.916,
+          "transcript": "and look inside ",
+          "timestamps": [
+            [
+              "and",
+              32.83,
+              33.03
+            ],
+            [
+              "look",
+              33.03,
+              33.26
+            ],
+            [
+              "inside",
+              33.26,
+              33.78
+            ]
+          ]
+        },
+        {
+          "transcript": "and looked inside "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 5
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "inside",
+              1
+            ],
+            [
+              "the",
+              0.9999999999999838
+            ],
+            [
+              "box",
+              0.9939463974402466
+            ],
+            [
+              "looks",
+              0.8731324679308119
+            ],
+            [
+              "pretty",
+              0.9870499451132744
+            ],
+            [
+              "simple",
+              0.8082051223879119
+            ]
+          ],
+          "confidence": 0.94,
+          "transcript": "inside the box looks pretty simple ",
+          "timestamps": [
+            [
+              "inside",
+              35.51,
+              36.19
+            ],
+            [
+              "the",
+              36.24,
+              36.34
+            ],
+            [
+              "box",
+              36.34,
+              36.7
+            ],
+            [
+              "looks",
+              36.7,
+              36.93
+            ],
+            [
+              "pretty",
+              36.93,
+              37.18
+            ],
+            [
+              "simple",
+              37.18,
+              37.66
+            ]
+          ]
+        },
+        {
+          "transcript": "inside the box looks pretty symbol "
+        },
+        {
+          "transcript": "inside the box looked pretty simple "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 6
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "it",
+              1
+            ],
+            [
+              "has",
+              1
+            ],
+            [
+              "a",
+              1
+            ],
+            [
+              "place",
+              1
+            ],
+            [
+              "to",
+              1
+            ],
+            [
+              "put",
+              1
+            ],
+            [
+              "my",
+              0.9664867066478975
+            ],
+            [
+              "volume",
+              0.6146537187585993
+            ],
+            [
+              "which",
+              0.9999999999999885
+            ],
+            [
+              "placed",
+              0.6614388962769061
+            ],
+            [
+              "a",
+              0.334862698308819
+            ],
+            [
+              "video",
+              0.983388831150354
+            ],
+            [
+              "at",
+              0.6081998199774957
+            ],
+            [
+              "the",
+              0.954675516775625
+            ],
+            [
+              "beach",
+              0.9973448803073429
+            ]
+          ],
+          "confidence": 0.88,
+          "transcript": "it has a place to put my volume which placed a video at the beach ",
+          "timestamps": [
+            [
+              "it",
+              38.56,
+              38.72
+            ],
+            [
+              "has",
+              38.72,
+              38.91
+            ],
+            [
+              "a",
+              38.91,
+              38.96
+            ],
+            [
+              "place",
+              38.96,
+              39.49
+            ],
+            [
+              "to",
+              39.55,
+              39.66
+            ],
+            [
+              "put",
+              39.66,
+              39.92
+            ],
+            [
+              "my",
+              39.92,
+              40.1
+            ],
+            [
+              "volume",
+              40.1,
+              40.66
+            ],
+            [
+              "which",
+              40.69,
+              40.88
+            ],
+            [
+              "placed",
+              40.88,
+              41.37
+            ],
+            [
+              "a",
+              41.37,
+              41.41
+            ],
+            [
+              "video",
+              41.41,
+              41.8
+            ],
+            [
+              "at",
+              41.8,
+              41.9
+            ],
+            [
+              "the",
+              41.9,
+              42.01
+            ],
+            [
+              "beach",
+              42.01,
+              42.55
+            ]
+          ]
+        },
+        {
+          "transcript": "it has a place to put my volume which placed the video at the beach "
+        },
+        {
+          "transcript": "it has a place to put my volume which place the video at the beach "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 7
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "and",
+              0.9999999999999347
+            ],
+            [
+              "the",
+              0.9999999999999345
+            ],
+            [
+              "rest",
+              0.9999999999999346
+            ],
+            [
+              "of",
+              0.8238187140192978
+            ],
+            [
+              "it",
+              0.36089946730416506
+            ],
+            [
+              "sort",
+              0.9174274983399529
+            ],
+            [
+              "of",
+              0.9562862071749852
+            ],
+            [
+              "looks",
+              0.9999999999999273
+            ],
+            [
+              "like",
+              0.971194994866641
+            ],
+            [
+              "glasses",
+              0.5721321250683726
+            ]
+          ],
+          "confidence": 0.85,
+          "transcript": "and the rest of it sort of looks like glasses ",
+          "timestamps": [
+            [
+              "and",
+              43.22,
+              43.4
+            ],
+            [
+              "the",
+              43.4,
+              43.49
+            ],
+            [
+              "rest",
+              43.49,
+              43.81
+            ],
+            [
+              "of",
+              43.81,
+              43.9
+            ],
+            [
+              "it",
+              43.9,
+              43.98
+            ],
+            [
+              "sort",
+              43.98,
+              44.25
+            ],
+            [
+              "of",
+              44.25,
+              44.36
+            ],
+            [
+              "looks",
+              44.36,
+              44.71
+            ],
+            [
+              "like",
+              44.71,
+              44.94
+            ],
+            [
+              "glasses",
+              44.94,
+              45.51
+            ]
+          ]
+        },
+        {
+          "transcript": "and the rest of this sort of looks like glasses "
+        },
+        {
+          "transcript": "and the rest of the sort of looks like glasses "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 8
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "with",
+              0.5825607706197355
+            ],
+            [
+              "these",
+              0.5444624902636405
+            ],
+            [
+              "two",
+              0.9864187541153279
+            ],
+            [
+              "plastic",
+              0.9999999999999719
+            ],
+            [
+              "lenses",
+              0.9914522617924253
+            ]
+          ],
+          "confidence": 0.899,
+          "transcript": "with these two plastic lenses ",
+          "timestamps": [
+            [
+              "with",
+              45.97,
+              46.14
+            ],
+            [
+              "these",
+              46.14,
+              46.32
+            ],
+            [
+              "two",
+              46.32,
+              46.51
+            ],
+            [
+              "plastic",
+              46.51,
+              47.01
+            ],
+            [
+              "lenses",
+              47.01,
+              47.55
+            ]
+          ]
+        },
+        {
+          "transcript": "but these two plastic lenses "
+        },
+        {
+          "transcript": "with the two plastic lenses "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 9
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "now",
+              0.8848229031233473
+            ],
+            [
+              "it’s",
+              0.8597546057131098
+            ],
+            [
+              "this",
+              0.7218067700821048
+            ],
+            [
+              "little",
+              0.9594403987570194
+            ],
+            [
+              "piece",
+              1
+            ],
+            [
+              "over",
+              0.9504514351208855
+            ],
+            [
+              "here",
+              0.9371144476654654
+            ],
+            [
+              "that",
+              0.848987906634078
+            ],
+            [
+              "separates",
+              0.5624999554972662
+            ],
+            [
+              "the",
+              0.8990384512686495
+            ],
+            [
+              "two",
+              1
+            ],
+            [
+              "plastic",
+              0.9905776873710744
+            ],
+            [
+              "lenses",
+              0.5386008115177708
+            ]
+          ],
+          "confidence": 0.829,
+          "transcript": "now it’s this little piece over here that separates the two plastic lenses ",
+          "timestamps": [
+            [
+              "now",
+              48.67,
+              48.9
+            ],
+            [
+              "it’s",
+              48.9,
+              49.11
+            ],
+            [
+              "this",
+              49.11,
+              49.36
+            ],
+            [
+              "little",
+              49.36,
+              49.69
+            ],
+            [
+              "piece",
+              49.69,
+              50.07
+            ],
+            [
+              "over",
+              50.07,
+              50.29
+            ],
+            [
+              "here",
+              50.29,
+              50.73
+            ],
+            [
+              "that",
+              50.73,
+              50.98
+            ],
+            [
+              "separates",
+              51.01,
+              51.7
+            ],
+            [
+              "the",
+              51.7,
+              51.83
+            ],
+            [
+              "two",
+              51.83,
+              52.15
+            ],
+            [
+              "plastic",
+              52.15,
+              52.73
+            ],
+            [
+              "lenses",
+              52.73,
+              53.26
+            ]
+          ]
+        },
+        {
+          "transcript": "now it’s this little piece over here that separates the two plastic than this "
+        },
+        {
+          "transcript": "now it’s this little peace over here that separates the two plastic lenses "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 10
+},
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "word_confidence": [
+            [
+              "that",
+              0.7008137795949272
+            ],
+            [
+              "is",
+              0.999999999999975
+            ],
+            [
+              "the",
+              0.999999999999975
+            ],
+            [
+              "key",
+              0.9999999999999746
+            ],
+            [
+              "to",
+              0.9999999999999675
+            ],
+            [
+              "creating",
+              0.996073145615129
+            ],
+            [
+              "green",
+              0.4203781321198055
+            ],
+            [
+              "vision",
+              0.9362463109924571
+            ]
+          ],
+          "confidence": 0.893,
+          "transcript": "that is the key to creating green vision ",
+          "timestamps": [
+            [
+              "that",
+              53.77,
+              53.95
+            ],
+            [
+              "is",
+              53.95,
+              54.08
+            ],
+            [
+              "the",
+              54.08,
+              54.2
+            ],
+            [
+              "key",
+              54.2,
+              54.7
+            ],
+            [
+              "to",
+              54.7,
+              54.83
+            ],
+            [
+              "creating",
+              54.83,
+              55.48
+            ],
+            [
+              "green",
+              55.51,
+              55.82
+            ],
+            [
+              "vision",
+              55.82,
+              56.27
+            ]
+          ]
+        },
+        {
+          "transcript": "that is the key to creating greenies vision "
+        },
+        {
+          "transcript": "that is the key to creating revision "
+        }
+      ],
+      "final": true
+    }
+  ],
+  "result_index": 11
+}
+]}

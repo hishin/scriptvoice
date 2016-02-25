@@ -1,0 +1,196 @@
+body {
+	font-family: serif;
+	font-size: 100%;
+	width: 80%;
+	margin: 10 auto;
+}
+
+div {
+	margin-bottom: 15px;
+	vertical-align: middle;
+}
+
+#aligned-segs {
+	width: 90%;
+	border-collapse: collapse;	
+}
+
+#aligned-segs td {
+	padding-left: 5px;	
+	padding-right: 5px;
+	border: 1px solid black;
+}
+
+p {
+	display: block;
+}
+
+span {
+	font-size: 13.5pt;
+}
+
+span.hasMatch {
+	color: black;
+}
+
+span.noMatch {
+	color: red;
+}
+#pscores {
+	display: block;
+	text-align: center;
+}
+
+
+.textarea {
+	width: 45%;
+	margin-right: 10px;
+	display:inline-block;
+	
+}
+
+.speech2text {
+	width: 45%;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.editabletext {
+    border: 1px solid gray;
+    padding: 5px;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    overflow: auto;
+	width: 100%;
+	height: 500px;
+	text-align: left;
+}
+
+.dataTable {
+	margin:0px;padding:0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}.dataTable table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.dataTable tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.dataTable table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.dataTable table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.dataTable tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.dataTable tr:hover td{
+	background-color:#ffffff;
+		
+
+}
+.dataTable td{
+	vertical-align:middle;
+	
+	background-color:#ffffff;
+
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:center;
+	padding:7px;
+	font-size:10px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}.dataTable tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.dataTable tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.dataTable tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.dataTable tr:first-child td{
+		background:-o-linear-gradient(bottom, #edb900 5%, #edb900 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #edb900), color-stop(1, #edb900) );
+	background:-moz-linear-gradient( center top, #edb900 5%, #edb900 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#edb900", endColorstr="#edb900");	background: -o-linear-gradient(top,#edb900,edb900);
+
+	background-color:#edb900;
+	border:0px solid #000000;
+	border-width:0px 0px 1px 1px;
+	font-size:14px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#000000;
+}
+.dataTable tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #edb900 5%, #edb900 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #edb900), color-stop(1, #edb900) );
+	background:-moz-linear-gradient( center top, #edb900 5%, #edb900 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#edb900", endColorstr="#edb900");	background: -o-linear-gradient(top,#edb900,edb900);
+
+	background-color:#edb900;
+}
+.dataTable tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.dataTable tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+
+.dataTable th {
+	background-color: #edb900;
+}
+
+#start_speech_button {
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+}
+
+ #speech_instruction {
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    color: #777;
+ }
+  
+#ibm_start_speech_button {
+	border: 0;
+	background-color: #c1c1c1;
+	padding: 0;
+}
+  
+  
+ #imb_start_speech_img {
+ 	width: 3em;
+ } 
+  
+  li {
+  	margin: 10px;
+  }

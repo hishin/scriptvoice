@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="showmatch.css" rel="stylesheet" />
+<title>Text Merge Test</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	function merge() {
+		$('#mergedtext tbody').empty();
+		$('input:radio').each(function() {
+			if ($(this).is(':checked')) {
+				var selected_seg = $(this).val();
+				$('#mergedtext tbody:last').append('<tr><td>')
+				$('#mergedtext td:last').append($('#' + selected_seg).clone());
+				$('#mergedtext td:last').append('</td></tr>')
+
+				// You have a checked radio button here...
+			}
+		});
+	}
+</script>
+
+</head>
+
+<body>
+
+	<h1>Show Matching Text Segments</h1>
+	<table>
+		<tbody>
+			<tr>
+				<td><input type="radio" name="td1" value="seg1_ms"></td>
+				<td><span class="match1" id="seg1_ms"><span>As
+							much as I wish I could say</span> <span class="misword">I'm</span> <span>enjoying
+							a nice vacation here on the beach</span> <span class="misword">I’m</span>
+						<span>not. I’m actually here in Boston, at MIT. </span></span></td>
+				<td><span class="match1" id="seg1_t"><span>as
+							much as I wish I could say I'm enjoying a nice vacation here on
+							the beach</span> <span class="misword">I am</span> <span>not</span> <span
+						class="misword">I am</span> <span>actually here in Boston
+							at MIT </span></span></td>
+				<td><input type="radio" name="td1" value="seg1_t"></td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="td2" value="seg2_ms"></td>
+				<td><span class="match1" id="seg2_ms"><span>So
+							how did this little cardboard box make me feel like I was miles
+							away from where I actually </span><span class="misword">am? </span></span></td>
+				<td><span class="match1" id="seg2_t"><span>so how
+							did this little cardboard box made me feel like I was miles away
+							from where I actually</span></span></td>
+				<td><input type="radio" name="td2" value="seg2_t"></td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="td3" value="seg3_ms"></td>
+				<td><span id="seg3_ms">How did it create a virtual
+						reality?</span></td>
+				<td></td>
+				<td><input type="radio" name="td3" value="seg3_t"></td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="td4" value="seg4_ms"></td>
+				<td><span id="seg4_ms">If you open this little box up,
+						it looks pretty simple.</span></td>
+				<td></td>
+				<td><input type="radio" name="td4" value="seg4_t"></td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="td5" value="seg5_ms"></td>
+				<td><span id="seg5_ms">There’s a place for my phone,
+						which plays the video of the beach.</span></td>
+				<td></td>
+				<td><input type="radio" name="td5" value="seg5_t"></td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="td6" value="seg6_ms"></td>
+				<td><span id="seg6_ms">The rest of it sort of looks like
+						glasses, with these two plastic lenses.</span></td>
+				<td></td>
+				<td><input type="radio" name="td6" value="seg6_t"></td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="td7" value="seg7_ms"></td>
+				<td><span class="match1" id="seg7_ms"><span> Now
+							it’s this little piece here that’s the first step to making me
+							feel like I’m actually inside the video on my phone</span><span
+						class="misword"> - </span></span></td> 
+				<td><span class="match1" id="seg7_t"><span>now
+							it's this little piece here that's the first step to making me
+							feel like I'm actually inside the video on my phone </span></span></td>
+				<td><input type="radio" name="td7" value="seg7_t"></td
+			</tr>
+			<tr>
+				<td><input type="radio" name="td8" value="seg8_ms"></td>
+				<td><span class="match2" id="seg8_ms"><span
+						class="misword">If you</span> open this <span class="misword">little</span>
+						box up, <span class="misword">it</span> looks pretty simple. <span
+						class="misword">There’s</span> a place for my phone, which <span
+						class="misword">plays the</span> video <span class="misword">of</span>
+						the beach. </span></td>
+
+				<td><span class="match2" id="seg8_t"><span
+						class="misword">well let’s</span> open this box up <span
+						class="misword">and look inside inside the box </span>looks pretty
+						simple <span class="misword">it has</span> a place <span
+						class="misword">to put</span> my <span class="misword">volume</span>
+						which <span class="misword">placed a</span> video <span
+						class="misword">at</span> the beach</span></td>
+				<td><input type="radio" name="td8" value="seg8_t"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<br>
+	<button id="btn-merge" onclick="merge()">Merge</button>
+
+	<h1>Merged Text</h1>
+	<table id="mergedtext">
+		<tbody>
+		</tbody>
+	</table>
+</body>
+</html>
