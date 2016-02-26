@@ -9,3 +9,7 @@ span.noMatch {
 div {
 	margin-top: 5px;
 }
+
+#btn-merge {
+	display: none;
+}

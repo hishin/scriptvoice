@@ -24,7 +24,6 @@ Token.containsPunct = function (word){
 var Script = function() {
 	var self = this;
 	var tokens = null;
-	var textstring = null;
 	
 	this.getWords = function() {
 		var words = tokens.map(function(a) {return a.word});
@@ -39,18 +38,16 @@ var Script = function() {
 		return tokens[i];
 	};
 	
-	this.getTextString = function() {
-		return textstring;
-	};
-	
 	this.initFromText = function(text_string) {
-		textstring = text_string;
-		tokens = Script.tokenizeText(textstring);
+		tokens = Script.tokenizeText(text_string);
 	};
 	
 	this.initFromAudio = function(json_string, audio_file){
-		tokens = Script.tokenizeJSON(json_string);
-		textstring = Script.tokens2string(tokens);
+		tokens = Script.tokenizeJSON(json_string, audio_file);
+	};
+	
+	this.initFromTokens = function (t) {
+		tokens = t;
 	};
 	
 };
@@ -70,7 +67,7 @@ Script.tokenizeText = function(text_string) {
 	return tokens;
 };
 
-Script.tokenizeJSON = function(json_string) {
+Script.tokenizeJSON = function(json_string, audio_file) {
 	var json_obj = JSON.parse(json_string);
 	var n_utterance = json_obj.transcript.length;
 	var tokens = [];
@@ -85,6 +82,7 @@ Script.tokenizeJSON = function(json_string) {
 			token.tstart = best_result.timestamps[j][1];
 			token.tend = best_result.timestamps[j][2];
 			token.confidence = best_result.word_confidence[j][1];
+			token.audiofile = audio_file;
 			tokens.push(token);
 		}
 	}
@@ -125,26 +123,6 @@ Script.tokens2spans = function(tokens) {
 	return spans;
 };
 
-Script.tokens2string = function(tokens) {
-	var textstring = '';
-	textstring = textstring + tokens[0].capitalizedWord();
-	if (tokens[0].isLongPause) textstring + '<br><br>';
-	
-	for (var i = 1; i < tokens.length; i++) {
-		if (tokens[i-1].isLongPause) {
-			textstring = textstring + ' ' + tokens[i].capitalizedWord();
-		}	
-		else {
-			textstring = textstring + '  ' + tokens[i].word;
-		}
-		if (tokens[i].isLongPause) {
-			textstring = textstring + '<br><br>';
-		}
-		
-	}
-	
-	return textstring;
-};
 
 Script.LONGPAUSE = 0.5;
 

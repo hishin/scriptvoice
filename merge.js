@@ -1,62 +1,41 @@
-function mergeSegs(mswords, twords, msbreaks, corr_ms2t) {
-	
-	var n_msseg = msbreaks.length - 1;
-	
-	var segs = [];
-	var sources = []; // indicates whether segment is from MasterScript or transcript 
-	
-	//iterate through each msseg
-	var prev_tid = -1;
-	for (var i = 0; i < n_msseg; i++) {
-		var ms_start = msbreaks[i] + 1;
-		var ms_end = msbreaks[i+1];
-		
-		// find corresponding tsegs
-		var tids = corr_ms2t.slice(ms_start, ms_end+1);
-		var cur_tid = minID(tids);
-		console.log("min_tid: " + cur_tid);
-		
-		// append transcript segs
-		if (prev_tid + 1 < cur_tid) {
-			segs.push(twords.slice(prev_tid+1, cur_tid).map(function(a){return a.word}));
-			sources.push(3);
-		}
+"use strict";
 
-		// append masterscript seg
-		segs.push(mswords.slice(ms_start, ms_end+1));
-		sources.push(2);
-		prev_tid = Math.max(prev_tid, maxID(tids));
+function mergeSegs2Script(src1, src2, srcids, start, end) {
+	
+	var tokens = [];
+	var src;	
+	console.log(srcids.length);
+	for (var i = 0; i < srcids.length; i++) {
+		if (srcids[i] == 0) src = src1;
+		else if (srcids[i] == 1) src = src2;
+		else console.log("Error: source index must be 0 or 1!")
+		
+		tokens.push.apply(tokens, src.getTokens().slice(start[i], end[i]+1));
 	}
-
-	if (prev_tid + 1 < twords.length) {
-		segs.push(twords.slice(prev_tid+1, twords.length).map(function(a){return a.word}));
-		sources.push(3);
-	}	
 	
-	return [segs, sources];
+	var script = new Script();
+	script.initFromTokens(tokens);
+	return script;	
 };
 
-
-function findSegmentID(ids, tbreaks) {
-	// assume that each segment corresponds to at most one segment
-	for (var i = 0; i < ids.length; i++) {
-		if (ids[i] == -1) // no correspondence
-			continue;
-		for (var j = 0; j < tbreaks.length-1; j++) { 
-			if (tbreaks[j] < ids[i] && ids[i] <= tbreaks[j+1] ) {
-				return j;
-			}
+function getCheckedSegs(tableid) {
+	var sources = [];
+	var startids = [];
+	var endids = [];
+	$(tableid + ' input:radio').each(function() {
+		if ($(this).is(':checked')) {
+			var parent = $(this).parent();
+			var src = parent.attr('data-src');
+			var start = parent.attr('data-startid');
+			var end = parent.attr('data-endid');
+			sources.push(Number(src));
+			startids.push(Number(start));
+			endids.push(Number(end));
+			console.log("src " + src + " start " + start + " end " + end);
 		}
-	}		
-	return -1;
+	});
+	
+	return [sources, startids, endids];
 };
 
-function minID(ids) {
-	var temp = ids.filter(function(a){return a>-1;});
-	if (temp.length == 0) return -1;
-	return Math.min.apply(Math, temp);
-};
 
-function maxID(ids) {
-	return Math.max.apply(Math, ids);
-};

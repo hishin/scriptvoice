@@ -8,8 +8,13 @@ var TextSegment = function(script_src, start_index, end_index) {
 	this.matchingSegs = [];
 
 	this.getSpan = function() {
-		return Script.tokens2spans(this.script.getTokens().slice(this.start, this.end+1));
+		return Script.tokens2spans(this.getTokens());
 	};
+	
+	this.getTokens = function() {
+		return this.script.getTokens().slice(this.start, this.end+1);
+	};
+	
 };
 
 TextSegment.matchScore = function(seg1, seg2, match) {
@@ -299,49 +304,6 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	var src2Trace = Array.apply(null, Array(n2Tokens)).map(
 			Number.prototype.valueOf, 0);
 
-	// Print segments
-	this.printTextSegments = function(words, segtrace, n) {
-		if (segtrace[n] > 0) {
-			this.printTextSegments(words, segtrace, segtrace[n] - 1);
-		}
-		console.log(words.slice(segtrace[n], n + 1) + "\n");
-	};
-
-	// Get segmented script text
-	this.getSegmentText = function(segwords) {
-		var text = '';
-		for (var i = 0; i < segwords.length; i++) {
-			for (var j = 0; j < segwords[i].length; j++) {
-				text = text + segwords[i][j] + ' ';
-			}
-			text = text + '<br><br>';
-		}
-		return text;
-	};
-
-	this.getMasterScriptSegmentText = function() {
-		return this.getSegmentText(this.ms_segwords);
-	};
-
-	this.getTranscriptSegmentText = function() {
-		return this.getSegmentText(this.t_segwords);
-	};
-
-	this.getTranscriptSegment = function(id) {
-		if (id >= this.t_segwords.length) {
-			console.log("Error: index exceeds segment length");
-			return;
-		}
-		return this.t_segwords[id];
-	};
-
-	this.getMasterScriptSegment = function(id) {
-		if (id >= this.ms_segwords.length) {
-			console.log("Error: index exceeds segment length");
-			return;
-		}
-		return this.ms_segwords[id];
-	};
 
 };
 
