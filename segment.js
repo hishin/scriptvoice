@@ -8,10 +8,7 @@ var TextSegment = function(script_src, start_index, end_index) {
 	this.matchingSegs = [];
 
 	this.getSpan = function() {
-		var tokenspans = Script.tokens2spans(this.script.getTokens().slice(this.start, this.end+1));
-		var span=$("<span/>");
-		span.append(tokenspans);
-		return span;
+		return Script.tokens2spans(this.script.getTokens().slice(this.start, this.end+1));
 	};
 };
 
@@ -231,9 +228,11 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 		return src2Segments;
 	};
 
-	var iterateSegment = function() {
-		segmentSrc1();
-		segmentSrc2();
+	this.iterateSegment = function(n) {
+		for (var i = 0; i < n; i++) {
+			this.segmentSrc1();
+			this.segmentSrc2();
+		}
 	};
 
 	// /////////////////////////////////////////////////////////////////////////////

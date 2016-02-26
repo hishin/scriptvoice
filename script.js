@@ -3,6 +3,7 @@
 var Token = function(word) {
 	this.word = word;
 	this.isRecorded = null;
+	this.isLongPause = false;
 	this.tstart = null;
 	this.tend = null;
 	this.confidence = null;
@@ -61,6 +62,9 @@ Script.tokenizeText = function(text_string) {
 		var token = new Token(split_text[i]);
 		token.isRecorded = false;
 		token.confidence = 1.0;
+		if (Token.containsPunct(token.word)) {
+			token.isLongPause = true;
+		}
 		tokens.push(token);
 	}
 	return tokens;
@@ -71,7 +75,6 @@ Script.tokenizeJSON = function(json_string) {
 	var n_utterance = json_obj.transcript.length;
 	var tokens = [];
 	// Parse best alternative
-	console.log("n_utterance: " + n_utterance);
 	for (var i = 0; i < n_utterance; i++) {
 		var best_result = json_obj.transcript[i].results[0].alternatives[0];
 		var ntokens = best_result.word_confidence.length;
@@ -85,6 +88,14 @@ Script.tokenizeJSON = function(json_string) {
 			tokens.push(token);
 		}
 	}
+	
+	for (var i = 0; i < tokens.length-1; i++) {
+		if (tokens[i+1].tstart - tokens[i].tend > Script.LONGPAUSE) {
+			tokens[i].isLongPause = true;
+		}
+	}
+	tokens[tokens.length-1].isLongPause = true;
+	
 	return tokens;
 };
 
@@ -92,16 +103,21 @@ Script.tokens2spans = function(tokens) {
 	var spans = [];
 	var span = $("<span/>");
 	span.append(tokens[0].capitalizedWord());
+	if (tokens[0].isLongPause) {
+		span.append('&para;');
+	}
 	spans.push(span);
 	
 	for (var i = 1; i < tokens.length; i++) {
-		var longpause = Script.isLongPause(tokens[i-1], tokens[i]);
 		span = $("<span/>");
-		if (longpause) {
-			span.append('<br> ' + tokens[i].capitalizedWord());
+		if (tokens[i-1].isLongpause) {
+			span.append(' ' + tokens[i].capitalizedWord());
 		}	
 		else {
 			span.append('  ' + tokens[i].word);
+		}
+		if (tokens[i].isLongPause) {
+			span.append('&para;');
 		}
 		spans.push(span);
 	}
@@ -112,31 +128,25 @@ Script.tokens2spans = function(tokens) {
 Script.tokens2string = function(tokens) {
 	var textstring = '';
 	textstring = textstring + tokens[0].capitalizedWord();
+	if (tokens[0].isLongPause) textstring + '<br><br>';
 	
 	for (var i = 1; i < tokens.length; i++) {
-		var longpause = Script.isLongPause(tokens[i-1], tokens[i]);
-		if (longpause) {
-			textstring = textstring + '<br><br> ' + tokens[i].capitalizedWord();
+		if (tokens[i-1].isLongPause) {
+			textstring = textstring + ' ' + tokens[i].capitalizedWord();
 		}	
 		else {
 			textstring = textstring + '  ' + tokens[i].word;
 		}
+		if (tokens[i].isLongPause) {
+			textstring = textstring + '<br><br>';
+		}
+		
 	}
 	
 	return textstring;
 };
 
 Script.LONGPAUSE = 0.5;
-Script.isLongPause = function(token1, token2) {
-	if (token1.isRecorded && token2.isRecorded) {
-		return (token2.tstart - token1.tend > Script.LONGPAUSE);
-	}
-	if (!token1.isRecorded && !token2.isRecorded) {
-		return Token.containsPunct(token1.word);
-	}
-	if (token1.isRecorded != token2.isRecorded) {
-		return true;
-	}
-};
+
 
 

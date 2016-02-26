@@ -1,0 +1,280 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Text Alignment Test</title>
+<link href="textalign-style.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="ibmspeech.js" type="text/javascript"></script>
+<script src="nwunsch.js" type="text/javascript"></script>
+<script src="segment.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+<script src="visualizetext.js" type="text/javascript"></script>
+
+</head>
+
+<script>
+	var masterscript = null;
+	var transcript = null;
+	var segmenter = null;
+	var match = null;
+	var ms_segments = null;
+	var t_segments = null;
+
+	function loadTranscript() {
+		var filename = document.getElementById("transcript_file").value;
+		var request = new XMLHttpRequest();
+		request.open("GET", filename, false);
+		request.send(null);
+		transcript = new Script();
+		transcript.initFromAudio(request.responseText, null);
+		$('#transcript_span').empty().append(
+				Script.tokens2spans(transcript.getTokens()));
+		
+		segmenter = null;
+		match = null;
+		ms_segments = null;
+		t_segments = null;
+	};
+
+	function printTranscriptSegments() {
+		tseg = segmenter.t_segwords;
+		var t_bgcolors = [];
+		for (var i = 0; i < segmenter.t_breaks.length - 1; i++) {
+			if (isSegRecorded(match.match2to1.slice(segmenter.t_breaks[i] + 1,
+					segmenter.t_breaks[i + 1] + 1))) {
+				t_bgcolors.push(1);
+			} else {
+				t_bgcolors.push(0);
+			}
+		}
+		tseg = getBgColoredTextSegs(segmenter.t_segwords, t_bgcolors);
+		$('#transcript_seg_span').empty().append(tseg);
+	};
+
+	function printMasterScriptSegments() {
+		msseg = segmenter.ms_segwords;
+		var ms_bgcolors = [];
+		for (var i = 0; i < segmenter.ms_breaks.length - 1; i++) {
+			if (isSegRecorded(match.match1to2.slice(segmenter.ms_breaks[i] + 1,
+					segmenter.ms_breaks[i + 1] + 1))) {
+				ms_bgcolors.push(1);
+			} else {
+				ms_bgcolors.push(0);
+			}
+		}
+		msseg = getBgColoredTextSegs(segmenter.ms_segwords, ms_bgcolors);
+		$('#script_seg_span').empty().append(msseg);
+	};
+
+	$(window).load(
+			function() {
+
+				// Load sample transcript
+				loadTranscript();
+
+				// Align two texts
+				$('#btn-align').click(
+						function() {
+							// Load sample masterscript
+							var mstext = $('#script_span')[0].innerText;
+							masterscript = new Script();
+							masterscript.initFromText(mstext);
+
+							// Compute alignment of two texts
+							var pmatch = +$('#pmatch').val();
+							var pmis = +$('#pmis').val();
+							var pgap = +$('#pgap').val();
+
+							var aligner = new NeedlemanWunsch(masterscript,
+									transcript, pmatch, pmis, pgap);
+							match = aligner.align();
+
+							// Visualize correspondence per word.
+							var textspan1 = visualizeMatch(Script
+									.tokens2spans(masterscript.getTokens()),
+									match.match1to2);
+							var textspan2 = visualizeMatch(Script
+									.tokens2spans(transcript.getTokens()),
+									match.match2to1);
+
+							$('#script_span').empty().append(textspan1);
+							$('#transcript_span').empty().append(textspan2);
+
+						});
+
+				$("#btn-ms-segment").click(
+						function() {
+							if (segmenter == null) {
+								segmenter = new Segmenter(masterscript,
+										transcript, match);
+							}
+							segmenter.segmentSrc1();
+							ms_segments = segmenter.getSrc1Segments();
+							if (ms_segments != null && t_segments != null) {
+								TextSegment.matchSegments(ms_segments,
+										t_segments, match);
+								printAlignedTextSegments('#aligned-segs',
+										ms_segments, t_segments);
+							} 
+
+						});
+
+				$("#btn-t-segment").click(
+						function() {
+													
+							// Compute transcript segment
+							if (segmenter == null) {
+								segmenter = new Segmenter(masterscript,
+										transcript, match);
+							}
+							segmenter.segmentSrc2();
+							t_segments = segmenter.getSrc2Segments();
+							if (ms_segments != null && t_segments != null) {
+								TextSegment.matchSegments(ms_segments,
+										t_segments, match);
+								printAlignedTextSegments('#aligned-segs',
+										ms_segments, t_segments);
+							}
+						});
+
+				$("#btn-merge")
+						.click(
+								function() {
+									console.log("merge");
+									var merged = mergeSegs(textseg.mswords,
+											textseg.twords, textseg.ms_breaks,
+											corr[0]);
+									console.log(merged[1]);
+									var mergedsegs = getBgColoredTextSegs(
+											merged[0], merged[1]);
+									$('#merged_span').empty()
+											.append(mergedsegs);
+								});
+			});
+</script>
+<body>
+	<div class="section">
+		<div class="sectionheader">
+			<h2>Text Alignment Algorithm</h2>
+			<p>The purpose of this demo is to test text alignment algorithm
+				and to visualize alignment between written script and automatically
+				generated transcripts.</p>
+		</div>
+		<div class="sectionbody">
+
+
+			<div class="speech2text" id="google-speech2text">
+				<h3>
+					<a
+						href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Google
+						Web Speech API</a>
+				</h3>
+				<div>
+					<button id="start_speech_button" onclick="startSpeech(event)">
+						<img id="start_speech_img" src="images/mic.gif" alt="Start">
+					</button>
+				</div>
+				<div>
+					<span id="speech_instruction">Click and begin speaking.</span>
+				</div>
+			</div>
+
+			<div class="speech2text" id="ibm-speech2text">
+				<h3>
+					<a href="https://speech-to-text-demo.mybluemix.net/">IBM Speech
+						to Text Service</a>
+				</h3>
+				<div>
+					<button id="ibm_start_speech_button"
+						onclick="startSpeechIBM(event)">
+						<img id="ibm_start_speech_img" src="images/mic.gif" alt="Start">
+					</button>
+				</div>
+				<div>
+					<span id="speech_instruction_ibm">Click and begin speaking.</span>
+				</div>
+			</div>
+
+			<div class="textarea">
+				<h3>Script text</h3>
+				<div id="scripttext" class="editabletext" contenteditable=false>
+					<span id="script_span" contenteditable=true> As much as I
+						wish I could say I’m enjoying a nice vacation here on the beach<br>
+						I’m not. I’m actually here in Boston, at MIT.<br>So
+						how did this little cardboard box make me feel like I was miles
+						away from where I actually am? How did it create a virtual
+						reality?<br>If you open this little box up, it
+						looks pretty simple. There’s a place for my phone, which plays the
+						video of the beach. The rest of it sort of looks like glasses,
+						with these two plastic lenses.<br>Now it’s this
+						little piece here that’s the first step to making me feel like I’m
+						actually inside the video on my phone - <br>it’s
+						what creates three D vision.
+					</span>
+				</div>
+			</div>
+			<div class="textarea">
+				<h3>
+					Audio transcription &nbsp;&nbsp; <select id="transcript_file"
+						onchange="loadTranscript()">
+						<option value="audio1.json">audio1.json</option>
+						<option value="audio2.json">audio2.json</option>
+						<option value="audio3.json">audio3.json</option>
+						<option value="audio4.json">audio4.json</option>
+					</select>
+				</h3>
+
+				<div id="transcripttext" class="editabletext" contenteditable=false>
+					<span id="transcript_span" contenteditable=true></span>
+				</div>
+			</div>
+
+			<div id="text-align-params">
+				<h3>Needleman-Wunsch algorithm:</h3>
+
+				<p>Computed per-word basis. The results are color coded per
+					sentence (divided by punctuation or line break) of masterscript.</p>
+				Match score: <input class="params" id="pmatch" type="number"
+					value="1">&nbsp; Mismatch score: <input class="params"
+					id="pmis" type="number" value="-2">&nbsp; Gap score:<input
+					class="params" id="pgap" type="number" value="-1">&nbsp;<br>
+				<button id="btn-align">Align Text</button>
+
+			</div>
+
+			<div>
+				<h3>Text Segmentation</h3>
+				<p>Segment text in master script and transcript. To present to
+					user for merging. Available after computing alignment.</p>
+				<button id="btn-ms-segment">Segment MasterScript</button>
+				<button id="btn-t-segment">Segment Transcript</button>
+				<br>
+				<div>
+					<table id="aligned-segs">
+						<tbody></tbody>
+					</table>
+				</div>
+
+				<div>
+					<h3>Text Merge</h3>
+					<p>
+						Merge master script and transcript. <span
+							style="background-color: 99FFFF">Blue text</span> from Master
+						Script and <span style="background-color: FFCC00">Orange
+							text</span> from audio transcript.
+					</p>
+					<button id="btn-merge">Merge Text</button>
+					<br>
+
+			</div>
+
+
+		</div>
+
+		<div id="cost-table"></div>
+		<div id="alternative-text"></div>
+	</div>
+	<!-- sectionbody -->
+</body>
+</html>

@@ -1,0 +1,11 @@
+span.hasMatch {
+	color: black;
+}
+
+span.noMatch {
+	color: red;
+}
+
+div {
+	margin-top: 5px;
+}
