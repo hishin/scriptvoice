@@ -1,9 +1,9 @@
-span.hasMatch {
-	color: black;
-}
-
 span.noMatch {
 	color: red;
+}
+
+span.notRecorded {
+	background-color: #fca1aa;
 }
 
 div {

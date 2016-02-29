@@ -10,9 +10,21 @@ function printMatch(spans, match) {
 	return spans;
 };
 
+function printRecorded(spans, record) {
+	for (var i = 0; i < spans.length; i++) {
+		if (record[i])
+			spans[i].addClass('isRecorded');
+		else
+			spans[i].addClass('notRecorded');
+	}
+	return spans;
+};
+
 function addRadioButton(trow, rowspan, name, checked) {
 	var td = $("<td/>");
 	td.attr('rowspan', rowspan);
+	td.addClass('col-md-1');
+	td.addClass('text-center');
 	td.append("<input type=\'radio\' name=\'" + name + "\' " + checked + "\>");
 	trow.append(td);
 	return td;
@@ -26,7 +38,9 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 
 		var trow = $("<tr/>");
 		$(tableid + ' tbody:last').append(trow);
+		// segment 1
 		var td = $("<td/>");
+		td.addClass('col-md-5');
 		td.attr('rowspan', Math.max(1, nmatch));
 		var segspan = printMatch(segs1[i].getSpan(), match.match1to2.slice(
 				segs1[i].start, segs1[i].end + 1));
@@ -41,9 +55,11 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 			td.attr('data-endid', segs1[i].end);
 
 			// radio button for seg2
-			addRadioButton(trow, 1, inputname, "");
+			td = addRadioButton(trow, 1, inputname, "");
+			td.attr('data-src', -1);
 			// empty for matching seg2
 			td = $("<td/>");
+			td.addClass('col-md-5');
 			trow.append(td);
 		} else {
 			var matchseg = segs1[i].matchingSegs[0];
@@ -73,6 +89,7 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 			} else if (mscore > 0.5) {
 				td.addClass("warning");
 			}
+			td.addClass('col-md-5');
 			segspan = printMatch(matchseg.getSpan(), match.match2to1.slice(
 					matchseg.start, matchseg.end + 1));
 			td.append(segspan);
@@ -104,6 +121,7 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 				} else if (mscore > 0.5) {
 					td.addClass("warning");
 				}
+				td.addClass('col-md-5');
 				trow.append(td);
 				segspan = printMatch(matchseg.getSpan(), match.match2to1.slice(
 						matchseg.start, matchseg.end + 1));
@@ -117,15 +135,16 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 		if (segs2[i].matchingSegs.length == 0) {
 			var trow = $('<tr/>');
 			$(tableid + ' tbody:last').append(trow);
-
 			var inputname = 'seg2-' + i;
 
 			// empty cell for seg1
 			var td = $('<td/>');
+			td.addClass('col-md-5');
 			trow.append(td);
 			// radio button for seg1
-			addRadioButton(trow, 1, inputname, "");
-
+			td = addRadioButton(trow, 1, inputname, "");
+			td.attr('data-src', -1);
+			
 			// radio button for seg2
 			td = addRadioButton(trow, 1, inputname, "checked");
 			td.addClass("danger");
@@ -135,6 +154,7 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 
 			td = $('<td/>');
 			td.addClass("danger");
+			td.addClass('col-md-5');
 			trow.append(td);
 			var segspan = printMatch(segs2[i].getSpan(), match.match2to1.slice(
 					segs2[i].start, segs2[i].end + 1));

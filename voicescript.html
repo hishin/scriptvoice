@@ -68,16 +68,21 @@
 		// Visualize correspondence per word.
 		var msspan = printMatch(Script.tokens2spans(masterscript.getTokens()),
 				match.match1to2);
+		msspan = printRecorded(msspan, masterscript.getRecorded());
 		var tspan = printMatch(Script.tokens2spans(transcript.getTokens()),
 				match.match2to1);
+		tspan = printRecorded(tspan, transcript.getRecorded());
+
 		$('#script-table tbody').empty();
 		var trow = $("<tr/>");
 		$('#script-table tbody:last').append(trow);
 		var td = $("<td/>");
+		td.addClass('col-md-6');
 		td.attr('id', 'masterscript');
 		trow.append(td);
 		td = $("<td/>");
 		td.attr('id', 'transcript');
+		td.addClass('col-md-6');
 		trow.append(td);
 		$('#masterscript').empty().append(msspan);
 		$('#transcript').empty().append(tspan);
@@ -85,9 +90,12 @@
 
 	function realign() {
 		loadTranscript();
-		loadMasterscript();
+		//loadMasterscript();
 		alignWords();
 		showMatch();
+		$('#btn-align').show();
+		$('#btn-merge').hide();
+		
 	};
 
 	function alignSegments() {
@@ -105,9 +113,30 @@
 	
 	function mergeSegments() {
 		var selected = getCheckedSegs('#script-table');
-		var script = mergeSegs2Script(masterscript, transcript, selected[0], selected[1], selected[2]);
-		var scriptspan = Script.tokens2spans(script.getTokens());
-		$('#merged-script').append(scriptspan);
+		var newscript = mergeSegs2Script(masterscript, transcript, selected[0], selected[1], selected[2]);
+		masterscript = newscript;
+		var msspan = printRecorded(Script.tokens2spans(masterscript.getTokens()),
+						masterscript.getRecorded());
+		var tspan = printRecorded(Script.tokens2spans(transcript.getTokens()), transcript.getRecorded());
+		$('#script-table tbody').empty();
+		var trow = $("<tr/>");
+		$('#script-table tbody:last').append(trow);
+		var td = $("<td/>");
+		td.addClass('col-md-6');
+		td.attr('id', 'masterscript');
+		trow.append(td);
+		td = $("<td/>");
+		td.addClass('col-md-6');
+		td.attr('id', 'transcript');
+		trow.append(td);
+		$('#masterscript').empty().append(msspan);
+		$('#transcript').empty().append(tspan);
+		
+		realign();
+
+		$('#btn-align').toggle();
+		$('#btn-merge').toggle();
+		
 	};
 
 

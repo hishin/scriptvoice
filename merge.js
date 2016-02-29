@@ -4,12 +4,11 @@ function mergeSegs2Script(src1, src2, srcids, start, end) {
 	
 	var tokens = [];
 	var src;	
-	console.log(srcids.length);
 	for (var i = 0; i < srcids.length; i++) {
 		if (srcids[i] == 0) src = src1;
 		else if (srcids[i] == 1) src = src2;
-		else console.log("Error: source index must be 0 or 1!")
-		
+		else if (srcids[i] == -1) continue;
+		else console.log("Error: source index must be -1, 0, or 1!")
 		tokens.push.apply(tokens, src.getTokens().slice(start[i], end[i]+1));
 	}
 	

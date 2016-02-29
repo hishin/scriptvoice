@@ -50,6 +50,11 @@ var Script = function() {
 		tokens = t;
 	};
 	
+	this.getRecorded = function() {
+		return tokens.map(function(t) {return t.isRecorded;});
+	};
+	
+	
 };
 
 Script.tokenizeText = function(text_string) {
@@ -108,7 +113,7 @@ Script.tokens2spans = function(tokens) {
 	
 	for (var i = 1; i < tokens.length; i++) {
 		span = $("<span/>");
-		if (tokens[i-1].isLongpause) {
+		if (tokens[i-1].isLongPause) {
 			span.append(' ' + tokens[i].capitalizedWord());
 		}	
 		else {
