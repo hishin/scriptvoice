@@ -1,13 +1,17 @@
-span.noMatch {
-	color: red;
+span[data-hasmatch="false"] {
+	border-bottom: 2px dotted #fb3b37;
 }
 
-span.notRecorded {
-	background-color: #fca1aa;
+span[data-isrecorded="true"] {
+		color: #0750f8;
 }
 
 div {
 	margin-top: 5px;
+}
+
+[contentEditable="true"]:focus{
+	outline: none;
 }
 
 #btn-merge {

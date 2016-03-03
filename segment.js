@@ -1,28 +1,48 @@
 "use strict";
 
-var TextSegment = function(script_src, start_index, end_index) {
+var TextSegment = function(src_word_tokens, start_index, end_index) {
 
-	this.script = script_src;
+	this.srcWordTokens = src_word_tokens;
 	this.start = start_index;
 	this.end = end_index;
 	this.matchingSegs = [];
+	
+	this.getSpan = function(match) {
+		var w_index = this.start
+		var spans = [];
+		var token = this.srcWordTokens[this.start];
+		var endToken = this.srcWordTokens[this.end];
+		var span;
+		while(token) {
+			if (token.prevToken == null || token.prevToken.isLongPause()) {
+				span = token.getSpan(true);
+			}
+			else {
+				span = token.getSpan(false);
+			}
+			
+			if (match != null && !token.isWhiteSpace) {
+					span.attr('data-hasmatch', match[w_index] >= 0);
+					w_index++;
+			}
+			spans.push(span);
+			
+			if (token.isLongPause() && !token.isWhiteSpace) {
+				var span = $("<span/>");
+				span.append('&para; ');
+				spans.push(span);
+			}
+			
+			if (token == endToken) token = null;
+			else token = token.nextToken;
+		}
+		return spans;
+	};
 
-	this.getSpan = function() {
-		return Script.tokens2spans(this.getTokens());
-	};
-	
-	this.getTokens = function() {
-		return this.script.getTokens().slice(this.start, this.end+1);
-	};
-	
 };
 
 TextSegment.matchScore = function(seg1, seg2, match) {
-	if (match.script1 != seg1.script || match.script2 != seg2.script) {
-		console.log("Error: inconsistent segment and match arguments!")
-		return;
-	}
-
+	
 	var mcount = 0; // total number of matching tokens
 	for (var i = seg1.start; i <= seg1.end; i++) {
 		if (seg2.start <= match.match1to2[i] && match.match1to2[i] <= seg2.end) {
@@ -34,11 +54,12 @@ TextSegment.matchScore = function(seg1, seg2, match) {
 	return mcount / (seg1.end - seg1.start + 1 + seg2.end - seg2.start + 1);
 };
 
-TextSegment.matchSegments = function(segs1, segs2, match)
-{
-	for (var i = 0; i < segs1.length; i++) segs1[i].matchingSegs = [];
-	for (var i = 0; i < segs2.length; i++) segs2[i].matchingSegs = [];
-	
+TextSegment.matchSegments = function(segs1, segs2, match) {
+	for (var i = 0; i < segs1.length; i++)
+		segs1[i].matchingSegs = [];
+	for (var i = 0; i < segs2.length; i++)
+		segs2[i].matchingSegs = [];
+
 	for (var i = 0; i < segs2.length; i++) {
 		var bestscore = -1.0;
 		var bestid = -1;
@@ -56,26 +77,7 @@ TextSegment.matchSegments = function(segs1, segs2, match)
 	}
 };
 
-var Segmenter = function(txt_src1, txt_src2, match) {
-
-	// pause score btw src.tokens[i], src.tokens[i+1]
-	var pauseScore = function(src, i) {
-		var token1 = src.getToken(i);
-
-		// src.token[i] is last token
-		if (src.getTokens().length <= i + 1) {
-			return 0;
-		}
-
-		var token2 = src.getToken(i + 1);
-		if (!token1.isRecorded && !token2.isRecorded) {
-			return punctuationScore(token1.word);
-		} else if (token1.isRecorded != token2.isRecorded) {
-			return 1.0;
-		} else {
-			return token2.tstart - token1.tend;
-		}
-	};
+var Segmenter = function(script1, script2, match) {
 
 	// Score for consistency in match_seq[i, j]
 	// Higher score if fraction of match is close to 0 or 1
@@ -98,7 +100,7 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 		if (prev_m == -1 || next_m == -1) // first or last match
 			score = 1.0;
 		else if (seg_ids[prev_m] != seg_ids[next_m]) { // cut btw different
-														// segments
+			// segments
 			score = 1.0;
 		} else { // cut btw same segments
 			score = -1.0;
@@ -113,8 +115,7 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 				return match_seq[j];
 		}
 		return -1;
-	}
-	;
+	};
 
 	// Return index of closest previous match, -1 if none.
 	function findPrevMatch(match_seq, i) {
@@ -123,22 +124,9 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 				return match_seq[j];
 		}
 		return -1;
-	}
-	;
+	};
 
-	// Score for punctuation in unrecorded text
-	function punctuationScore(word) {
-		var comma = new RegExp("[,]");
-		var period = new RegExp("[!?.]");
-		var newline = new RegExp("\\n");
 
-		if (newline.test(word) || period.test(word))
-			return 1.5;
-		if (comma.test(word))
-			return 0.15;
-		return -1.0;
-	}
-	;
 
 	// Compute LineScore
 	var getSrc1LineScore = function(i, j) {
@@ -156,17 +144,16 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	};
 
 	var computeSrc1LineScore = function() {
-		for (var i = 0; i < n1Tokens; i++) {
-			for (var j = i; j < n1Tokens; j++) {
+		for (var i = 0; i < n1Words; i++) {
+			for (var j = i; j < n1Words; j++) {
 				src1LineScore[i][j] = getSrc1LineScore(i, j);
-
 			}
 		}
 	};
 
 	var computeSrc2LineScore = function() {
-		for (var i = 0; i < n2Tokens; i++) {
-			for (var j = i; j < n2Tokens; j++) {
+		for (var i = 0; i < n2Words; i++) {
+			for (var j = i; j < n2Words; j++) {
 				src2LineScore[i][j] = getSrc2LineScore(i, j);
 			}
 		}
@@ -191,12 +178,12 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	};
 
 	// Compute and store segments from total score
-	var getSegments = function(src, trace, segIDs) {
+	var getSegments = function(srcWordTokens, trace, segIDs) {
 		var segs = [];
 		var n = trace.length - 1;
 		var segindex = 0;
 		while (n >= 0) {
-			var seg = new TextSegment(src, trace[n], n);
+			var seg = new TextSegment(srcWordTokens, trace[n], n);
 			for (var i = trace[n]; i <= n; i++) {
 				segIDs[i] = segindex;
 			}
@@ -216,13 +203,13 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	this.segmentSrc1 = function() {
 		computeSrc1LineScore();
 		computeTotalScore(src1TotalScore, src1Trace, src1LineScore);
-		src1Segments = getSegments(src1, src1Trace, src1SegIDs);
+		src1Segments = getSegments(src1WordTokens, src1Trace, src1SegIDs);
 	};
 
 	this.segmentSrc2 = function() {
 		computeSrc2LineScore();
 		computeTotalScore(src2TotalScore, src2Trace, src2LineScore);
-		src2Segments = getSegments(src2, src2Trace, src2SegIDs);
+		src2Segments = getSegments(src2WordTokens, src2Trace, src2SegIDs);
 	};
 
 	this.getSrc1Segments = function() {
@@ -244,16 +231,16 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	// Initialization
 	// /////////////////////////////////////////////////////////////////////////////
 	var self = this;
-	var src1 = txt_src1;
-	var src2 = txt_src2;
-	var src1Tokens = src1.getTokens();
-	var src2Tokens = src2.getTokens();
+	var src1 = script1;
+	var src2 = script2;
+	var src1WordTokens = src1.getWordTokens();
+	var src2WordTokens = src2.getWordTokens();
 	var match1to2 = match.match1to2;
 	var match2to1 = match.match2to1;
 
 	// length of each src
-	var n1Tokens = src1Tokens.length;
-	var n2Tokens = src2Tokens.length;
+	var n1Words = src1WordTokens.length;
+	var n2Words = src2WordTokens.length;
 
 	// output segments
 	var src1Segments = null;
@@ -262,65 +249,47 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	var src1PauseScore = [];
 	var src1SegIDs = [];
 	var segID = 0;
-	for (var i = 0; i < n1Tokens; i++) {
-		src1PauseScore.push(pauseScore(src1, i))
+	for (var i = 0; i < n1Words; i++) {
+		src1PauseScore.push(src1WordTokens[i].pauseScore)
 		src1SegIDs.push(segID);
-		if (src1PauseScore[i] > Segmenter.LONGPAUSE)
+		if (src1WordTokens[i].isLongPause())
 			segID++;
 	}
-
-
+	
 	var src2PauseScore = [];
 	var src2SegIDs = [];
 	segID = 0;
-	for (var i = 0; i < n2Tokens; i++) {
-		src2PauseScore.push(pauseScore(src2, i));
+	for (var i = 0; i < n2Words; i++) {
+		src2PauseScore.push(src2WordTokens[i].pauseScore);
 		src2SegIDs.push(segID);
-		if (src2PauseScore[i] > Segmenter.LONGPAUSE)
+		if (src2WordTokens[i].isLongPause())
 			segID++;
 	}
-
+	
 	// LineScore[i][j]: score of a line containing tokens i through j
-	var src1LineScore = new Array(n1Tokens);
+	var src1LineScore = new Array(n1Words);
 	for (var i = 0; i < src1LineScore.length; i++) {
-		src1LineScore[i] = Array.apply(null, Array(n1Tokens)).map(
+		src1LineScore[i] = Array.apply(null, Array(n1Words)).map(
 				Number.prototype.valueOf, 0);
 	}
-	var src2LineScore = new Array(n2Tokens);
+	var src2LineScore = new Array(n2Words);
 	for (var i = 0; i < src2LineScore.length; i++) {
-		src2LineScore[i] = Array.apply(null, Array(n2Tokens)).map(
+		src2LineScore[i] = Array.apply(null, Array(n2Words)).map(
 				Number.prototype.valueOf, 0);
 	}
 
 	// TotalScore[i]: score of optimal line breaks for tokens 0 through i
-	var src1TotalScore = Array.apply(null, Array(n1Tokens)).map(
+	var src1TotalScore = Array.apply(null, Array(n1Words)).map(
 			Number.prototype.valueOf, Number.NEGATIVE_INFINITY);
-	var src2TotalScore = Array.apply(null, Array(n2Tokens)).map(
+	var src2TotalScore = Array.apply(null, Array(n2Words)).map(
 			Number.prototype.valueOf, Number.NEGATIVE_INFINITY);
 
 	// Trace: optimal line consists of word[trace[n]] through word[n]
-	var src1Trace = Array.apply(null, Array(n1Tokens)).map(
+	var src1Trace = Array.apply(null, Array(n1Words)).map(
 			Number.prototype.valueOf, 0);
-	var src2Trace = Array.apply(null, Array(n2Tokens)).map(
+	var src2Trace = Array.apply(null, Array(n2Words)).map(
 			Number.prototype.valueOf, 0);
 
-
-};
-
-Segmenter.LONGPAUSE = 0.5;
-
-function isSegRecorded(corr, thres) {
-	// Returns true if more than 50% of words in seg has correspondence
-	thres = typeof thres !== 'undefined' ? thres : 0.50;
-	var count = 0;
-	for (var i = 0; i < corr.length; i++) {
-		if (corr[i] >= 0)
-			count++;
-	}
-	if (count / corr.length >= thres)
-		return true;
-	// console.log("Segment is not recorded: " + count + " / " + corr.length);
-	return false;
 };
 
 /**

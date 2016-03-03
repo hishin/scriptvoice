@@ -1,99 +1,91 @@
 "use strict"
 
-function printMatch(spans, match) {
+function addDataMatch(spans, match) {
+	var m = 0;
 	for (var i = 0; i < spans.length; i++) {
-		if (match[i] >= 0)
-			spans[i].addClass('hasMatch');
+		var span = spans[i];
+		var iswhitespace = spans[i].attr('data-iswhitespace');
+		if (iswhitespace == "true") {
+			span.attr('data-hasmatch', false);
+			continue;
+		} else if (iswhitespace == "" || iswhitespace == null) {
+			continue;
+		}
+		if (match[m] >= 0)
+			spans[i].attr('data-hasmatch', true);
 		else
-			spans[i].addClass('noMatch');
+			spans[i].attr('data-hasmatch', false);
+		m++;
 	}
 	return spans;
 };
 
-function printRecorded(spans, record) {
-	for (var i = 0; i < spans.length; i++) {
-		if (record[i])
-			spans[i].addClass('isRecorded');
-		else
-			spans[i].addClass('notRecorded');
-	}
-	return spans;
-};
-
-function addRadioButton(trow, rowspan, name, checked) {
+function addRadioButton(trow, rowspan, name, checked, selectid) {
 	var td = $("<td/>");
 	td.attr('rowspan', rowspan);
-	td.addClass('col-md-1');
 	td.addClass('text-center');
-	td.append("<input type=\'radio\' name=\'" + name + "\' " + checked + "\>");
+	td.append("<input type=\'radio\' name=\'" + name + "\' " + checked
+			+ " value=\'" + selectid + "\' \>");
 	trow.append(td);
 	return td;
 };
 
 function printAlignedTextSegments(tableid, segs1, segs2, match) {
 	$(tableid + ' tbody').empty();
+	var cellid = 0;
+	var selectid;
 	for (var i = 0; i < segs1.length; i++) {
 		var nmatch = segs1[i].matchingSegs.length;
 		var inputname = 'seg1-' + i;
-
+		selectid = 'cell' + cellid; 
 		var trow = $("<tr/>");
 		$(tableid + ' tbody:last').append(trow);
 		// segment 1
 		var td = $("<td/>");
-		td.addClass('col-md-5');
+		td.addClass('col-md-6');
 		td.attr('rowspan', Math.max(1, nmatch));
-		var segspan = printMatch(segs1[i].getSpan(), match.match1to2.slice(
-				segs1[i].start, segs1[i].end + 1));
+		td.attr('id', selectid)
+		var segspan = segs1[i].getSpan(match.match1to2);
 		td.append(segspan);
 		trow.append(td);
 
 		if (nmatch == 0) {
 			// radio button for seg1
-			td = addRadioButton(trow, 1, inputname, "checked");
-			td.attr('data-src', 0);
-			td.attr('data-startid', segs1[i].start);
-			td.attr('data-endid', segs1[i].end);
-
+			td = addRadioButton(trow, 1, inputname, "checked", selectid);			
 			// radio button for seg2
-			td = addRadioButton(trow, 1, inputname, "");
-			td.attr('data-src', -1);
+			cellid++;
+			selectid = 'cell' + cellid; 
+			td = addRadioButton(trow, 1, inputname, "", selectid);
 			// empty for matching seg2
 			td = $("<td/>");
-			td.addClass('col-md-5');
+			td.addClass('col-md-6');
+			td.attr('id', selectid)
 			trow.append(td);
 		} else {
 			var matchseg = segs1[i].matchingSegs[0];
 			var mscore = TextSegment.matchScore(segs1[i], matchseg, match);
 
 			// radio button for seg1
-			td = addRadioButton(trow, nmatch, inputname, "");
-			td.attr('data-src', 0);
-			td.attr('data-startid', segs1[i].start);
-			td.attr('data-endid', segs1[i].end);
-
+			td = addRadioButton(trow, nmatch, inputname, "", selectid);
+			
 			// radio button for seg2
-			td = addRadioButton(trow, 1, inputname, "checked");
-			if (mscore > 0.75) {
-				td.addClass("success");
-			} else if (mscore > 0.5) {
-				td.addClass("warning");
-			}
-			td.attr('data-src', 1);
-			td.attr('data-startid', matchseg.start);
-			td.attr('data-endid', matchseg.end);
-
-			// print seg1[i] and matching seg2
+			cellid++;
+			selectid = 'cell' + cellid; 
+			td = addRadioButton(trow, 1, inputname, "checked", selectid);
+			
+			// matching seg2
 			td = $("<td/>");
-			if (mscore > 0.75) {
-				td.addClass("success");
-			} else if (mscore > 0.5) {
-				td.addClass("warning");
-			}
-			td.addClass('col-md-5');
-			segspan = printMatch(matchseg.getSpan(), match.match2to1.slice(
-					matchseg.start, matchseg.end + 1));
+			td.addClass('col-md-6');
+			segspan = matchseg.getSpan(match.match2to1);
+			td.attr('id', selectid)
 			td.append(segspan);
 			trow.append(td);
+
+			if (mscore > 0.75) {
+				trow.addClass("success");
+			} else if (mscore > 0.5) {
+				trow.addClass("warning");
+			}
 
 			// if there are more than 1 match
 			for (var j = 1; j < nmatch; j++) {
@@ -103,31 +95,27 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 				$(tableid + ' tbody:last').append(trow);
 
 				// radio button for seg2
-				td = addRadioButton(trow, 1, inputname, "");
-				if (mscore > 0.75) {
-					td.addClass("success");
-				} else if (mscore > 0.5) {
-					td.addClass("warning");
-				}
-				td.attr('data-src', 1);
-				td.attr('data-startid', matchseg.start);
-				td.attr('data-endid', matchseg.end);
+				cellid++;
+				selectid = 'cell' + cellid; 
+				td = addRadioButton(trow, 1, inputname, "", selectid);
 				trow.append(td);
 
 				// matching seg2
 				td = $("<td/>");
-				if (mscore > 0.75) {
-					td.addClass("success");
-				} else if (mscore > 0.5) {
-					td.addClass("warning");
-				}
-				td.addClass('col-md-5');
+				td.addClass('col-md-6');
 				trow.append(td);
-				segspan = printMatch(matchseg.getSpan(), match.match2to1.slice(
-						matchseg.start, matchseg.end + 1));
+				segspan = matchseg.getSpan(match.match2to1);
 				td.append(segspan);
+				td.attr('id', selectid)
+
+				if (mscore > 0.75) {
+					trow.addClass("success");
+				} else if (mscore > 0.5) {
+					trow.addClass("warning");
+				}
 			}
 		}
+		cellid++;
 	}
 
 	// For unmatched seg2
@@ -138,28 +126,31 @@ function printAlignedTextSegments(tableid, segs1, segs2, match) {
 			var inputname = 'seg2-' + i;
 
 			// empty cell for seg1
+			cellid++;
+			selectid = 'cell' + cellid; 
 			var td = $('<td/>');
-			td.addClass('col-md-5');
+			td.addClass('col-md-6');
+			td.attr('id', selectid)
 			trow.append(td);
 			// radio button for seg1
-			td = addRadioButton(trow, 1, inputname, "");
-			td.attr('data-src', -1);
-			
+			td = addRadioButton(trow, 1, inputname, "", selectid);
+
 			// radio button for seg2
-			td = addRadioButton(trow, 1, inputname, "checked");
+			cellid++;
+			selectid = 'cell' + cellid;
+			td = addRadioButton(trow, 1, inputname, "checked", selectid);
 			td.addClass("danger");
-			td.attr('data-src', 1);
-			td.attr('data-startid', segs2[i].start);
-			td.attr('data-endid', segs2[i].end);
 
 			td = $('<td/>');
 			td.addClass("danger");
-			td.addClass('col-md-5');
+			td.addClass('col-md-6');
+			td.attr('id', selectid);
 			trow.append(td);
-			var segspan = printMatch(segs2[i].getSpan(), match.match2to1.slice(
-					segs2[i].start, segs2[i].end + 1));
+			var segspan = segs2[i].getSpan(match.match2to1);
 			td.append(segspan);
 		}
 	}
+
+	$(tableid + ' tbody').sortable().disableSelection();
 };
 
