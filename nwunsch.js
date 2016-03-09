@@ -3,6 +3,7 @@
 function NeedlemanWunsch(script1, script2, pmatch, pmis, pgap) {
 	var text1 = script1.getWords();
 	var text2 = script2.getWords();
+	
 	this.pmatch = pmatch;
 	this.pmis = pmis;
 	this.pgap = pgap;
@@ -28,7 +29,7 @@ function NeedlemanWunsch(script1, script2, pmatch, pmis, pgap) {
 			for (var j = 1; j <= this.length2; j++) {
 				top = this.cost[i-1][j] + this.pgap;
 				left = this.cost[i][j-1] + this.pgap;
-				diag = this.cost[i-1][j-1] + (this.isMatch(text1[i-1], text2[j-1]) ? this.pmatch:this.pmis);
+				diag = this.cost[i-1][j-1] + (NeedlemanWunsch.isMatch(text1[i-1], text2[j-1]) ? this.pmatch:this.pmis);
 				this.cost[i][j] = Math.max(top, left, diag);
 				
 				/*
@@ -50,18 +51,6 @@ function NeedlemanWunsch(script1, script2, pmatch, pmis, pgap) {
 		
 		var matches = this.getMatchArrays();
 		return new Match(script1, script2, matches[0], matches[1]);
-	};
-	
-	this.isMatch = function(text1, text2) {
-		var text1strip = strip(text1);
-		var text2strip = strip(text2);
-		return text1strip == text2strip;
-	};
-	
-	// strip punctuation and make lowercase
-	var strip = function(text) {
-		var stripped = text.replace(/[.,!?;:()\s]/g,"").toLowerCase();
-		return stripped;
 	};
 	
 	this.makeCostTable = function() {
@@ -168,6 +157,27 @@ function NeedlemanWunsch(script1, script2, pmatch, pmis, pgap) {
 		 return [text1_align, text2_align];
 	};
 }
+
+// strip punctuation and make lowercase
+NeedlemanWunsch.strip = function(text) {
+	var stripped = text.replace(/[.,!?;:()]/g,"").trim().toLowerCase();
+	return stripped;
+};
+
+NeedlemanWunsch.isMatch = function(text1, text2) {
+	var text1strip = NeedlemanWunsch.strip(text1);
+	var text2strip = NeedlemanWunsch.strip(text2);
+	return text1strip == text2strip;
+};
+
+NeedlemanWunsch.matchAlternative = function(alternatives, word) {
+	for (var i = 0; i <alternatives.length; i++) {
+		if (NeedlemanWunsch.isMatch(alternatives[i], word)) {
+			return true;
+		}
+	}
+	return false;
+};
 
 var Match = function(script1, script2, match1to2, match2to1) {
 	var self = this;

@@ -2,42 +2,37 @@
 
 var Token = function(word) {
 	this.word = word;
-
-	var whitespace = new RegExp("\\s");
-	this.isWhiteSpace = (whitespace.test(this.word) || this.word === "");
 	this.isRecorded = null;
-	this.pauseScore = 0.0;
-	this.tstart = null;
-	this.tend = null;
 	this.confidence = null;
-	this.audiofile = null;
-	this.prevToken = null;
-	this.nextToken = null;
-
+	this.pauseScore = 0.0;
 	this.isLongPause = function() {
 		return (this.pauseScore > Script.LONGPAUSE);
 	};
+	this.tstart = null;
+	this.tend = null;
+	this.audiofile = null;
+	this.isDirty = null;
+	this.index = null;
+	this.comments = [];
 
-	this.addPrevToken = function(prev) {
-		if (this.prevToken != null) {
-			prev.prevToken = this.prevToken;
-			this.prevToken.nextToken = prev;
-		}
-		this.prevToken = prev;
-		if (prev)
-			prev.nextToken = this;
-	};
-
+	this.alternatives = [];
+	this.alt_confidences = [];
+	
 	this.capitalizedWord = function() {
 		return word.charAt(0).toUpperCase() + word.slice(1);
 	};
-	
-	this.getSpan = function(capitalize) {
+
+	this.getSpan = function(capitalize, linebreak) {
 		var span = $("<span/>");
-		if (capitalize) span.append(this.capitalizedWord());
-		else span.append(this.word);
+		if (capitalize)
+			span.append(' ' + this.capitalizedWord().trim());
+		else
+			span.append(' ' + this.word.trim());
+		if (linebreak && this.isLongPause()) {
+			span.append('<br/><br/>');
+		}
+
 		span.attr('data-word', this.word);
-		span.attr('data-iswhitespace', this.isWhiteSpace)
 		span.attr('data-isrecorded', this.isRecorded);
 		span.attr('data-pausescore', this.pauseScore);
 		span.attr('data-islongpause', this.isLongPause());
@@ -45,24 +40,12 @@ var Token = function(word) {
 		span.attr('data-tend', this.tend);
 		span.attr('data-confidence', this.confidence);
 		span.attr('data-audiofile', this.audiofile);
-		
-		if (!this.isRecorded) {
-			span.attr('contentEditable', true);	
-		}
-		else {
-			span.attr('contentEditable', false);
-		}
-		
+		span.attr('data-isdirty', this.isDirty);
+		span.attr('data-index', this.index);
+		span.attr('data-alternatives', JSON.stringify(this.alternatives));
 		return span;
 	};
 
-};
-
-Token.WhiteSpaceToken = function() {
-	var token = new Token(" ");
-	token.isRecorded = false;
-	token.confidence = 1.0;
-	return token;
 };
 
 Token.containsPunct = function(word) {
@@ -74,267 +57,150 @@ Token.containsPunct = function(word) {
 
 var Script = function() {
 	var self = this;
-	var firstToken = null;
-	var tokens = null;
-	
+	var tokens = [];
+
 	this.getWords = function() {
-		var token = firstToken;
-		var words = [];
-		while (token) {
-			if (!token.isWhiteSpace) {
-				words.push(token.word);
-			}
-			token = token.nextToken;
-		}
+		var words = tokens.map(function(a) {
+			return a.word
+		});
 		return words;
-	};
-	
-	this.getWordTokens = function() {
-		var token = firstToken;
-		var wtokens = [];
-		while (token) {
-			if (!token.isWhiteSpace) {
-				wtokens.push(token);
-			}
-			token = token.nextToken;
-		}
-		return wtokens;
+	}
+
+	this.getTokens = function() {
+		return tokens;
 	};
 
-	this.assignTokensArray = function() {
-		tokens = [];
-		var token = firstToken;
-		while (token) {
-			tokens.push(token);
-			token = token.nextToken;
-		}
-		return tokens;
+	this.getToken = function(i) {
+		return tokens[i];
 	};
 
 	this.getSpans = function() {
 		var spans = [];
-		var token = firstToken;
-		while(token) {
-			if (token.prevToken == null || token.prevToken.isLongPause()) {
-				spans.push(token.getSpan(true));
+		var capital = false;
+		for (var i = 0; i < tokens.length; i++) {
+			var token = tokens[i];
+			if (i == 0 && token.isRecorded)
+				capital = true;
+
+			spans.push(token.getSpan(capital, true)); // insert line break at
+			// long pause
+			if (token.isLongPause()) {
+				capital = true;
+			} else {
+				capital = false;
 			}
-			else {
-				spans.push(token.getSpan(false));
-			}
-			
-			if (token.isLongPause() && !token.isWhiteSpace) {
-				var span = $("<span/>");
-				span.append('&para; ');
-				spans.push(span);
-			}
-			token = token.nextToken;
 		}
 		return spans;
 	};
 
-	this.getToken = function(i) {
-		if (!tokens) tokens = assignTokensArray();
-		if (i > tokens.length) {
-			console.log("Script.getToken Error: Index exceeds number of tokens");
-		}
-		return tokens[i];
-	};
-
 	this.initFromText = function(text_string) {
-		firstToken = Script.tokenizeText(text_string);
-		this.assignTokensArray();
+		tokens = Script.tokenizeText(text_string);
 	};
 
 	this.initFromAudio = function(json_string, audio_file) {
-		firstToken = Script.tokenizeJSON(json_string, audio_file);
-		this.assignTokensArray();
+		tokens = Script.tokenizeJSON(json_string, audio_file);
 	};
 
-	// TODO: correct for linked list
 	this.initFromSpans = function(spans) {
-		firstToken = Script.tokenizeSpans(spans);
-		this.assignTokensArray();
+		tokens = Script.tokenizeSpans(spans);
 	};
 
-	/**
-	 * Return binary array indicating isRecorded Status
-	 */
-	this.getRecorded = function() {
-		var tokens = this.getTokensArray();
-		return tokens.map(function(t) {
-			return t.isRecorded;
-		});
-	};
 };
 
-Script.appendWhiteSpace = function(token) {
-	var wtoken = Token.WhiteSpaceToken();
-	wtoken.addPrevToken(token);
-	return wtoken;
+Script.whiteSpaceSpan = function() {
+	var span = $("<span/>");
+	span.append(' ');
+	span.attr('data-word', ' ');
+	span.attr('data-isrecorded', false);
+	return span;
 };
 
-Script.prependWhiteSpace = function(token) {
-	var wtoken = Token.WhiteSpaceToken();
-	token.addPrevToken(wtoken);
-	return wtoken;
+Script.longPauseSpan = function(symbol) {
+	var span = $("<span/>");
+	span.append(symbol);
+	return span;
 };
 
 Script.tokenizeText = function(text_string) {
-	var split_text = text_string.split(/(\s+)/);
-	var firstToken;
-	var prev = null;
-	var token;
+
+	var split_text = text_string.split(/(\S+\s+)/).filter(function(n) {
+		return n;
+	});
+
+	var tokens = [];
 	for (var i = 0; i < split_text.length; i++) {
-		token = new Token(split_text[i]);
+		var word = split_text[i];
+		var token = new Token(word);
 		token.isRecorded = false;
 		token.confidence = 1.0;
-		if (i == 0)
-			firstToken = token;
-		token.addPrevToken(prev);
-		prev = token;
+		token.pauseScore = Script.punctuationScore(token.word);
+		token.index = tokens.length;
+		tokens.push(token);
 	}
-	var lastToken = token;
-
-	// Add whitespace token at the beginning and end
-	if (!firstToken.isWhiteSpace) {
-		firstToken = Script.prependWhiteSpace(firstToken);
-	}
-	if (!lastToken.isWhiteSpace) {
-		lastToken = Script.appendWhiteSpace(lastToken);
-	}
-
-	// Assign pause score
-	token = firstToken;
-	var newline = new RegExp("\\n");
-	while (token) {
-		if (token.isWhiteSpace) {
-			// first white space
-			if (!token.prevToken)
-				token.pauseScore = Script.PERIOD_PAUSE;
-			else if (newline.test(token.word)) {
-				token.pauseScore = Script.PERIOD_PAUSE;
-				// propagate to previous tokens until passing non-whitespace
-				var prevToken = token.prevToken;
-				var passNonWhiteSpace = false;
-				while (prevToken && !passNonWhiteSpace) {
-					prevToken.pauseScore = Script.PERIOD_PAUSE;
-					passNonWhiteSpace = !prevToken.isWhiteSpace;
-					prevToken = prevToken.prevToken;
-				}
-			} else {
-				token.pauseScore = token.prevToken.pauseScore;
-			}
-		} else {
-			token.pauseScore = Script.punctuationScore(token.word);
-		}
-		token = token.nextToken;
-	}
-
-	return firstToken;
+	return tokens;
 };
 
 Script.tokenizeJSON = function(json_string, audio_file) {
 	var json_obj = JSON.parse(json_string);
 	var n_utterance = json_obj.transcript.length;
-	var token;
-	var firstToken;
-	var prev = null;
+	var tokens = [];
 	// Parse best alternative
 	for (var i = 0; i < n_utterance; i++) {
 		var best_result = json_obj.transcript[i].results[0].alternatives[0];
 		var ntokens = best_result.word_confidence.length;
 		for (var j = 0; j < ntokens; j++) {
 			var word = best_result.word_confidence[j][0];
-			token = new Token(word);
+			word = word + ' ';
+			var token = new Token(word);
+			token.confidence = best_result.word_confidence[j][1];
 			token.isRecorded = true;
+			for (var k = 0; k < best_result.word_confidence[j].length; k+=2) {
+				token.alternatives.push(best_result.word_confidence[j][k]);
+				token.alt_confidences.push(best_result.word_confidence[j][k+1]);
+			}
 			token.tstart = best_result.timestamps[j][1];
 			token.tend = best_result.timestamps[j][2];
-			token.confidence = best_result.word_confidence[j][1];
 			token.audiofile = audio_file;
-			if (i == 0 && j == 0)
-				firstToken = token;
-			token.addPrevToken(prev);
-
-			// Add white space token in-between word tokens
-			if (i < n_utterance - 1 || j < ntokens - 1) {
-				prev = Script.appendWhiteSpace(token);
-			}
+			token.index = tokens.length;
+			tokens.push(token);
 		}
 	}
 
-	// Assign pause score
-	token = firstToken;
-	while (token) {
-		if (token.isWhiteSpace) {
-			// first white space
-			if (!token.prevToken)
-				token.pauseScore = Script.PERIOD_PAUSE;
-			else {
-				// propagate FROM previous
-				token.pauseScore = token.prevToken.pauseScore;
-			}
-		} else {
-			var nextWordToken = token.nextToken;
-			while (nextWordToken && nextWordToken.isWhiteSpace) {
-				nextWordToken = nextWordToken.nextToken;
-			}
-			if (nextWordToken == null)
-				token.pauseScore = Script.PERIOD_PAUSE;
-			else
-				token.pauseScore = nextWordToken.tstart - token.tend;
-		}
-		token = token.nextToken;
+	for (var i = 0; i < tokens.length - 1; i++) {
+		tokens[i].pauseScore = tokens[i + 1].tstart - tokens[i].tend;
 	}
-
-	return firstToken;
+	tokens[tokens.length - 1].pauseScore = Script.PERIOD_PAUSE = 1.5;
+	return tokens;
 };
 
 Script.tokenizeSpans = function(spans) {
 	var span;
 	var word;
-	var prev = null;
-	var firstToken = null;
+	var text_string;
+	var text_tokens;
+	var tokens = [];
+
 	for (var i = 0; i < spans.length; i++) {
 		span = spans[i];
-		word = span.getAttribute('data-word');
-		if (word == null) continue;
-		var token = new Token(word);
-		if (firstToken == null) firstToken = token;
-		token.isRecorded = (span.getAttribute('data-isrecorded') == 'true');
-		token.pauseScore = Number(span.getAttribute('data-pausescore'));
-		token.tstart = Number(span.getAttribute('data-tstart'));
-		token.tend = Number(span.getAttribute('data-tend'));
-		token.confidence = Number(span.getAttribute('data-confidence'));
-		token.audiofile = span.getAttribute('data-audiofile');
-		token.addPrevToken(prev);
-		prev = token;
-	}
-	return firstToken;
-};
-
-Script.tokens2spans = function(tokens) {
-	var spans = [];
-	var span = $("<span/>");
-	span.append(tokens[0].capitalizedWord());
-	if (tokens[0].isLongPause) {
-		span.append('&para;');
-	}
-	spans.push(span);
-
-	for (var i = 1; i < tokens.length; i++) {
-		span = $("<span/>");
-		if (tokens[i - 1].isLongPause) {
-			span.append(' ' + tokens[i].capitalizedWord());
-		} else {
-			span.append('  ' + tokens[i].word);
+		text_string = $(span).text();
+		text_tokens = Script.tokenizeText(text_string);
+		for (var j = 0; j < text_tokens.length; j++) {
+			var token = text_tokens[j];
+			if (span.getAttribute('data-isrecorded') == 'true') {
+				token.isRecorded = true;
+				token.confidence = Number(span.getAttribute('data-confidence'));
+				token.pauseScore = Number(span.getAttribute('data-pausescore'));
+				token.tstart = Number(span.getAttribute('data-tstart'));
+				token.tend = Number(span.getAttribute('data-tend'));
+				token.audiofile = span.getAttribute('data-audiofile');
+				token.isDirty = span.getAttribute('data-isdirty');
+				token.alternatives = $.parseJSON(span.getAttribute('data-alternatives'));
+			}
+			token.index = tokens.length;
+			tokens.push(text_tokens[j]);
 		}
-		if (tokens[i].isLongPause) {
-			span.append('&para;');
-		}
-		spans.push(span);
 	}
-
-	return spans;
+	return tokens;
 };
 
 Script.punctuationScore = function(word) {
