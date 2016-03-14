@@ -4,7 +4,7 @@
 <title>Voice Script</title>
 
 
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <!-- Latest compiled and minified CSS -->
@@ -25,6 +25,8 @@
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
 
+<script src="RecordRTC.min.js" type="text/javascript"></script>
+<script src="https://cdn.webrtc-experiment.com/gumadapter.js"></script>
 
 <script src="nwunsch.js" type="text/javascript"></script>
 <script src="segment.js" type="text/javascript"></script>
@@ -33,140 +35,14 @@
 <script src="merge.js" type="text/javascript"></script>
 <script src="editscript.js" type="text/javascript"></script>
 <script src="ibmspeech.js" type="text/javascript"></script>
+<script src="test.js" type="text/javascript"></script>
+<script src="initpage.js" type="text/javascript"></script>
 <link rel="stylesheet" href="voicescript.css">
 
 </head>
 
 <script>
-	var masterscript = null;
-	var transcript = null;
-	var segmenter = null;
-	var match = null;
-	var sortable = false;
-
-	function loadTranscript() {
-		var filename = document.getElementById("transcript_file").value;
-		var request = new XMLHttpRequest();
-		request.open("GET", filename, false);
-		request.send(null);
-		transcript = new Script();
-		transcript.initFromAudio(request.responseText, null);
-		reinit();
-	};
-
-	function loadMasterscript() {
-		var filename = document.getElementById("masterscript_file").value;
-		var request = new XMLHttpRequest();
-		request.open("GET", filename, false);
-		request.send(null);
-		masterscript = new Script();
-		masterscript.initFromText(request.responseText);
-		reinit();
-	};
-
-	function reinit() {
-		segmenter = null;
-		match = null;
-	};
-
-	function showScriptTable() {
-		$('#script-table tbody').empty();
-		var trow = $("<tr/>");
-		$('#script-table tbody:last').append(trow);
-		var td = $("<td/>");
-		td.addClass('col-md-6');
-		td.attr('id', 'masterscript');
-		trow.append(td);
-		td = $("<td/>");
-		td.attr('id', 'transcript');
-		td.addClass('col-md-6');
-		trow.append(td);
-
-		if (sortable) {
-			$('#script-table tbody').sortable('disable');
-			$('#script-table tbody').enableSelection();
-		}
-
-		$('#btn-align').show();
-		$('#btn-merge').hide();
-	};
-
-	function showMasterscript() {
-		var msspan = masterscript.getSpans();
-		$('#masterscript').empty().append(msspan);
-		$('#masterscript').attr('contentEditable', true);
-		document.getElementById("masterscript").addEventListener("keydown",
-				saveEditNodes, false);
-		document.getElementById("masterscript").addEventListener("keyup",
-				editMasterscript, false);
-		document.getElementById("masterscript").addEventListener("contextmenu",
-				contextMasterscript, false);
-	};
-
-	function showTranscript() {
-		loadTranscript();
-		var tspan = transcript.getSpans();
-		$('#transcript').empty().append(tspan);
-	};
-
-	function alignWords() {
-		// Get from current script
-		// Compute alignment of two texts
-		masterscript = new Script();
-		masterscript.initFromSpans($('#masterscript').children('span'));
-		transcript = new Script();
-		transcript.initFromSpans($('#transcript').children('span'));
-		var pmatch = 1;
-		var pmis = -2;
-		var pgap = -1;
-		var aligner = new NeedlemanWunsch(masterscript, transcript, pmatch,
-				pmis, pgap);
-		match = aligner.align();
-	};
-
-	function alignSegments() {
-		// Compute word-to-word match
-		alignWords();
-		segmenter = new Segmenter(masterscript, transcript, match);
-		segmenter.iterateSegment(2);
-		var ms_segments = segmenter.getSrc1Segments();
-		var t_segments = segmenter.getSrc2Segments();
-		TextSegment.matchSegments(ms_segments, t_segments, match);
-		printAlignedTextSegments('#script-table', ms_segments, t_segments,
-				match);
-
-		$('#btn-align').toggle();
-		$('#btn-merge').toggle();
-		$('#script-table tbody').sortable('enable');
-		$('#script-table tbody').enableSelection();
-
-		sortable = true;
-	};
-
-	function mergeSegments() {
-		var cell_ids = getCheckedSegs('#script-table');
-		masterscript = mergeSegs2Script(cell_ids);
-		showScripts();
-	};
-
-	function showScripts() {
-		showScriptTable();
-		showMasterscript();
-		showTranscript();
-	};
-
-	$(window).load(function() {
-		requestToken();
-		loadTranscript();
-		loadMasterscript();
-		showScripts();
-
-		$('body').click(function() {
-			$('#contextEditMenu').hide();
-		});
-
-		$('[data-toggle="tooltip"]').tooltip();
-	});
+	
 </script>
 <body>
 	<div class="container">
@@ -179,19 +55,13 @@
 		<div class="col-md-6">
 			<h1>Audio Transcript</h1>
 			<br>
-			<button type="button" class="btn btn-danger btn-circle">
+			<button type="button" class="btn btn-danger" id="record-btn" data-state="start-record">
 				<i class="glyphicon glyphicon-record" data-toggle="tooltip"
 					data-placement="top" title="Record"></i>
 			</button>
-			<button type="button" class="btn btn-default btn-circle"
-				data-toggle="tooltip" data-placement="top" title="Play">
-				<i class="glyphicon glyphicon-play"></i>
-			</button>
+			<audio id="audio-player"></audio>
 			<select id="transcript_file" onchange="showTranscript()">
-				<option value="audio1.json">audio1.json</option>
-				<option value="audio2.json">audio2.json</option>
-				<option value="audio3.json">audio3.json</option>
-				<option value="audio4.json">audio4.json</option>
+				<option value="script1_audio.json">script1_audio.json</option>
 			</select> <br> <br>
 		</div>
 		<table class="table" id="script-table">

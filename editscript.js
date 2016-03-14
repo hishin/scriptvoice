@@ -1,13 +1,31 @@
 "use strict"
 
+/**
+ * Save nodes that could be affected by this keystroke and other nodes that may
+ * be affected by them
+ */
 var edit_nodes;
-var edit_alternatives;
+var edit_nodes_affected;
+function saveEditNodes() {
+	// nodes that are possibly edited by this keydown
+	var selectednodes = getSelectedNodes();
+	// including previous node and next node
+	edit_nodes = getEditNodes(selectednodes);
+	for (var i = 0; i < edit_nodes.length; i++) {
+		console.log(edit_nodes[i]);
+	}
+	
+	edit_nodes_affected = [];
+	for (var i = 0; i < edit_nodes.length; i++) {
+		var affectednodes = getAffectedNodes([ edit_nodes[i] ]);
+		edit_nodes_affected.push(affectednodes);
+	}
+};
 
 function editMasterscript(event) {
-	var selectednodes = getSelectedNodes();
-	var affectednodes = getAffectedNodes(selectednodes);
 	if (isPrintable(event.keyCode)) {
-		markDirtyEdit(edit_alternatives, edit_nodes)
+		var dirtynodes = getDirtyNodes(edit_nodes);
+		markDirty(dirtynodes);
 	}
 };
 
@@ -36,19 +54,25 @@ function contextMasterscript(event) {
 	}
 };
 
-function markDirtyEdit(edit_alternatives, edit_nodes) {
-	for (var i = 0; i < edit_alternatives.length; i++) {
-		var alternatives = edit_alternatives[i];
-		
-		
-		if (!NeedlemanWunsch.matchAlternative(alternatives, $(edit_nodes[i]).text())) {
-			$(edit_nodes[i]).attr('data-isdirty', true);
-		} else {
-			console.log(alternatives);
-			console.log($(edit_nodes[i]).text());
-			$(edit_nodes[i]).attr('data-isdirty', false);
+/**
+ * Check if keystroke altered or deleted the nodes
+ */
+function getDirtyNodes(edit_nodes) {
+	var dirtynodes = [];
+	for (var i = 0; i < edit_nodes.length; i++) {
+		var origword = edit_nodes[i].getAttribute('data-word');
+		// if the node was deleted
+		if (!document.body.contains(edit_nodes[i])) {
+			for (var j = 0; j < edit_nodes_affected[i].length; j++) {
+				dirtynodes.push(edit_nodes_affected[i][j]);
+			}
+		} else if (!NeedlemanWunsch.isMatch(origword, $(edit_nodes[i]).text())) {
+			for (var j = 0; j < edit_nodes_affected[i].length; j++) {
+				dirtynodes.push(edit_nodes_affected[i][j]);
+			}
 		}
-	}	
+	}
+	return dirtynodes;
 };
 
 function markDirty(nodes) {
@@ -96,7 +120,7 @@ function getAffectedNodes(selectednodes) {
 	var prevNode = selectednodes[0].previousSibling;
 	var nextNode = selectednodes[selectednodes.length - 1].nextSibling;
 	var prevnodes = [];
-	while (prevNode && isRecorded(prevNode) && !isLongPause(prevNode)) {
+	while (prevNode && !isLongPause(prevNode)) {
 		prevnodes.push(prevNode);
 		prevNode = prevNode.previousSibling;
 	}
@@ -104,7 +128,7 @@ function getAffectedNodes(selectednodes) {
 
 	var nextnodes = [];
 	prevNode = selectednodes[selectednodes.length - 1];
-	while (isRecorded(nextNode) && !isLongPause(prevNode)) {
+	while (nextNode && !isLongPause(prevNode)) {
 		nextnodes.push(nextNode);
 		prevNode = nextNode;
 		nextNode = nextNode.nextSibling;
@@ -149,17 +173,22 @@ function nextNode(node) {
 
 function getRangeSelectedNodes(range) {
 	var node;
+	
 	if (range.startContainer.parentNode.tagName == "SPAN") {
 		node = range.startContainer.parentNode;
 	} else if (range.startContainer.tagName == "SPAN") {
 		node = range.startContainer;
 	}
+	console.log("start node");
+	console.log(node);
 	var endNode;
 	if (range.endContainer.parentNode.tagName == "SPAN") {
-		endNode = range.startContainer.parentNode;
+		endNode = range.endContainer.parentNode;
 	} else if (range.endContainer.tagName == "SPAN") {
-		endNode = range.startContainer;
+		endNode = range.endContainer;
 	}
+	console.log("end node");
+	console.log(endNode);
 
 	// Special case for a range that is contained within a single node
 	if (node == endNode) {
@@ -176,19 +205,6 @@ function getRangeSelectedNodes(range) {
 	rangeNodes.unshift(node);
 
 	return rangeNodes;
-};
-
-function saveEditNodes() {
-	// nodes that are possibly edited by this keydown
-	var selectednodes = getSelectedNodes();
-	edit_nodes = getEditNodes(selectednodes);
-	var alternative;
-	edit_alternatives = [];
-	for (var i = 0; i < edit_nodes.length; i++) {
-		alternative = $.parseJSON(edit_nodes[i]
-				.getAttribute('data-alternatives'));
-		edit_alternatives.push(alternative);
-	}
 };
 
 function getEditNodes(selectednodes) {
@@ -210,8 +226,10 @@ function getSelectedNodes() {
 	if (window.getSelection) {
 		var sel = window.getSelection();
 		if (!sel.isCollapsed) {
+			console.log("not collapased");
 			return getRangeSelectedNodes(sel.getRangeAt(0));
 		} else {
+			console.log("collapsed");
 			if (window.getSelection().anchorNode.parentNode.tagName == "SPAN") {
 				return [ window.getSelection().anchorNode.parentNode ];
 			} else if (window.getSelection().anchorNode.tagName == "SPAN") {

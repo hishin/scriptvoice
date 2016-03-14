@@ -171,6 +171,7 @@ NeedlemanWunsch.isMatch = function(text1, text2) {
 };
 
 NeedlemanWunsch.matchAlternative = function(alternatives, word) {
+	if (alternatives == null) return false;
 	for (var i = 0; i <alternatives.length; i++) {
 		if (NeedlemanWunsch.isMatch(alternatives[i], word)) {
 			return true;
