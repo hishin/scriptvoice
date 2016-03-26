@@ -1,0 +1,3656 @@
+{
+   "results": [
+      {
+         "word_alternatives": [
+            {
+               "start_time": 4.74, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5627, 
+                     "word": "I"
+                  }
+               ], 
+               "end_time": 4.9
+            }, 
+            {
+               "start_time": 4.9, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5566, 
+                     "word": "mean"
+                  }, 
+                  {
+                     "confidence": 0.1189, 
+                     "word": "do"
+                  }
+               ], 
+               "end_time": 5.07
+            }, 
+            {
+               "start_time": 5.28, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6326, 
+                     "word": "he's"
+                  }, 
+                  {
+                     "confidence": 0.1189, 
+                     "word": "see"
+                  }
+               ], 
+               "end_time": 5.45
+            }, 
+            {
+               "start_time": 5.45, 
+               "alternatives": [
+                  {
+                     "confidence": 0.614, 
+                     "word": "got"
+                  }
+               ], 
+               "end_time": 5.72
+            }, 
+            {
+               "start_time": 7.56, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6338, 
+                     "word": "radio"
+                  }
+               ], 
+               "end_time": 7.78
+            }, 
+            {
+               "start_time": 7.78, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9015, 
+                     "word": "international"
+                  }
+               ], 
+               "end_time": 8.4
+            }, 
+            {
+               "start_time": 8.5, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6538, 
+                     "word": "ira"
+                  }
+               ], 
+               "end_time": 8.81
+            }, 
+            {
+               "start_time": 8.81, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6538, 
+                     "word": "glass"
+                  }
+               ], 
+               "end_time": 9.33
+            }, 
+            {
+               "start_time": 10.1, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5526, 
+                     "word": "and"
+                  }
+               ], 
+               "end_time": 10.21
+            }, 
+            {
+               "start_time": 10.21, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6623, 
+                     "word": "I'm"
+                  }
+               ], 
+               "end_time": 10.27
+            }, 
+            {
+               "start_time": 10.27, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7869, 
+                     "word": "coming"
+                  }
+               ], 
+               "end_time": 10.48
+            }, 
+            {
+               "start_time": 10.48, 
+               "alternatives": [
+                  {
+                     "confidence": 0.935, 
+                     "word": "to"
+                  }
+               ], 
+               "end_time": 10.6
+            }, 
+            {
+               "start_time": 10.6, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9135, 
+                     "word": "you"
+                  }
+               ], 
+               "end_time": 10.91
+            }, 
+            {
+               "start_time": 11.16, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9762, 
+                     "word": "today"
+                  }
+               ], 
+               "end_time": 11.47
+            }, 
+            {
+               "start_time": 11.47, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "to"
+                  }
+               ], 
+               "end_time": 11.59
+            }, 
+            {
+               "start_time": 11.59, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9288, 
+                     "word": "say"
+                  }
+               ], 
+               "end_time": 11.69
+            }, 
+            {
+               "start_time": 11.69, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9288, 
+                     "word": "something"
+                  }
+               ], 
+               "end_time": 11.94
+            }, 
+            {
+               "start_time": 11.94, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8669, 
+                     "word": "that"
+                  }
+               ], 
+               "end_time": 12.07
+            }, 
+            {
+               "start_time": 12.07, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6602, 
+                     "word": "I've"
+                  }, 
+                  {
+                     "confidence": 0.2118, 
+                     "word": "<eps>"
+                  }
+               ], 
+               "end_time": 12.16
+            }, 
+            {
+               "start_time": 12.16, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9301, 
+                     "word": "never"
+                  }
+               ], 
+               "end_time": 12.37
+            }, 
+            {
+               "start_time": 12.37, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9301, 
+                     "word": "had"
+                  }
+               ], 
+               "end_time": 12.54
+            }, 
+            {
+               "start_time": 12.54, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9301, 
+                     "word": "to"
+                  }
+               ], 
+               "end_time": 12.62
+            }, 
+            {
+               "start_time": 12.62, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "say"
+                  }
+               ], 
+               "end_time": 12.91
+            }, 
+            {
+               "start_time": 12.91, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9724, 
+                     "word": "on"
+                  }
+               ], 
+               "end_time": 13.03
+            }, 
+            {
+               "start_time": 13.03, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8181, 
+                     "word": "our"
+                  }
+               ], 
+               "end_time": 13.16
+            }, 
+            {
+               "start_time": 13.16, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8073, 
+                     "word": "program"
+                  }
+               ], 
+               "end_time": 13.6
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "I", 
+                     0.2003451681680672
+                  ], 
+                  [
+                     "mean", 
+                     0.41908362161688806
+                  ], 
+                  [
+                     "he's", 
+                     0.3372844063061556
+                  ], 
+                  [
+                     "he's", 
+                     0.35827534649514065
+                  ], 
+                  [
+                     "got", 
+                     0.3518392513956297
+                  ], 
+                  [
+                     "guts", 
+                     0.12772323473583844
+                  ], 
+                  [
+                     "is", 
+                     0.48607587670802976
+                  ], 
+                  [
+                     "American", 
+                     0.8097228599508158
+                  ], 
+                  [
+                     "life", 
+                     0.2260204332977497
+                  ], 
+                  [
+                     "street", 
+                     0.42963517122746686
+                  ], 
+                  [
+                     "about", 
+                     0.9908767108092231
+                  ], 
+                  [
+                     "public", 
+                     0.969901681769651
+                  ], 
+                  [
+                     "radio", 
+                     1.0
+                  ], 
+                  [
+                     "international", 
+                     0.995948508969348
+                  ], 
+                  [
+                     "ira", 
+                     0.13673038781031444
+                  ], 
+                  [
+                     "glass", 
+                     0.900329325099449
+                  ], 
+                  [
+                     "and", 
+                     0.9099081635634915
+                  ], 
+                  [
+                     "I'm", 
+                     0.465193191811117
+                  ], 
+                  [
+                     "coming", 
+                     0.8275556716628352
+                  ], 
+                  [
+                     "to", 
+                     0.9542513322233716
+                  ], 
+                  [
+                     "you", 
+                     1.0
+                  ], 
+                  [
+                     "today", 
+                     0.9999999999999756
+                  ], 
+                  [
+                     "to", 
+                     1.0
+                  ], 
+                  [
+                     "say", 
+                     0.6057843942239282
+                  ], 
+                  [
+                     "something", 
+                     0.9896472261901098
+                  ], 
+                  [
+                     "that", 
+                     0.9833010414956169
+                  ], 
+                  [
+                     "I've", 
+                     0.36165112356038737
+                  ], 
+                  [
+                     "never", 
+                     0.9870090081565643
+                  ], 
+                  [
+                     "had", 
+                     0.999999999999987
+                  ], 
+                  [
+                     "to", 
+                     0.9999999999999706
+                  ], 
+                  [
+                     "say", 
+                     1.0
+                  ], 
+                  [
+                     "on", 
+                     0.9264138844459141
+                  ], 
+                  [
+                     "our", 
+                     0.5802405801012877
+                  ], 
+                  [
+                     "program", 
+                     0.6460498804677595
+                  ]
+               ], 
+               "confidence": 0.724, 
+               "transcript": "I mean he's he's got guts is American life street about public radio international ira glass and I'm coming to you today to say something that I've never had to say on our program ", 
+               "timestamps": [
+                  [
+                     "I", 
+                     4.74, 
+                     4.9
+                  ], 
+                  [
+                     "mean", 
+                     4.9, 
+                     5.07
+                  ], 
+                  [
+                     "he's", 
+                     5.07, 
+                     5.28
+                  ], 
+                  [
+                     "he's", 
+                     5.28, 
+                     5.45
+                  ], 
+                  [
+                     "got", 
+                     5.45, 
+                     5.7
+                  ], 
+                  [
+                     "guts", 
+                     5.7, 
+                     5.93
+                  ], 
+                  [
+                     "is", 
+                     5.93, 
+                     6.07
+                  ], 
+                  [
+                     "American", 
+                     6.07, 
+                     6.47
+                  ], 
+                  [
+                     "life", 
+                     6.47, 
+                     6.77
+                  ], 
+                  [
+                     "street", 
+                     6.77, 
+                     7.09
+                  ], 
+                  [
+                     "about", 
+                     7.09, 
+                     7.29
+                  ], 
+                  [
+                     "public", 
+                     7.29, 
+                     7.56
+                  ], 
+                  [
+                     "radio", 
+                     7.56, 
+                     7.78
+                  ], 
+                  [
+                     "international", 
+                     7.78, 
+                     8.4
+                  ], 
+                  [
+                     "ira", 
+                     8.5, 
+                     8.81
+                  ], 
+                  [
+                     "glass", 
+                     8.81, 
+                     9.33
+                  ], 
+                  [
+                     "and", 
+                     10.1, 
+                     10.21
+                  ], 
+                  [
+                     "I'm", 
+                     10.21, 
+                     10.27
+                  ], 
+                  [
+                     "coming", 
+                     10.27, 
+                     10.48
+                  ], 
+                  [
+                     "to", 
+                     10.48, 
+                     10.6
+                  ], 
+                  [
+                     "you", 
+                     10.6, 
+                     10.91
+                  ], 
+                  [
+                     "today", 
+                     11.16, 
+                     11.47
+                  ], 
+                  [
+                     "to", 
+                     11.47, 
+                     11.59
+                  ], 
+                  [
+                     "say", 
+                     11.59, 
+                     11.69
+                  ], 
+                  [
+                     "something", 
+                     11.69, 
+                     11.94
+                  ], 
+                  [
+                     "that", 
+                     11.94, 
+                     12.07
+                  ], 
+                  [
+                     "I've", 
+                     12.07, 
+                     12.16
+                  ], 
+                  [
+                     "never", 
+                     12.16, 
+                     12.37
+                  ], 
+                  [
+                     "had", 
+                     12.37, 
+                     12.54
+                  ], 
+                  [
+                     "to", 
+                     12.54, 
+                     12.62
+                  ], 
+                  [
+                     "say", 
+                     12.62, 
+                     12.91
+                  ], 
+                  [
+                     "on", 
+                     12.91, 
+                     13.03
+                  ], 
+                  [
+                     "our", 
+                     13.03, 
+                     13.16
+                  ], 
+                  [
+                     "program", 
+                     13.16, 
+                     13.6
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "I mean he's got guts is American life street about public radio international ira glass and I'm coming to you today to say something that I've never had to say on our program "
+            }, 
+            {
+               "transcript": "I mean he's he's got guts is American lives should be about public radio international ira glass and I'm coming to you today to say something that I've never had to say on our program "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 14.89, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "two"
+                  }
+               ], 
+               "end_time": 15.06
+            }, 
+            {
+               "start_time": 15.06, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "months"
+                  }
+               ], 
+               "end_time": 15.28
+            }, 
+            {
+               "start_time": 15.28, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "ago"
+                  }
+               ], 
+               "end_time": 15.47
+            }, 
+            {
+               "start_time": 15.47, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "we"
+                  }
+               ], 
+               "end_time": 15.58
+            }, 
+            {
+               "start_time": 15.58, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "broadcast"
+                  }
+               ], 
+               "end_time": 16.08
+            }, 
+            {
+               "start_time": 16.08, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "a"
+                  }
+               ], 
+               "end_time": 16.12
+            }, 
+            {
+               "start_time": 16.12, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "story"
+                  }
+               ], 
+               "end_time": 16.48
+            }, 
+            {
+               "start_time": 16.48, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "that"
+                  }
+               ], 
+               "end_time": 16.65
+            }, 
+            {
+               "start_time": 16.65, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9805, 
+                     "word": "we've"
+                  }
+               ], 
+               "end_time": 16.8
+            }, 
+            {
+               "start_time": 16.8, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9804, 
+                     "word": "come"
+                  }
+               ], 
+               "end_time": 16.99
+            }, 
+            {
+               "start_time": 16.99, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9804, 
+                     "word": "to"
+                  }
+               ], 
+               "end_time": 17.09
+            }, 
+            {
+               "start_time": 17.09, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9785, 
+                     "word": "believe"
+                  }
+               ], 
+               "end_time": 17.52
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "two", 
+                     0.9999999999999671
+                  ], 
+                  [
+                     "months", 
+                     0.9999999999999836
+                  ], 
+                  [
+                     "ago", 
+                     1.0
+                  ], 
+                  [
+                     "we", 
+                     0.9999999999999839
+                  ], 
+                  [
+                     "broadcast", 
+                     0.9999999999999838
+                  ], 
+                  [
+                     "a", 
+                     0.9999999999999837
+                  ], 
+                  [
+                     "story", 
+                     0.9999999999999838
+                  ], 
+                  [
+                     "that", 
+                     0.9999999999999917
+                  ], 
+                  [
+                     "we've", 
+                     0.7639699875955267
+                  ], 
+                  [
+                     "come", 
+                     0.9999999999999932
+                  ], 
+                  [
+                     "to", 
+                     0.9999999999999891
+                  ], 
+                  [
+                     "believe", 
+                     0.9967103378283092
+                  ]
+               ], 
+               "confidence": 0.986, 
+               "transcript": "two months ago we broadcast a story that we've come to believe ", 
+               "timestamps": [
+                  [
+                     "two", 
+                     14.89, 
+                     15.06
+                  ], 
+                  [
+                     "months", 
+                     15.06, 
+                     15.28
+                  ], 
+                  [
+                     "ago", 
+                     15.28, 
+                     15.47
+                  ], 
+                  [
+                     "we", 
+                     15.47, 
+                     15.58
+                  ], 
+                  [
+                     "broadcast", 
+                     15.58, 
+                     16.08
+                  ], 
+                  [
+                     "a", 
+                     16.08, 
+                     16.12
+                  ], 
+                  [
+                     "story", 
+                     16.12, 
+                     16.48
+                  ], 
+                  [
+                     "that", 
+                     16.48, 
+                     16.65
+                  ], 
+                  [
+                     "we've", 
+                     16.65, 
+                     16.8
+                  ], 
+                  [
+                     "come", 
+                     16.8, 
+                     16.99
+                  ], 
+                  [
+                     "to", 
+                     16.99, 
+                     17.09
+                  ], 
+                  [
+                     "believe", 
+                     17.09, 
+                     17.52
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "two months ago we broadcast a story that we come to believe "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 18.22, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9243, 
+                     "word": "it's"
+                  }
+               ], 
+               "end_time": 18.36
+            }, 
+            {
+               "start_time": 18.36, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9243, 
+                     "word": "not"
+                  }
+               ], 
+               "end_time": 18.61
+            }, 
+            {
+               "start_time": 18.61, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9188, 
+                     "word": "true"
+                  }
+               ], 
+               "end_time": 19.06
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "it's", 
+                     0.6840820984178678
+                  ], 
+                  [
+                     "not", 
+                     0.9999999999999793
+                  ], 
+                  [
+                     "true", 
+                     0.9904770800135562
+                  ]
+               ], 
+               "confidence": 0.942, 
+               "transcript": "it's not true ", 
+               "timestamps": [
+                  [
+                     "it's", 
+                     18.22, 
+                     18.36
+                  ], 
+                  [
+                     "not", 
+                     18.36, 
+                     18.61
+                  ], 
+                  [
+                     "true", 
+                     18.61, 
+                     19.06
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "is not true "
+            }, 
+            {
+               "transcript": "its not true "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 20.27, 
+               "alternatives": [
+                  {
+                     "confidence": 0.4576, 
+                     "word": "straight"
+                  }, 
+                  {
+                     "confidence": 0.1699, 
+                     "word": "story"
+                  }, 
+                  {
+                     "confidence": 0.1191, 
+                     "word": "stray"
+                  }
+               ], 
+               "end_time": 20.65
+            }, 
+            {
+               "start_time": 20.65, 
+               "alternatives": [
+                  {
+                     "confidence": 0.3842, 
+                     "word": "they"
+                  }, 
+                  {
+                     "confidence": 0.3309, 
+                     "word": "I"
+                  }
+               ], 
+               "end_time": 20.69
+            }, 
+            {
+               "start_time": 20.69, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7151, 
+                     "word": "got"
+                  }
+               ], 
+               "end_time": 20.83
+            }, 
+            {
+               "start_time": 20.83, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7731, 
+                     "word": "a"
+                  }
+               ], 
+               "end_time": 20.86
+            }, 
+            {
+               "start_time": 20.86, 
+               "alternatives": [
+                  {
+                     "confidence": 0.907, 
+                     "word": "lot"
+                  }
+               ], 
+               "end_time": 21.01
+            }, 
+            {
+               "start_time": 21.01, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9978, 
+                     "word": "of"
+                  }
+               ], 
+               "end_time": 21.07
+            }, 
+            {
+               "start_time": 21.07, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9932, 
+                     "word": "attention"
+                  }
+               ], 
+               "end_time": 21.67
+            }, 
+            {
+               "start_time": 21.96, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8648, 
+                     "word": "or"
+                  }, 
+                  {
+                     "confidence": 0.1046, 
+                     "word": "more"
+                  }
+               ], 
+               "end_time": 22.25
+            }, 
+            {
+               "start_time": 22.25, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9435, 
+                     "word": "people"
+                  }
+               ], 
+               "end_time": 22.56
+            }, 
+            {
+               "start_time": 22.56, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7015, 
+                     "word": "downloaded"
+                  }
+               ], 
+               "end_time": 23.08
+            }, 
+            {
+               "start_time": 23.08, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6346, 
+                     "word": "it"
+                  }
+               ], 
+               "end_time": 23.23
+            }, 
+            {
+               "start_time": 23.23, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5241, 
+                     "word": "then"
+                  }
+               ], 
+               "end_time": 23.46
+            }, 
+            {
+               "start_time": 23.49, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5097, 
+                     "word": "any"
+                  }
+               ], 
+               "end_time": 23.74
+            }, 
+            {
+               "start_time": 24.35, 
+               "alternatives": [
+                  {
+                     "confidence": 0.4861, 
+                     "word": "have"
+                  }, 
+                  {
+                     "confidence": 0.2721, 
+                     "word": "you've"
+                  }
+               ], 
+               "end_time": 24.48
+            }, 
+            {
+               "start_time": 24.48, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7652, 
+                     "word": "ever"
+                  }
+               ], 
+               "end_time": 24.68
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "straight", 
+                     0.42045466412534394
+                  ], 
+                  [
+                     "I", 
+                     0.19230479712693516
+                  ], 
+                  [
+                     "got", 
+                     0.9704528109142446
+                  ], 
+                  [
+                     "a", 
+                     0.9999999999999608
+                  ], 
+                  [
+                     "lot", 
+                     0.9999999999999664
+                  ], 
+                  [
+                     "of", 
+                     0.9999999999999744
+                  ], 
+                  [
+                     "attention", 
+                     0.9909018584235979
+                  ], 
+                  [
+                     "or", 
+                     0.6480385947731299
+                  ], 
+                  [
+                     "people", 
+                     0.9999999999999748
+                  ], 
+                  [
+                     "downloaded", 
+                     0.5934514747635656
+                  ], 
+                  [
+                     "it", 
+                     0.8201871995741814
+                  ], 
+                  [
+                     "then", 
+                     0.615507564870365
+                  ], 
+                  [
+                     "any", 
+                     0.9999999999999915
+                  ], 
+                  [
+                     "episode", 
+                     0.7779285267727951
+                  ], 
+                  [
+                     "we", 
+                     0.08084645649913683
+                  ], 
+                  [
+                     "have", 
+                     0.2639508056787601
+                  ], 
+                  [
+                     "ever", 
+                     0.8287808705696695
+                  ], 
+                  [
+                     "done", 
+                     0.30623848371976414
+                  ]
+               ], 
+               "confidence": 0.719, 
+               "transcript": "straight I got a lot of attention or people downloaded it then any episode we have ever done ", 
+               "timestamps": [
+                  [
+                     "straight", 
+                     20.27, 
+                     20.65
+                  ], 
+                  [
+                     "I", 
+                     20.65, 
+                     20.69
+                  ], 
+                  [
+                     "got", 
+                     20.69, 
+                     20.83
+                  ], 
+                  [
+                     "a", 
+                     20.83, 
+                     20.86
+                  ], 
+                  [
+                     "lot", 
+                     20.86, 
+                     21.01
+                  ], 
+                  [
+                     "of", 
+                     21.01, 
+                     21.07
+                  ], 
+                  [
+                     "attention", 
+                     21.07, 
+                     21.67
+                  ], 
+                  [
+                     "or", 
+                     21.96, 
+                     22.25
+                  ], 
+                  [
+                     "people", 
+                     22.25, 
+                     22.56
+                  ], 
+                  [
+                     "downloaded", 
+                     22.56, 
+                     23.08
+                  ], 
+                  [
+                     "it", 
+                     23.08, 
+                     23.23
+                  ], 
+                  [
+                     "then", 
+                     23.23, 
+                     23.46
+                  ], 
+                  [
+                     "any", 
+                     23.49, 
+                     23.74
+                  ], 
+                  [
+                     "episode", 
+                     23.74, 
+                     24.25
+                  ], 
+                  [
+                     "we", 
+                     24.25, 
+                     24.35
+                  ], 
+                  [
+                     "have", 
+                     24.35, 
+                     24.48
+                  ], 
+                  [
+                     "ever", 
+                     24.48, 
+                     24.68
+                  ], 
+                  [
+                     "done", 
+                     24.68, 
+                     24.98
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "story they got a lot of attention or people downloaded it then any episode we have ever done "
+            }, 
+            {
+               "transcript": "straight they got a lot of attention or people downloaded it then any episode we have ever done "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 25.75, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "this"
+                  }
+               ], 
+               "end_time": 25.9
+            }, 
+            {
+               "start_time": 25.9, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8743, 
+                     "word": "is"
+                  }
+               ], 
+               "end_time": 26.09
+            }, 
+            {
+               "start_time": 26.57, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7287, 
+                     "word": "Mike"
+                  }
+               ], 
+               "end_time": 26.83
+            }, 
+            {
+               "start_time": 26.86, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5903, 
+                     "word": "easy"
+                  }
+               ], 
+               "end_time": 27.15
+            }, 
+            {
+               "start_time": 27.15, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6163, 
+                     "word": "story"
+                  }
+               ], 
+               "end_time": 27.54
+            }, 
+            {
+               "start_time": 27.54, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8356, 
+                     "word": "about"
+                  }
+               ], 
+               "end_time": 27.8
+            }, 
+            {
+               "start_time": 27.8, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6783, 
+                     "word": "this"
+                  }
+               ], 
+               "end_time": 27.95
+            }, 
+            {
+               "start_time": 27.95, 
+               "alternatives": [
+                  {
+                     "confidence": 0.4769, 
+                     "word": "and"
+                  }, 
+                  {
+                     "confidence": 0.2551, 
+                     "word": "thing"
+                  }
+               ], 
+               "end_time": 28.16
+            }, 
+            {
+               "start_time": 28.2, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7618, 
+                     "word": "Clanton"
+                  }
+               ], 
+               "end_time": 28.69
+            }, 
+            {
+               "start_time": 28.69, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7486, 
+                     "word": "China"
+                  }
+               ], 
+               "end_time": 29.19
+            }, 
+            {
+               "start_time": 29.19, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7726, 
+                     "word": "where"
+                  }
+               ], 
+               "end_time": 29.51
+            }, 
+            {
+               "start_time": 29.54, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5886, 
+                     "word": "apple"
+                  }
+               ], 
+               "end_time": 30.14
+            }, 
+            {
+               "start_time": 30.46, 
+               "alternatives": [
+                  {
+                     "confidence": 0.597, 
+                     "word": "manufactures"
+                  }
+               ], 
+               "end_time": 31.07
+            }, 
+            {
+               "start_time": 31.07, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6128, 
+                     "word": "iPhones"
+                  }
+               ], 
+               "end_time": 31.84
+            }, 
+            {
+               "start_time": 31.95, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6824, 
+                     "word": "iPads"
+                  }
+               ], 
+               "end_time": 32.54
+            }, 
+            {
+               "start_time": 32.54, 
+               "alternatives": [
+                  {
+                     "confidence": 0.3997, 
+                     "word": "and"
+                  }, 
+                  {
+                     "confidence": 0.2184, 
+                     "word": "<eps>"
+                  }
+               ], 
+               "end_time": 32.65
+            }, 
+            {
+               "start_time": 32.65, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7792, 
+                     "word": "other"
+                  }
+               ], 
+               "end_time": 32.81
+            }, 
+            {
+               "start_time": 32.81, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7779, 
+                     "word": "products"
+                  }
+               ], 
+               "end_time": 33.37
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "this", 
+                     1.0
+                  ], 
+                  [
+                     "is", 
+                     0.7592167946394519
+                  ], 
+                  [
+                     "Mike", 
+                     0.6320148353153296
+                  ], 
+                  [
+                     "easy", 
+                     0.3607225424940966
+                  ], 
+                  [
+                     "story", 
+                     0.9280991742295212
+                  ], 
+                  [
+                     "about", 
+                     0.9952702418192758
+                  ], 
+                  [
+                     "this", 
+                     0.9578869364593058
+                  ], 
+                  [
+                     "and", 
+                     0.4486342876146268
+                  ], 
+                  [
+                     "Clanton", 
+                     0.5217664734212968
+                  ], 
+                  [
+                     "China", 
+                     0.9712967828241769
+                  ], 
+                  [
+                     "where", 
+                     0.9121807785282303
+                  ], 
+                  [
+                     "apple", 
+                     0.9974701153865513
+                  ], 
+                  [
+                     "manufactures", 
+                     0.6546355456350711
+                  ], 
+                  [
+                     "iPhones", 
+                     0.9875153665154962
+                  ], 
+                  [
+                     "iPads", 
+                     0.9980854889077405
+                  ], 
+                  [
+                     "and", 
+                     0.2402324498768036
+                  ], 
+                  [
+                     "other", 
+                     0.685780278595648
+                  ], 
+                  [
+                     "products", 
+                     0.8564792523899155
+                  ]
+               ], 
+               "confidence": 0.82, 
+               "transcript": "this is Mike easy story about this and Clanton China where apple manufactures iPhones iPads and other products ", 
+               "timestamps": [
+                  [
+                     "this", 
+                     25.75, 
+                     25.9
+                  ], 
+                  [
+                     "is", 
+                     25.9, 
+                     26.09
+                  ], 
+                  [
+                     "Mike", 
+                     26.57, 
+                     26.83
+                  ], 
+                  [
+                     "easy", 
+                     26.86, 
+                     27.15
+                  ], 
+                  [
+                     "story", 
+                     27.15, 
+                     27.54
+                  ], 
+                  [
+                     "about", 
+                     27.54, 
+                     27.8
+                  ], 
+                  [
+                     "this", 
+                     27.8, 
+                     27.95
+                  ], 
+                  [
+                     "and", 
+                     27.95, 
+                     28.16
+                  ], 
+                  [
+                     "Clanton", 
+                     28.2, 
+                     28.69
+                  ], 
+                  [
+                     "China", 
+                     28.69, 
+                     29.19
+                  ], 
+                  [
+                     "where", 
+                     29.19, 
+                     29.51
+                  ], 
+                  [
+                     "apple", 
+                     29.54, 
+                     30.14
+                  ], 
+                  [
+                     "manufactures", 
+                     30.46, 
+                     31.07
+                  ], 
+                  [
+                     "iPhones", 
+                     31.07, 
+                     31.84
+                  ], 
+                  [
+                     "iPads", 
+                     31.95, 
+                     32.54
+                  ], 
+                  [
+                     "and", 
+                     32.54, 
+                     32.65
+                  ], 
+                  [
+                     "other", 
+                     32.65, 
+                     32.81
+                  ], 
+                  [
+                     "products", 
+                     32.81, 
+                     33.37
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "this is Mike easy story about this Clanton China where apple manufactures iPhones iPads and other products "
+            }, 
+            {
+               "transcript": "this is Mike easy story about this thing Clanton China where apple manufactures iPhones iPads and other products "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 33.86, 
+               "alternatives": [
+                  {
+                     "confidence": 0.3211, 
+                     "word": "it's"
+                  }, 
+                  {
+                     "confidence": 0.3059, 
+                     "word": "you've"
+                  }, 
+                  {
+                     "confidence": 0.2242, 
+                     "word": "she's"
+                  }
+               ], 
+               "end_time": 33.95
+            }, 
+            {
+               "start_time": 33.95, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7831, 
+                     "word": "been"
+                  }
+               ], 
+               "end_time": 34.08
+            }, 
+            {
+               "start_time": 34.08, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5082, 
+                     "word": "performing"
+                  }
+               ], 
+               "end_time": 34.39
+            }, 
+            {
+               "start_time": 34.39, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5048, 
+                     "word": "this"
+                  }
+               ], 
+               "end_time": 34.52
+            }, 
+            {
+               "start_time": 34.52, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8013, 
+                     "word": "story"
+                  }
+               ], 
+               "end_time": 34.74
+            }, 
+            {
+               "start_time": 35.31, 
+               "alternatives": [
+                  {
+                     "confidence": 0.755, 
+                     "word": "monologue"
+                  }
+               ], 
+               "end_time": 35.79
+            }, 
+            {
+               "start_time": 35.79, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6251, 
+                     "word": "since"
+                  }
+               ], 
+               "end_time": 36.02
+            }, 
+            {
+               "start_time": 36.02, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7782, 
+                     "word": "two"
+                  }
+               ], 
+               "end_time": 36.2
+            }, 
+            {
+               "start_time": 36.2, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9237, 
+                     "word": "thousand"
+                  }
+               ], 
+               "end_time": 36.64
+            }, 
+            {
+               "start_time": 36.68, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8992, 
+                     "word": "and"
+                  }
+               ], 
+               "end_time": 36.94
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "you've", 
+                     0.15309494095738627
+                  ], 
+                  [
+                     "been", 
+                     0.5971496417625858
+                  ], 
+                  [
+                     "performing", 
+                     0.48034198288784996
+                  ], 
+                  [
+                     "this", 
+                     0.5437162103589395
+                  ], 
+                  [
+                     "story", 
+                     0.8688020026402085
+                  ], 
+                  [
+                     "onstage", 
+                     0.39001827352844004
+                  ], 
+                  [
+                     "monologue", 
+                     0.4699010442028812
+                  ], 
+                  [
+                     "since", 
+                     0.7657180608147733
+                  ], 
+                  [
+                     "two", 
+                     0.975616941393176
+                  ], 
+                  [
+                     "thousand", 
+                     0.9898357508650952
+                  ], 
+                  [
+                     "and", 
+                     0.6951495396131194
+                  ]
+               ], 
+               "confidence": 0.63, 
+               "transcript": "you've been performing this story onstage monologue since two thousand and ", 
+               "timestamps": [
+                  [
+                     "you've", 
+                     33.86, 
+                     33.96
+                  ], 
+                  [
+                     "been", 
+                     33.96, 
+                     34.08
+                  ], 
+                  [
+                     "performing", 
+                     34.08, 
+                     34.39
+                  ], 
+                  [
+                     "this", 
+                     34.39, 
+                     34.52
+                  ], 
+                  [
+                     "story", 
+                     34.52, 
+                     34.74
+                  ], 
+                  [
+                     "onstage", 
+                     34.74, 
+                     35.3
+                  ], 
+                  [
+                     "monologue", 
+                     35.3, 
+                     35.79
+                  ], 
+                  [
+                     "since", 
+                     35.79, 
+                     36.02
+                  ], 
+                  [
+                     "two", 
+                     36.02, 
+                     36.2
+                  ], 
+                  [
+                     "thousand", 
+                     36.2, 
+                     36.64
+                  ], 
+                  [
+                     "and", 
+                     36.68, 
+                     36.94
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "it's been performing this story onstage monologue since two thousand and "
+            }, 
+            {
+               "transcript": "she's been performing this story onstage monologue since two thousand and "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 37.82, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9613, 
+                     "word": "we"
+                  }
+               ], 
+               "end_time": 37.93
+            }, 
+            {
+               "start_time": 37.93, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9438, 
+                     "word": "didn't"
+                  }
+               ], 
+               "end_time": 38.26
+            }, 
+            {
+               "start_time": 38.56, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5249, 
+                     "word": "commission"
+                  }, 
+                  {
+                     "confidence": 0.212, 
+                     "word": "mention"
+                  }
+               ], 
+               "end_time": 38.92
+            }, 
+            {
+               "start_time": 38.92, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7494, 
+                     "word": "the"
+                  }
+               ], 
+               "end_time": 39.0
+            }, 
+            {
+               "start_time": 39.0, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7696, 
+                     "word": "story"
+                  }
+               ], 
+               "end_time": 39.36
+            }, 
+            {
+               "start_time": 39.36, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5127, 
+                     "word": "we"
+                  }
+               ], 
+               "end_time": 39.47
+            }, 
+            {
+               "start_time": 39.47, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7173, 
+                     "word": "inside"
+                  }, 
+                  {
+                     "confidence": 0.1491, 
+                     "word": "can"
+                  }
+               ], 
+               "end_time": 39.83
+            }, 
+            {
+               "start_time": 40.06, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7332, 
+                     "word": "China"
+                  }
+               ], 
+               "end_time": 40.61
+            }, 
+            {
+               "start_time": 40.94, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7273, 
+                     "word": "we"
+                  }
+               ], 
+               "end_time": 41.24
+            }, 
+            {
+               "start_time": 41.84, 
+               "alternatives": [
+                  {
+                     "confidence": 0.84, 
+                     "word": "the"
+                  }
+               ], 
+               "end_time": 42.01
+            }, 
+            {
+               "start_time": 42.01, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7054, 
+                     "word": "stage"
+                  }
+               ], 
+               "end_time": 42.45
+            }, 
+            {
+               "start_time": 43.67, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6635, 
+                     "word": "electronic"
+                  }
+               ], 
+               "end_time": 44.12
+            }, 
+            {
+               "start_time": 44.12, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7553, 
+                     "word": "country"
+                  }
+               ], 
+               "end_time": 44.6
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "we", 
+                     0.6790954737972131
+                  ], 
+                  [
+                     "didn't", 
+                     0.9290286802184431
+                  ], 
+                  [
+                     "commission", 
+                     0.49210764628792764
+                  ], 
+                  [
+                     "the", 
+                     0.8019779376210724
+                  ], 
+                  [
+                     "story", 
+                     0.9921684590173435
+                  ], 
+                  [
+                     "we", 
+                     0.6447418540064198
+                  ], 
+                  [
+                     "inside", 
+                     0.17078166892250737
+                  ], 
+                  [
+                     "China", 
+                     0.9755964098018357
+                  ], 
+                  [
+                     "we", 
+                     1.0
+                  ], 
+                  [
+                     "accepted", 
+                     0.34136349925101
+                  ], 
+                  [
+                     "the", 
+                     0.9688208883546473
+                  ], 
+                  [
+                     "stage", 
+                     0.5685378850041819
+                  ], 
+                  [
+                     "is", 
+                     0.5033883817514193
+                  ], 
+                  [
+                     "telling", 
+                     0.5750474370520345
+                  ], 
+                  [
+                     "the", 
+                     0.979621132089382
+                  ], 
+                  [
+                     "electronic", 
+                     0.9906752003806689
+                  ], 
+                  [
+                     "country", 
+                     0.9936983855614927
+                  ]
+               ], 
+               "confidence": 0.736, 
+               "transcript": "we didn't commission the story we inside China we accepted the stage is telling the electronic country ", 
+               "timestamps": [
+                  [
+                     "we", 
+                     37.82, 
+                     37.93
+                  ], 
+                  [
+                     "didn't", 
+                     37.93, 
+                     38.26
+                  ], 
+                  [
+                     "commission", 
+                     38.56, 
+                     38.92
+                  ], 
+                  [
+                     "the", 
+                     38.92, 
+                     39.0
+                  ], 
+                  [
+                     "story", 
+                     39.0, 
+                     39.36
+                  ], 
+                  [
+                     "we", 
+                     39.36, 
+                     39.47
+                  ], 
+                  [
+                     "inside", 
+                     39.47, 
+                     39.83
+                  ], 
+                  [
+                     "China", 
+                     40.06, 
+                     40.61
+                  ], 
+                  [
+                     "we", 
+                     40.94, 
+                     41.24
+                  ], 
+                  [
+                     "accepted", 
+                     41.27, 
+                     41.76
+                  ], 
+                  [
+                     "the", 
+                     41.84, 
+                     42.01
+                  ], 
+                  [
+                     "stage", 
+                     42.01, 
+                     42.45
+                  ], 
+                  [
+                     "is", 
+                     42.67, 
+                     42.84
+                  ], 
+                  [
+                     "telling", 
+                     43.16, 
+                     43.52
+                  ], 
+                  [
+                     "the", 
+                     43.57, 
+                     43.67
+                  ], 
+                  [
+                     "electronic", 
+                     43.67, 
+                     44.12
+                  ], 
+                  [
+                     "country", 
+                     44.12, 
+                     44.6
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "we didn't commission the story we inside China we accept the stage is telling the electronic country "
+            }, 
+            {
+               "transcript": "we didn't commission the story we inside China we accepted the stage telling the electronic country "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 45.78, 
+               "alternatives": [
+                  {
+                     "confidence": 1.0, 
+                     "word": "we"
+                  }
+               ], 
+               "end_time": 45.93
+            }, 
+            {
+               "start_time": 45.93, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5627, 
+                     "word": "did"
+                  }, 
+                  {
+                     "confidence": 0.3918, 
+                     "word": "didn't"
+                  }
+               ], 
+               "end_time": 46.25
+            }, 
+            {
+               "start_time": 46.61, 
+               "alternatives": [
+                  {
+                     "confidence": 0.791, 
+                     "word": "check"
+                  }
+               ], 
+               "end_time": 46.89
+            }, 
+            {
+               "start_time": 46.89, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7628, 
+                     "word": "the"
+                  }
+               ], 
+               "end_time": 46.97
+            }, 
+            {
+               "start_time": 46.97, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7451, 
+                     "word": "story"
+                  }
+               ], 
+               "end_time": 47.27
+            }, 
+            {
+               "start_time": 47.27, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6947, 
+                     "word": "before"
+                  }
+               ], 
+               "end_time": 47.53
+            }, 
+            {
+               "start_time": 47.53, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8257, 
+                     "word": "you"
+                  }
+               ], 
+               "end_time": 47.59
+            }, 
+            {
+               "start_time": 47.59, 
+               "alternatives": [
+                  {
+                     "confidence": 0.743, 
+                     "word": "put"
+                  }
+               ], 
+               "end_time": 47.73
+            }, 
+            {
+               "start_time": 47.73, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7491, 
+                     "word": "it"
+                  }
+               ], 
+               "end_time": 47.8
+            }, 
+            {
+               "start_time": 47.8, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7556, 
+                     "word": "on"
+                  }
+               ], 
+               "end_time": 47.9
+            }, 
+            {
+               "start_time": 47.9, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8538, 
+                     "word": "the"
+                  }
+               ], 
+               "end_time": 47.97
+            }, 
+            {
+               "start_time": 47.97, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9924, 
+                     "word": "radio"
+                  }
+               ], 
+               "end_time": 48.48
+            }, 
+            {
+               "start_time": 49.81, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7456, 
+                     "word": "main"
+                  }
+               ], 
+               "end_time": 49.99
+            }, 
+            {
+               "start_time": 49.99, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9312, 
+                     "word": "concern"
+                  }
+               ], 
+               "end_time": 50.29
+            }, 
+            {
+               "start_time": 50.29, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9367, 
+                     "word": "was"
+                  }
+               ], 
+               "end_time": 50.41
+            }, 
+            {
+               "start_time": 50.41, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8636, 
+                     "word": "whether"
+                  }
+               ], 
+               "end_time": 50.74
+            }, 
+            {
+               "start_time": 50.96, 
+               "alternatives": [
+                  {
+                     "confidence": 0.836, 
+                     "word": "things"
+                  }
+               ], 
+               "end_time": 51.18
+            }, 
+            {
+               "start_time": 51.18, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6608, 
+                     "word": "are"
+                  }, 
+                  {
+                     "confidence": 0.1112, 
+                     "word": "that"
+                  }
+               ], 
+               "end_time": 51.25
+            }, 
+            {
+               "start_time": 51.25, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7937, 
+                     "word": "Mike"
+                  }
+               ], 
+               "end_time": 51.51
+            }, 
+            {
+               "start_time": 51.51, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8571, 
+                     "word": "says"
+                  }
+               ], 
+               "end_time": 51.76
+            }, 
+            {
+               "start_time": 51.76, 
+               "alternatives": [
+                  {
+                     "confidence": 0.675, 
+                     "word": "about"
+                  }, 
+                  {
+                     "confidence": 0.1815, 
+                     "word": "that"
+                  }
+               ], 
+               "end_time": 52.01
+            }, 
+            {
+               "start_time": 52.04, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8046, 
+                     "word": "apple"
+                  }
+               ], 
+               "end_time": 52.62
+            }, 
+            {
+               "start_time": 55.01, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8149, 
+                     "word": "stop"
+                  }
+               ], 
+               "end_time": 55.43
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "we", 
+                     0.9999999999998689
+                  ], 
+                  [
+                     "did", 
+                     0.4703873775445465
+                  ], 
+                  [
+                     "check", 
+                     0.31763935450438147
+                  ], 
+                  [
+                     "the", 
+                     0.7739236007159196
+                  ], 
+                  [
+                     "story", 
+                     0.9034124233963081
+                  ], 
+                  [
+                     "before", 
+                     0.7100521126476251
+                  ], 
+                  [
+                     "you", 
+                     0.5479946078874856
+                  ], 
+                  [
+                     "put", 
+                     0.9246063096154133
+                  ], 
+                  [
+                     "it", 
+                     0.5420544156128764
+                  ], 
+                  [
+                     "on", 
+                     0.9999999999997975
+                  ], 
+                  [
+                     "the", 
+                     0.9999999999998195
+                  ], 
+                  [
+                     "radio", 
+                     0.9917437627038204
+                  ], 
+                  [
+                     "it's", 
+                     0.3797010971201506
+                  ], 
+                  [
+                     "fact", 
+                     0.3405327452455183
+                  ], 
+                  [
+                     "checking", 
+                     0.9589576386784354
+                  ], 
+                  [
+                     "our", 
+                     0.7348443290004376
+                  ], 
+                  [
+                     "main", 
+                     0.9999999999998729
+                  ], 
+                  [
+                     "concern", 
+                     0.9999999999998962
+                  ], 
+                  [
+                     "was", 
+                     0.7332118908987608
+                  ], 
+                  [
+                     "whether", 
+                     0.9239018103800523
+                  ], 
+                  [
+                     "things", 
+                     0.9586357375590424
+                  ], 
+                  [
+                     "are", 
+                     0.544993113151361
+                  ], 
+                  [
+                     "Mike", 
+                     0.6680246213950214
+                  ], 
+                  [
+                     "says", 
+                     0.8465381563320343
+                  ], 
+                  [
+                     "about", 
+                     0.48209410511953976
+                  ], 
+                  [
+                     "apple", 
+                     0.986714844065857
+                  ], 
+                  [
+                     "ballot", 
+                     0.13524556668415616
+                  ], 
+                  [
+                     "supplier", 
+                     0.9846436415033997
+                  ], 
+                  [
+                     "fox", 
+                     0.365964413945795
+                  ], 
+                  [
+                     "cop", 
+                     0.18441852697340205
+                  ], 
+                  [
+                     "which", 
+                     0.9638254989672821
+                  ], 
+                  [
+                     "makes", 
+                     0.9453275611776081
+                  ], 
+                  [
+                     "a", 
+                     0.20731466922573735
+                  ], 
+                  [
+                     "stop", 
+                     0.5922778255333394
+                  ], 
+                  [
+                     "true", 
+                     0.5980148945192099
+                  ]
+               ], 
+               "confidence": 0.73, 
+               "transcript": "we did check the story before you put it on the radio it's fact checking our main concern was whether things are Mike says about apple ballot supplier fox cop which makes a stop true ", 
+               "timestamps": [
+                  [
+                     "we", 
+                     45.78, 
+                     45.93
+                  ], 
+                  [
+                     "did", 
+                     45.93, 
+                     46.25
+                  ], 
+                  [
+                     "check", 
+                     46.61, 
+                     46.89
+                  ], 
+                  [
+                     "the", 
+                     46.89, 
+                     46.97
+                  ], 
+                  [
+                     "story", 
+                     46.97, 
+                     47.27
+                  ], 
+                  [
+                     "before", 
+                     47.27, 
+                     47.53
+                  ], 
+                  [
+                     "you", 
+                     47.53, 
+                     47.59
+                  ], 
+                  [
+                     "put", 
+                     47.59, 
+                     47.73
+                  ], 
+                  [
+                     "it", 
+                     47.73, 
+                     47.8
+                  ], 
+                  [
+                     "on", 
+                     47.8, 
+                     47.9
+                  ], 
+                  [
+                     "the", 
+                     47.9, 
+                     47.97
+                  ], 
+                  [
+                     "radio", 
+                     47.97, 
+                     48.48
+                  ], 
+                  [
+                     "it's", 
+                     48.92, 
+                     49.13
+                  ], 
+                  [
+                     "fact", 
+                     49.13, 
+                     49.37
+                  ], 
+                  [
+                     "checking", 
+                     49.37, 
+                     49.73
+                  ], 
+                  [
+                     "our", 
+                     49.73, 
+                     49.81
+                  ], 
+                  [
+                     "main", 
+                     49.81, 
+                     49.99
+                  ], 
+                  [
+                     "concern", 
+                     49.99, 
+                     50.29
+                  ], 
+                  [
+                     "was", 
+                     50.29, 
+                     50.41
+                  ], 
+                  [
+                     "whether", 
+                     50.41, 
+                     50.74
+                  ], 
+                  [
+                     "things", 
+                     50.96, 
+                     51.18
+                  ], 
+                  [
+                     "are", 
+                     51.18, 
+                     51.25
+                  ], 
+                  [
+                     "Mike", 
+                     51.25, 
+                     51.51
+                  ], 
+                  [
+                     "says", 
+                     51.51, 
+                     51.76
+                  ], 
+                  [
+                     "about", 
+                     51.76, 
+                     52.01
+                  ], 
+                  [
+                     "apple", 
+                     52.04, 
+                     52.62
+                  ], 
+                  [
+                     "ballot", 
+                     52.82, 
+                     53.14
+                  ], 
+                  [
+                     "supplier", 
+                     53.14, 
+                     53.79
+                  ], 
+                  [
+                     "fox", 
+                     53.82, 
+                     54.12
+                  ], 
+                  [
+                     "cop", 
+                     54.12, 
+                     54.43
+                  ], 
+                  [
+                     "which", 
+                     54.43, 
+                     54.67
+                  ], 
+                  [
+                     "makes", 
+                     54.67, 
+                     54.95
+                  ], 
+                  [
+                     "a", 
+                     54.95, 
+                     55.0
+                  ], 
+                  [
+                     "stop", 
+                     55.0, 
+                     55.43
+                  ], 
+                  [
+                     "true", 
+                     55.77, 
+                     56.13
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "we did check the story before you put it on the radio fact checking our main concern was whether things are Mike says about apple ballot supplier fox cop which makes a stop true "
+            }, 
+            {
+               "transcript": "we didn't check the story before you put it on the radio it's fact checking our main concern was whether things are Mike says about apple ballot supplier fox cop which makes a stop true "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 56.9, 
+               "alternatives": [
+                  {
+                     "confidence": 0.4201, 
+                     "word": "except"
+                  }, 
+                  {
+                     "confidence": 0.3357, 
+                     "word": "that's"
+                  }
+               ], 
+               "end_time": 57.38
+            }, 
+            {
+               "start_time": 57.57, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5679, 
+                     "word": "true"
+                  }
+               ], 
+               "end_time": 57.95
+            }, 
+            {
+               "start_time": 58.1, 
+               "alternatives": [
+                  {
+                     "confidence": 0.6668, 
+                     "word": "it's"
+                  }
+               ], 
+               "end_time": 58.22
+            }, 
+            {
+               "start_time": 58.22, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9318, 
+                     "word": "been"
+                  }
+               ], 
+               "end_time": 58.57
+            }, 
+            {
+               "start_time": 58.7, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8361, 
+                     "word": "corroborated"
+                  }
+               ], 
+               "end_time": 59.38
+            }, 
+            {
+               "start_time": 59.43, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8079, 
+                     "word": "independent"
+                  }
+               ], 
+               "end_time": 59.98
+            }, 
+            {
+               "start_time": 59.98, 
+               "alternatives": [
+                  {
+                     "confidence": 0.4033, 
+                     "word": "destinations"
+                  }, 
+                  {
+                     "confidence": 0.3519, 
+                     "word": "instigation"
+                  }
+               ], 
+               "end_time": 60.6
+            }, 
+            {
+               "start_time": 60.6, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7572, 
+                     "word": "by"
+                  }
+               ], 
+               "end_time": 60.78
+            }, 
+            {
+               "start_time": 60.78, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8293, 
+                     "word": "other"
+                  }
+               ], 
+               "end_time": 61.0
+            }, 
+            {
+               "start_time": 61.0, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8756, 
+                     "word": "journalists"
+                  }
+               ], 
+               "end_time": 61.67
+            }, 
+            {
+               "start_time": 61.91, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9721, 
+                     "word": "studies"
+                  }
+               ], 
+               "end_time": 62.3
+            }, 
+            {
+               "start_time": 62.3, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9762, 
+                     "word": "by"
+                  }
+               ], 
+               "end_time": 62.42
+            }, 
+            {
+               "start_time": 62.42, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9969, 
+                     "word": "advocacy"
+                  }
+               ], 
+               "end_time": 62.98
+            }, 
+            {
+               "start_time": 62.98, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9985, 
+                     "word": "groups"
+                  }
+               ], 
+               "end_time": 63.46
+            }, 
+            {
+               "start_time": 63.71, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9981, 
+                     "word": "and"
+                  }
+               ], 
+               "end_time": 63.94
+            }, 
+            {
+               "start_time": 64.03, 
+               "alternatives": [
+                  {
+                     "confidence": 0.965, 
+                     "word": "much"
+                  }
+               ], 
+               "end_time": 64.24
+            }, 
+            {
+               "start_time": 64.24, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9649, 
+                     "word": "of"
+                  }
+               ], 
+               "end_time": 64.33
+            }, 
+            {
+               "start_time": 64.33, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9643, 
+                     "word": "it"
+                  }
+               ], 
+               "end_time": 64.56
+            }, 
+            {
+               "start_time": 64.6, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8393, 
+                     "word": "as"
+                  }
+               ], 
+               "end_time": 64.75
+            }, 
+            {
+               "start_time": 64.75, 
+               "alternatives": [
+                  {
+                     "confidence": 0.824, 
+                     "word": "been"
+                  }
+               ], 
+               "end_time": 65.03
+            }, 
+            {
+               "start_time": 65.07, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8195, 
+                     "word": "corroborated"
+                  }
+               ], 
+               "end_time": 65.54
+            }, 
+            {
+               "start_time": 65.54, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8217, 
+                     "word": "by"
+                  }
+               ], 
+               "end_time": 65.71
+            }, 
+            {
+               "start_time": 65.74, 
+               "alternatives": [
+                  {
+                     "confidence": 0.7918, 
+                     "word": "apple"
+                  }
+               ], 
+               "end_time": 66.07
+            }, 
+            {
+               "start_time": 66.07, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8219, 
+                     "word": "itself"
+                  }
+               ], 
+               "end_time": 66.52
+            }, 
+            {
+               "start_time": 66.52, 
+               "alternatives": [
+                  {
+                     "confidence": 0.5688, 
+                     "word": "in"
+                  }, 
+                  {
+                     "confidence": 0.2296, 
+                     "word": "on"
+                  }
+               ], 
+               "end_time": 66.59
+            }, 
+            {
+               "start_time": 66.59, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9322, 
+                     "word": "its"
+                  }
+               ], 
+               "end_time": 66.72
+            }, 
+            {
+               "start_time": 66.72, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9212, 
+                     "word": "own"
+                  }
+               ], 
+               "end_time": 66.96
+            }, 
+            {
+               "start_time": 66.99, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9006, 
+                     "word": "audit"
+                  }
+               ], 
+               "end_time": 67.24
+            }, 
+            {
+               "start_time": 67.24, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8335, 
+                     "word": "reports"
+                  }
+               ], 
+               "end_time": 67.76
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "except", 
+                     0.22075423829276197
+                  ], 
+                  [
+                     "it's", 
+                     0.23045146166005465
+                  ], 
+                  [
+                     "true", 
+                     0.9769275033449778
+                  ], 
+                  [
+                     "it's", 
+                     0.8476089806574437
+                  ], 
+                  [
+                     "been", 
+                     0.8902402125833656
+                  ], 
+                  [
+                     "corroborated", 
+                     0.9764938027110074
+                  ], 
+                  [
+                     "independent", 
+                     0.9921806792968059
+                  ], 
+                  [
+                     "destinations", 
+                     0.433820349927219
+                  ], 
+                  [
+                     "by", 
+                     0.9903242108104399
+                  ], 
+                  [
+                     "other", 
+                     0.9129178972939492
+                  ], 
+                  [
+                     "journalists", 
+                     0.8107055829536846
+                  ], 
+                  [
+                     "studies", 
+                     0.9999999999999662
+                  ], 
+                  [
+                     "by", 
+                     0.9999999999999679
+                  ], 
+                  [
+                     "advocacy", 
+                     0.9999999999999413
+                  ], 
+                  [
+                     "groups", 
+                     0.9999999999999413
+                  ], 
+                  [
+                     "and", 
+                     0.9835867198012409
+                  ], 
+                  [
+                     "much", 
+                     0.8987196889725728
+                  ], 
+                  [
+                     "of", 
+                     0.8987196889725768
+                  ], 
+                  [
+                     "it", 
+                     0.8918228715138455
+                  ], 
+                  [
+                     "as", 
+                     0.4167497698283047
+                  ], 
+                  [
+                     "been", 
+                     0.7271739998447674
+                  ], 
+                  [
+                     "corroborated", 
+                     0.9999999999999992
+                  ], 
+                  [
+                     "by", 
+                     1.0
+                  ], 
+                  [
+                     "apple", 
+                     1.0
+                  ], 
+                  [
+                     "itself", 
+                     0.998070414369901
+                  ], 
+                  [
+                     "in", 
+                     0.4120802559191548
+                  ], 
+                  [
+                     "its", 
+                     0.9933206651265583
+                  ], 
+                  [
+                     "own", 
+                     0.984733932773969
+                  ], 
+                  [
+                     "audit", 
+                     1.0
+                  ], 
+                  [
+                     "reports", 
+                     0.6457961906737808
+                  ]
+               ], 
+               "confidence": 0.841, 
+               "transcript": "except it's true it's been corroborated independent destinations by other journalists studies by advocacy groups and much of it as been corroborated by apple itself in its own audit reports ", 
+               "timestamps": [
+                  [
+                     "except", 
+                     56.9, 
+                     57.38
+                  ], 
+                  [
+                     "it's", 
+                     57.38, 
+                     57.57
+                  ], 
+                  [
+                     "true", 
+                     57.57, 
+                     57.95
+                  ], 
+                  [
+                     "it's", 
+                     58.1, 
+                     58.22
+                  ], 
+                  [
+                     "been", 
+                     58.22, 
+                     58.57
+                  ], 
+                  [
+                     "corroborated", 
+                     58.7, 
+                     59.38
+                  ], 
+                  [
+                     "independent", 
+                     59.43, 
+                     59.98
+                  ], 
+                  [
+                     "destinations", 
+                     59.98, 
+                     60.6
+                  ], 
+                  [
+                     "by", 
+                     60.6, 
+                     60.78
+                  ], 
+                  [
+                     "other", 
+                     60.78, 
+                     61.0
+                  ], 
+                  [
+                     "journalists", 
+                     61.0, 
+                     61.67
+                  ], 
+                  [
+                     "studies", 
+                     61.91, 
+                     62.3
+                  ], 
+                  [
+                     "by", 
+                     62.3, 
+                     62.42
+                  ], 
+                  [
+                     "advocacy", 
+                     62.42, 
+                     62.98
+                  ], 
+                  [
+                     "groups", 
+                     62.98, 
+                     63.46
+                  ], 
+                  [
+                     "and", 
+                     63.71, 
+                     63.94
+                  ], 
+                  [
+                     "much", 
+                     64.03, 
+                     64.24
+                  ], 
+                  [
+                     "of", 
+                     64.24, 
+                     64.33
+                  ], 
+                  [
+                     "it", 
+                     64.33, 
+                     64.56
+                  ], 
+                  [
+                     "as", 
+                     64.6, 
+                     64.75
+                  ], 
+                  [
+                     "been", 
+                     64.75, 
+                     65.03
+                  ], 
+                  [
+                     "corroborated", 
+                     65.07, 
+                     65.54
+                  ], 
+                  [
+                     "by", 
+                     65.54, 
+                     65.71
+                  ], 
+                  [
+                     "apple", 
+                     65.74, 
+                     66.07
+                  ], 
+                  [
+                     "itself", 
+                     66.07, 
+                     66.52
+                  ], 
+                  [
+                     "in", 
+                     66.52, 
+                     66.59
+                  ], 
+                  [
+                     "its", 
+                     66.59, 
+                     66.72
+                  ], 
+                  [
+                     "own", 
+                     66.72, 
+                     66.96
+                  ], 
+                  [
+                     "audit", 
+                     66.99, 
+                     67.24
+                  ], 
+                  [
+                     "reports", 
+                     67.24, 
+                     67.76
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "except it's true it's been corroborated independent instigation by other journalists studies by advocacy groups and much of it as been corroborated by apple itself in its own audit reports "
+            }, 
+            {
+               "transcript": "that's left is true it's been corroborated independent destinations by other journalists studies by advocacy groups and much of it as been corroborated by apple itself in its own audit reports "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 68.55, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9987, 
+                     "word": "what's"
+                  }
+               ], 
+               "end_time": 68.92
+            }, 
+            {
+               "start_time": 68.95, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9987, 
+                     "word": "not"
+                  }
+               ], 
+               "end_time": 69.27
+            }, 
+            {
+               "start_time": 69.27, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9946, 
+                     "word": "true"
+                  }
+               ], 
+               "end_time": 69.76
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "what's", 
+                     0.7816671620765188
+                  ], 
+                  [
+                     "not", 
+                     1.0
+                  ], 
+                  [
+                     "true", 
+                     0.9913197638433666
+                  ]
+               ], 
+               "confidence": 0.928, 
+               "transcript": "what's not true ", 
+               "timestamps": [
+                  [
+                     "what's", 
+                     68.55, 
+                     68.92
+                  ], 
+                  [
+                     "not", 
+                     68.95, 
+                     69.27
+                  ], 
+                  [
+                     "true", 
+                     69.27, 
+                     69.76
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "but what's not true "
+            }, 
+            {
+               "transcript": "what not true "
+            }
+         ], 
+         "final": true
+      }, 
+      {
+         "word_alternatives": [
+            {
+               "start_time": 70.25, 
+               "alternatives": [
+                  {
+                     "confidence": 0.4798, 
+                     "word": "it's"
+                  }, 
+                  {
+                     "confidence": 0.4182, 
+                     "word": "is"
+                  }
+               ], 
+               "end_time": 70.41
+            }, 
+            {
+               "start_time": 70.41, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8981, 
+                     "word": "what"
+                  }
+               ], 
+               "end_time": 70.58
+            }, 
+            {
+               "start_time": 70.58, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8981, 
+                     "word": "Mike"
+                  }
+               ], 
+               "end_time": 70.88
+            }, 
+            {
+               "start_time": 70.88, 
+               "alternatives": [
+                  {
+                     "confidence": 0.8506, 
+                     "word": "said"
+                  }
+               ], 
+               "end_time": 71.25
+            }, 
+            {
+               "start_time": 71.25, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9342, 
+                     "word": "about"
+                  }
+               ], 
+               "end_time": 71.51
+            }, 
+            {
+               "start_time": 71.51, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9474, 
+                     "word": "his"
+                  }
+               ], 
+               "end_time": 71.66
+            }, 
+            {
+               "start_time": 71.66, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9474, 
+                     "word": "own"
+                  }
+               ], 
+               "end_time": 71.87
+            }, 
+            {
+               "start_time": 71.87, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9691, 
+                     "word": "trip"
+                  }
+               ], 
+               "end_time": 72.12
+            }, 
+            {
+               "start_time": 72.12, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9716, 
+                     "word": "to"
+                  }
+               ], 
+               "end_time": 72.21
+            }, 
+            {
+               "start_time": 72.21, 
+               "alternatives": [
+                  {
+                     "confidence": 0.9667, 
+                     "word": "China"
+                  }
+               ], 
+               "end_time": 72.71
+            }
+         ], 
+         "alternatives": [
+            {
+               "word_confidence": [
+                  [
+                     "it's", 
+                     0.44436590357571876
+                  ], 
+                  [
+                     "what", 
+                     0.9152712048821969
+                  ], 
+                  [
+                     "Mike", 
+                     0.9380208080368521
+                  ], 
+                  [
+                     "said", 
+                     0.9949844638503041
+                  ], 
+                  [
+                     "about", 
+                     0.7710275165105358
+                  ], 
+                  [
+                     "his", 
+                     1.0
+                  ], 
+                  [
+                     "own", 
+                     1.0
+                  ], 
+                  [
+                     "trip", 
+                     1.0
+                  ], 
+                  [
+                     "to", 
+                     1.0
+                  ], 
+                  [
+                     "China", 
+                     0.9917207779216443
+                  ]
+               ], 
+               "confidence": 0.924, 
+               "transcript": "it's what Mike said about his own trip to China ", 
+               "timestamps": [
+                  [
+                     "it's", 
+                     70.25, 
+                     70.41
+                  ], 
+                  [
+                     "what", 
+                     70.41, 
+                     70.58
+                  ], 
+                  [
+                     "Mike", 
+                     70.58, 
+                     70.88
+                  ], 
+                  [
+                     "said", 
+                     70.88, 
+                     71.25
+                  ], 
+                  [
+                     "about", 
+                     71.25, 
+                     71.51
+                  ], 
+                  [
+                     "his", 
+                     71.51, 
+                     71.66
+                  ], 
+                  [
+                     "own", 
+                     71.66, 
+                     71.87
+                  ], 
+                  [
+                     "trip", 
+                     71.87, 
+                     72.12
+                  ], 
+                  [
+                     "to", 
+                     72.12, 
+                     72.21
+                  ], 
+                  [
+                     "China", 
+                     72.21, 
+                     72.71
+                  ]
+               ]
+            }, 
+            {
+               "transcript": "is what Mike said about his own trip to China "
+            }, 
+            {
+               "transcript": "its what Mike said about his own trip to China "
+            }
+         ], 
+         "final": true
+      }
+   ], 
+   "result_index": 0
+}

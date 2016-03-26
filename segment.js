@@ -1,25 +1,211 @@
 "use strict";
 
-var TextSegment = function(script_src, start_index, end_index) {
-
-	this.script = script_src;
+var TextSegment = function(src_, start_index, end_index) {
+	this.src = src_;
+	this.srcTokens = this.src.getTokens();
 	this.start = start_index;
 	this.end = end_index;
 	this.matchingSegs = [];
+	this.idx;
 
-	this.getSpan = function() {
-		var tokenspans = Script.tokens2spans(this.script.getTokens().slice(this.start, this.end+1));
-		var span=$("<span/>");
-		span.append(tokenspans);
-		return span;
+	this.getTokens = function() {
+		return this.srcTokens.slice(this.start, this.end + 1);
+	};
+
+	this.getSpan = function(match, trackchange) {
+		if (trackchange)
+			return this.getDiffViewSpan(match);
+
+		var spans = [];
+		var span;
+		var capital = false;
+		for (var i = this.start; i <= this.end; i++) {
+			var token = this.srcTokens[i];
+			if (token.isRecorded && i == this.start) {
+				capital = true;
+			}
+			span = token.getSpan(capital);
+			spans.push(span);
+			if (token.isLongPause()) {
+				spans.push(Script.longPauseSpan());
+				capital = true;
+			} else {
+				spans.push(Script.whiteSpaceSpan());
+				capital = false;
+			}
+		}
+		return spans;
+	};
+
+	this.getSpanWithContext = function(match, trackchange) {
+		var cstart = this.start;
+		while (cstart - 1 >= 0 && !this.srcTokens[cstart - 1].isLongPause()) {
+			cstart--;
+		}
+
+		var cend = this.end;
+		while (cend < this.srcTokens.length
+				&& !this.srcTokens[cend].isLongPause()) {
+			cend++;
+		}
+
+		if (!trackchange) {
+			var spans = [];
+			var span;
+			var capital = false;
+			for (var i = cstart; i <= cend; i++) {
+				var token = this.srcTokens[i];
+				if (token.isRecorded && i == cstart) {
+					capital = true;
+				}
+				span = token.getSpan(capital);
+				spans.push(span);
+				if (token.isLongPause()) {
+					spans.push(Script.longPauseSpan());
+					capital = true;
+				} else {
+					spans.push(Script.whiteSpaceSpan());
+					capital = false;
+				}
+				if (i < this.start || i > this.end)
+					span.attr('data-iscontext', true);
+			}
+			return spans;
+		} else {
+			var other_src = (match.script1 == this.src) ? match.script2
+					: match.script1;
+			var match_idx = (match.script1 == this.src) ? match.match1to2
+					: match.match2to1;
+
+			var token, other_tkn;
+			var spans = [];
+			var span;
+			var capital = false;
+			var prevm_idx = this.matchingSegs[0].start - 1;
+			var curm_idx;
+
+			for (var i = cstart; i <= cend; i++) {
+				token = this.srcTokens[i];
+				curm_idx = match_idx[i];
+				if (token.isRecorded && i == cstart) {
+					capital = true;
+				}
+
+				if (curm_idx < 0) {
+					span = token.getSpan(capital);
+					span.attr('data-hasmatch', false);
+					span.attr('data-opcode', 'insert');
+					if (i < this.start || i > this.end)
+						span.attr('data-iscontext', true);
+					spans.push(span);
+				} else { // has match
+					for (var j = prevm_idx + 1; j < curm_idx
+							&& j <= this.matchingSegs[0].end; j++) {
+						other_tkn = other_src.getToken(j);
+						span = other_tkn.getSpan();
+						span.attr('data-hasmatch', false);
+						span.attr('data-opcode', 'delete');
+						if (i < this.start || i > this.end)
+							span.attr('data-iscontext', true);
+						spans.push(span);
+						if (other_tkn.isLongPause()) {
+							spans.push(Script.longPauseSpan());
+						} else {
+							spans.push(Script.whiteSpaceSpan());
+						}
+					}
+					span = token.getSpan(capital);
+					span.attr('data-hasmatch', true);
+					span.attr('data-opcode', 'equal');
+					if (i < this.start || i > this.end)
+						span.attr('data-iscontext', true);
+					spans.push(span);
+
+					prevm_idx = curm_idx;
+				}
+
+				if (token.isLongPause()) {
+					spans.push(Script.longPauseSpan());
+					capital = true;
+				} else {
+					spans.push(Script.whiteSpaceSpan());
+					capital = false;
+				}
+
+			}
+			return spans;
+		}
+	};
+
+	this.getDiffViewSpan = function(match) {
+
+		var other_src = (match.script1 == this.src) ? match.script2
+				: match.script1;
+		var match_idx = (match.script1 == this.src) ? match.match1to2
+				: match.match2to1;
+		if (this.matchingSegs.length == 0) {
+			var spans = this.getSpan(match_idx);
+			for (var i = 0; i < spans.length; i++) {
+				spans[i].attr('data-hasmatch', false);
+				spans[i].attr('data-opcode', 'insert');
+			}
+			return spans;
+		}
+		var token, other_tkn;
+		var spans = [];
+		var span;
+		var capital = false;
+		var prevm_idx = this.matchingSegs[0].start - 1;
+		var curm_idx;
+
+		for (var i = this.start; i <= this.end; i++) {
+			token = this.srcTokens[i];
+			curm_idx = match_idx[i];
+			if (token.isRecorded && i == this.start) {
+				capital = true;
+			}
+
+			if (curm_idx < 0) {
+				span = token.getSpan(capital);
+				span.attr('data-hasmatch', false);
+				span.attr('data-opcode', 'insert');
+				spans.push(span);
+			} else { // has match
+
+				for (var j = prevm_idx + 1; j < curm_idx; j++) {
+					other_tkn = other_src.getToken(j);
+					span = other_tkn.getSpan();
+					span.attr('data-hasmatch', false);
+					span.attr('data-opcode', 'delete');
+					spans.push(span);
+					if (other_tkn.isLongPause()) {
+						spans.push(Script.longPauseSpan());
+					} else {
+						spans.push(Script.whiteSpaceSpan());
+					}
+				}
+				span = token.getSpan(capital);
+				span.attr('data-hasmatch', true);
+				span.attr('data-opcode', 'equal');
+				spans.push(span);
+
+				prevm_idx = curm_idx;
+			}
+
+			if (token.isLongPause()) {
+				spans.push(Script.longPauseSpan());
+				capital = true;
+			} else {
+				spans.push(Script.whiteSpaceSpan());
+				capital = false;
+			}
+
+		}
+		return spans;
 	};
 };
 
 TextSegment.matchScore = function(seg1, seg2, match) {
-	if (match.script1 != seg1.script || match.script2 != seg2.script) {
-		console.log("Error: inconsistent segment and match arguments!")
-		return;
-	}
 
 	var mcount = 0; // total number of matching tokens
 	for (var i = seg1.start; i <= seg1.end; i++) {
@@ -32,11 +218,12 @@ TextSegment.matchScore = function(seg1, seg2, match) {
 	return mcount / (seg1.end - seg1.start + 1 + seg2.end - seg2.start + 1);
 };
 
-TextSegment.matchSegments = function(segs1, segs2, match)
-{
-	for (var i = 0; i < segs1.length; i++) segs1[i].matchingSegs = [];
-	for (var i = 0; i < segs2.length; i++) segs2[i].matchingSegs = [];
-	
+TextSegment.matchSegments = function(segs1, segs2, match) {
+	for (var i = 0; i < segs1.length; i++)
+		segs1[i].matchingSegs = [];
+	for (var i = 0; i < segs2.length; i++)
+		segs2[i].matchingSegs = [];
+
 	for (var i = 0; i < segs2.length; i++) {
 		var bestscore = -1.0;
 		var bestid = -1;
@@ -54,26 +241,7 @@ TextSegment.matchSegments = function(segs1, segs2, match)
 	}
 };
 
-var Segmenter = function(txt_src1, txt_src2, match) {
-
-	// pause score btw src.tokens[i], src.tokens[i+1]
-	var pauseScore = function(src, i) {
-		var token1 = src.getToken(i);
-
-		// src.token[i] is last token
-		if (src.getTokens().length <= i + 1) {
-			return 0;
-		}
-
-		var token2 = src.getToken(i + 1);
-		if (!token1.isRecorded && !token2.isRecorded) {
-			return punctuationScore(token1.word);
-		} else if (token1.isRecorded != token2.isRecorded) {
-			return 1.0;
-		} else {
-			return token2.tstart - token1.tend;
-		}
-	};
+var Segmenter = function(script1, script2, match) {
 
 	// Score for consistency in match_seq[i, j]
 	// Higher score if fraction of match is close to 0 or 1
@@ -96,7 +264,7 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 		if (prev_m == -1 || next_m == -1) // first or last match
 			score = 1.0;
 		else if (seg_ids[prev_m] != seg_ids[next_m]) { // cut btw different
-														// segments
+			// segments
 			score = 1.0;
 		} else { // cut btw same segments
 			score = -1.0;
@@ -124,20 +292,6 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	}
 	;
 
-	// Score for punctuation in unrecorded text
-	function punctuationScore(word) {
-		var comma = new RegExp("[,]");
-		var period = new RegExp("[!?.]");
-		var newline = new RegExp("\\n");
-
-		if (newline.test(word) || period.test(word))
-			return 1.5;
-		if (comma.test(word))
-			return 0.15;
-		return -1.0;
-	}
-	;
-
 	// Compute LineScore
 	var getSrc1LineScore = function(i, j) {
 		var score = src1PauseScore[j] + 0.5
@@ -154,17 +308,16 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	};
 
 	var computeSrc1LineScore = function() {
-		for (var i = 0; i < n1Tokens; i++) {
-			for (var j = i; j < n1Tokens; j++) {
+		for (var i = 0; i < n1Words; i++) {
+			for (var j = i; j < n1Words; j++) {
 				src1LineScore[i][j] = getSrc1LineScore(i, j);
-
 			}
 		}
 	};
 
 	var computeSrc2LineScore = function() {
-		for (var i = 0; i < n2Tokens; i++) {
-			for (var j = i; j < n2Tokens; j++) {
+		for (var i = 0; i < n2Words; i++) {
+			for (var j = i; j < n2Words; j++) {
 				src2LineScore[i][j] = getSrc2LineScore(i, j);
 			}
 		}
@@ -208,19 +361,29 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 			segIDs[i] = nsegs - segIDs[i] - 1;
 		}
 		segs.reverse();
+		for (var i = 0; i < segs.length; i++)
+			segs[i].idx = i;
 		return segs;
 	};
 
 	this.segmentSrc1 = function() {
-		computeSrc1LineScore();
-		computeTotalScore(src1TotalScore, src1Trace, src1LineScore);
-		src1Segments = getSegments(src1, src1Trace, src1SegIDs);
+		if (src1Tokens.length == 0) {
+			src1Segments = [];
+		} else {
+			computeSrc1LineScore();
+			computeTotalScore(src1TotalScore, src1Trace, src1LineScore);
+			src1Segments = getSegments(src1, src1Trace, src1SegIDs);
+		}
 	};
 
 	this.segmentSrc2 = function() {
-		computeSrc2LineScore();
-		computeTotalScore(src2TotalScore, src2Trace, src2LineScore);
-		src2Segments = getSegments(src2, src2Trace, src2SegIDs);
+		if (src2Tokens.length == 0)
+			src2Segments = [];
+		else {
+			computeSrc2LineScore();
+			computeTotalScore(src2TotalScore, src2Trace, src2LineScore);
+			src2Segments = getSegments(src2, src2Trace, src2SegIDs);
+		}
 	};
 
 	this.getSrc1Segments = function() {
@@ -231,25 +394,27 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 		return src2Segments;
 	};
 
-	var iterateSegment = function() {
-		segmentSrc1();
-		segmentSrc2();
+	this.iterateSegment = function(n) {
+		for (var i = 0; i < n; i++) {
+			this.segmentSrc1();
+			this.segmentSrc2();
+		}
 	};
 
 	// /////////////////////////////////////////////////////////////////////////////
 	// Initialization
 	// /////////////////////////////////////////////////////////////////////////////
 	var self = this;
-	var src1 = txt_src1;
-	var src2 = txt_src2;
+	var src1 = script1;
+	var src2 = script2;
 	var src1Tokens = src1.getTokens();
 	var src2Tokens = src2.getTokens();
-	var match1to2 = match.match1to2;
-	var match2to1 = match.match2to1;
+	var match1to2 = match.script1 == src1 ? match.match1to2 : match.match2to1;
+	var match2to1 = match.script2 == src2 ? match.match2to1 : match.match1to2;
 
 	// length of each src
-	var n1Tokens = src1Tokens.length;
-	var n2Tokens = src2Tokens.length;
+	var n1Words = src1Tokens.length;
+	var n2Words = src2Tokens.length;
 
 	// output segments
 	var src1Segments = null;
@@ -258,108 +423,47 @@ var Segmenter = function(txt_src1, txt_src2, match) {
 	var src1PauseScore = [];
 	var src1SegIDs = [];
 	var segID = 0;
-	for (var i = 0; i < n1Tokens; i++) {
-		src1PauseScore.push(pauseScore(src1, i))
+	for (var i = 0; i < n1Words; i++) {
+		src1PauseScore.push(src1Tokens[i].pauseScore)
 		src1SegIDs.push(segID);
-		if (src1PauseScore[i] > Segmenter.LONGPAUSE)
+		if (src1Tokens[i].isLongPause())
 			segID++;
 	}
-
 
 	var src2PauseScore = [];
 	var src2SegIDs = [];
 	segID = 0;
-	for (var i = 0; i < n2Tokens; i++) {
-		src2PauseScore.push(pauseScore(src2, i));
+	for (var i = 0; i < n2Words; i++) {
+		src2PauseScore.push(src2Tokens[i].pauseScore);
 		src2SegIDs.push(segID);
-		if (src2PauseScore[i] > Segmenter.LONGPAUSE)
+		if (src2Tokens[i].isLongPause())
 			segID++;
 	}
 
 	// LineScore[i][j]: score of a line containing tokens i through j
-	var src1LineScore = new Array(n1Tokens);
+	var src1LineScore = new Array(n1Words);
 	for (var i = 0; i < src1LineScore.length; i++) {
-		src1LineScore[i] = Array.apply(null, Array(n1Tokens)).map(
+		src1LineScore[i] = Array.apply(null, Array(n1Words)).map(
 				Number.prototype.valueOf, 0);
 	}
-	var src2LineScore = new Array(n2Tokens);
+	var src2LineScore = new Array(n2Words);
 	for (var i = 0; i < src2LineScore.length; i++) {
-		src2LineScore[i] = Array.apply(null, Array(n2Tokens)).map(
+		src2LineScore[i] = Array.apply(null, Array(n2Words)).map(
 				Number.prototype.valueOf, 0);
 	}
 
 	// TotalScore[i]: score of optimal line breaks for tokens 0 through i
-	var src1TotalScore = Array.apply(null, Array(n1Tokens)).map(
+	var src1TotalScore = Array.apply(null, Array(n1Words)).map(
 			Number.prototype.valueOf, Number.NEGATIVE_INFINITY);
-	var src2TotalScore = Array.apply(null, Array(n2Tokens)).map(
+	var src2TotalScore = Array.apply(null, Array(n2Words)).map(
 			Number.prototype.valueOf, Number.NEGATIVE_INFINITY);
 
 	// Trace: optimal line consists of word[trace[n]] through word[n]
-	var src1Trace = Array.apply(null, Array(n1Tokens)).map(
+	var src1Trace = Array.apply(null, Array(n1Words)).map(
 			Number.prototype.valueOf, 0);
-	var src2Trace = Array.apply(null, Array(n2Tokens)).map(
+	var src2Trace = Array.apply(null, Array(n2Words)).map(
 			Number.prototype.valueOf, 0);
 
-	// Print segments
-	this.printTextSegments = function(words, segtrace, n) {
-		if (segtrace[n] > 0) {
-			this.printTextSegments(words, segtrace, segtrace[n] - 1);
-		}
-		console.log(words.slice(segtrace[n], n + 1) + "\n");
-	};
-
-	// Get segmented script text
-	this.getSegmentText = function(segwords) {
-		var text = '';
-		for (var i = 0; i < segwords.length; i++) {
-			for (var j = 0; j < segwords[i].length; j++) {
-				text = text + segwords[i][j] + ' ';
-			}
-			text = text + '<br><br>';
-		}
-		return text;
-	};
-
-	this.getMasterScriptSegmentText = function() {
-		return this.getSegmentText(this.ms_segwords);
-	};
-
-	this.getTranscriptSegmentText = function() {
-		return this.getSegmentText(this.t_segwords);
-	};
-
-	this.getTranscriptSegment = function(id) {
-		if (id >= this.t_segwords.length) {
-			console.log("Error: index exceeds segment length");
-			return;
-		}
-		return this.t_segwords[id];
-	};
-
-	this.getMasterScriptSegment = function(id) {
-		if (id >= this.ms_segwords.length) {
-			console.log("Error: index exceeds segment length");
-			return;
-		}
-		return this.ms_segwords[id];
-	};
-
-};
-
-Segmenter.LONGPAUSE = 0.5;
-
-function isSegRecorded(corr, thres) {
-	// Returns true if more than 50% of words in seg has correspondence
-	thres = typeof thres !== 'undefined' ? thres : 0.50;
-	var count = 0;
-	for (var i = 0; i < corr.length; i++) {
-		if (corr[i] >= 0)
-			count++;
-	}
-	if (count / corr.length >= thres)
-		return true;
-	// console.log("Segment is not recorded: " + count + " / " + corr.length);
-	return false;
 };
 
 /**
@@ -385,4 +489,4 @@ function segmentMatchScore(m1, s1, e1, m2, s2, e2) {
 	mcount *= 2;
 
 	return mcount / (e1 - s1 + 1 + e2 - s2 + 1);
-}
+};
