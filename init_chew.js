@@ -38,19 +38,18 @@ $(window).load(
 						reprint();
 					});
 
-			loadMasterscript('walker_masterscript.json');
-			// masterscript = new Script();
+			loadMasterscript('chew.json');
+//			masterscript = new Script();
 			nw = new NeedlemanWunsch();
 
 			// load transcripts
+			loadTranscript('chew1.json', 'chew1.wav');
+			loadTranscript('chew2.json', 'chew2.wav');
+			loadTranscript('chew3.json', 'chew3.wav');
 			addAllTranscriptTab();
-			loadTranscript('take1.json', 'take1.wav');
-			loadTranscript('take2.json', 'take2.wav');
-			loadTranscript('take3.json', 'take3.wav');
-			loadTranscript('take4.json', 'take4.wav');
-			loadTranscript('take5.json', 'take5.wav');
 
 			reprint();
+			
 			// Assign right-click menu
 			$('body').click(function() {
 				$('#contextEditMenu').hide();
@@ -62,9 +61,6 @@ $(window).load(
 
 			// Turn on tooltips
 			$('[data-toggle="tooltip"]').tooltip();
-
-			// // Connect to IBM Speech-to-Text Service
-			// var IBMSpeech = new IBMSpeech2TextService();
 
 			// Record button
 			var audio = document.getElementById('tran-audio-player');
@@ -88,13 +84,6 @@ $(window).load(
 						clickSave();
 					});
 
-			document.getElementById('refresh-btn').addEventListener('click',
-					function() {
-						Script.saveCurrentMasterscript();
-						Script.saveMasterscriptAudio();
-						realign();
-						reprint();
-					});
 		});
 
 function realign() {
@@ -263,8 +252,6 @@ function addTranscriptTab(id) {
 		'data-toggle' : 'tab'
 	}, id));
 	ul.append(li);
-
-	selectTranscript(li[0])
 };
 
 function addTranscriptPanel(filename, transcript, mtc) {
@@ -291,7 +278,6 @@ function addTranscriptPanel(filename, transcript, mtc) {
 	contentdiv.append(d);
 };
 
-// TODO: bug in CHROME
 function playAudioFrom(start_sec, end_sec, audiofile) {
 	var audio = document.getElementById('tran-audio-player');
 	audio.pause();
@@ -299,12 +285,13 @@ function playAudioFrom(start_sec, end_sec, audiofile) {
 		console.log(audiofile);
 		var ablob = audioblobs[audiofile];
 		audio.src = URL.createObjectURL(ablob);
-	} else {
+	}
+	else {
 		audio.src = audiosrcs[curid];
 	}
-	audio.src = audio.src + '#t=' + start_sec + ',' + end_sec;
-	// audio.currentTime = Number(start_sec);
-	// console.log(audio.currentTime);
+	audio.src = audio.src + '#t='+start_sec+','+end_sec;
+//	audio.currentTime = Number(start_sec);
+//	console.log(audio.currentTime);
 	audio.play();
 };
 
@@ -332,7 +319,7 @@ function selectTranscript(li) {
 
 function addNewTranscript() {
 	// add a tab next to it and make it active
-	var id = "take" + (Object.keys(transcripts).length + 1);
+	var id = "Take" + (Object.keys(transcripts).length + 1);
 	var newli = elem("<li/>", {
 		"role" : "presentation",
 		"class" : "active",

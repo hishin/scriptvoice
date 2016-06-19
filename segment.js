@@ -7,15 +7,16 @@ var TextSegment = function(src_, start_index, end_index) {
 	this.end = end_index;
 	this.matchingSegs = [];
 	this.idx;
-
+	this.tkey = null;
+	this.tend = this.srcTokens[this.end].tend;
 	this.getTokens = function() {
 		return this.srcTokens.slice(this.start, this.end + 1);
 	};
 
-	this.getSpan = function(match, trackchange) {
-		if (trackchange)
+	this.getSpan = function(match, trackchange, play) {
+		if (trackchange) {
 			return this.getDiffViewSpan(match);
-
+		}
 		var spans = [];
 		var span;
 		var capital = false;
@@ -24,10 +25,10 @@ var TextSegment = function(src_, start_index, end_index) {
 			if (token.isRecorded && i == this.start) {
 				capital = true;
 			}
-			span = token.getSpan(capital);
+			span = token.getSpan(capital, play, this.tend);
 			spans.push(span);
 			if (token.isLongPause()) {
-				spans.push(Script.longPauseSpan());
+				spans.push(Script.whiteSpaceSpan());
 				capital = true;
 			} else {
 				spans.push(Script.whiteSpaceSpan());
@@ -35,6 +36,20 @@ var TextSegment = function(src_, start_index, end_index) {
 			}
 		}
 		return spans;
+	};
+
+	this.getContextIDs = function() {
+		var cstart = this.start;
+		while (cstart - 1 >= 0 && !this.srcTokens[cstart - 1].isLongPause()) {
+			cstart--;
+		}
+
+		var cend = this.end;
+		while (cend < this.srcTokens.length
+				&& !this.srcTokens[cend].isLongPause()) {
+			cend++;
+		}
+		return [ cstart, cend ];
 	};
 
 	this.getSpanWithContext = function(match, trackchange) {
@@ -58,7 +73,7 @@ var TextSegment = function(src_, start_index, end_index) {
 				if (token.isRecorded && i == cstart) {
 					capital = true;
 				}
-				span = token.getSpan(capital);
+				span = token.getSpan(capital, true, this.srcTokens[cend].tend);
 				spans.push(span);
 				if (token.isLongPause()) {
 					spans.push(Script.longPauseSpan());
@@ -92,7 +107,8 @@ var TextSegment = function(src_, start_index, end_index) {
 				}
 
 				if (curm_idx < 0) {
-					span = token.getSpan(capital);
+					span = token.getSpan(capital, true,
+							this.srcTokens[cend].tend);
 					span.attr('data-hasmatch', false);
 					span.attr('data-opcode', 'insert');
 					if (i < this.start || i > this.end)
@@ -114,7 +130,8 @@ var TextSegment = function(src_, start_index, end_index) {
 							spans.push(Script.whiteSpaceSpan());
 						}
 					}
-					span = token.getSpan(capital);
+					span = token.getSpan(capital, true,
+							this.srcTokens[cend].tend);
 					span.attr('data-hasmatch', true);
 					span.attr('data-opcode', 'equal');
 					if (i < this.start || i > this.end)
@@ -138,13 +155,12 @@ var TextSegment = function(src_, start_index, end_index) {
 	};
 
 	this.getDiffViewSpan = function(match) {
-
 		var other_src = (match.script1 == this.src) ? match.script2
 				: match.script1;
 		var match_idx = (match.script1 == this.src) ? match.match1to2
 				: match.match2to1;
 		if (this.matchingSegs.length == 0) {
-			var spans = this.getSpan(match_idx);
+			var spans = this.getSpan(match, false, this.tend);
 			for (var i = 0; i < spans.length; i++) {
 				spans[i].attr('data-hasmatch', false);
 				spans[i].attr('data-opcode', 'insert');
@@ -166,12 +182,11 @@ var TextSegment = function(src_, start_index, end_index) {
 			}
 
 			if (curm_idx < 0) {
-				span = token.getSpan(capital);
+				span = token.getSpan(capital, true, this.tend);
 				span.attr('data-hasmatch', false);
 				span.attr('data-opcode', 'insert');
 				spans.push(span);
 			} else { // has match
-
 				for (var j = prevm_idx + 1; j < curm_idx; j++) {
 					other_tkn = other_src.getToken(j);
 					span = other_tkn.getSpan();
@@ -184,7 +199,7 @@ var TextSegment = function(src_, start_index, end_index) {
 						spans.push(Script.whiteSpaceSpan());
 					}
 				}
-				span = token.getSpan(capital);
+				span = token.getSpan(capital, true, this.tend);
 				span.attr('data-hasmatch', true);
 				span.attr('data-opcode', 'equal');
 				spans.push(span);
@@ -434,7 +449,11 @@ var Segmenter = function(script1, script2, match) {
 	var src2SegIDs = [];
 	segID = 0;
 	for (var i = 0; i < n2Words; i++) {
-		src2PauseScore.push(src2Tokens[i].pauseScore);
+		if (src2Tokens[i].isLongPause())
+			src2PauseScore.push(src2Tokens[i].pauseScore + 10.0);
+		else
+			src2PauseScore.push(src2Tokens[i].pauseScore);
+
 		src2SegIDs.push(segID);
 		if (src2Tokens[i].isLongPause())
 			segID++;

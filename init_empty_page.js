@@ -8,10 +8,13 @@ var recorders = {};
 var masterscript, transcript, match, curid;
 var msaudios = [];
 var msblob;
+var msaudiosrc;
 var nw;
 var trackchange = false;
 var aligned = true;
 var printall_selected = null;
+var masterscript_playtime;
+var transcript_playtime;
 
 $(window).load(
 		function() {
@@ -38,19 +41,15 @@ $(window).load(
 						reprint();
 					});
 
-			loadMasterscript('walker_masterscript.json');
-			// masterscript = new Script();
+			masterscript = new Script();
+//			loadMasterscriptFromJSON('uploads/masterscript_1460506373.json')
+			// loadMasterscript('darkmatter.json');
 			nw = new NeedlemanWunsch();
 
 			// load transcripts
-			addAllTranscriptTab();
-			loadTranscript('take1.json', 'take1.wav');
-			loadTranscript('take2.json', 'take2.wav');
-			loadTranscript('take3.json', 'take3.wav');
-			loadTranscript('take4.json', 'take4.wav');
-			loadTranscript('take5.json', 'take5.wav');
 
-			reprint();
+			addAllTranscriptTab();
+
 			// Assign right-click menu
 			$('body').click(function() {
 				$('#contextEditMenu').hide();
@@ -63,9 +62,6 @@ $(window).load(
 			// Turn on tooltips
 			$('[data-toggle="tooltip"]').tooltip();
 
-			// // Connect to IBM Speech-to-Text Service
-			// var IBMSpeech = new IBMSpeech2TextService();
-
 			// Record button
 			var audio = document.getElementById('tran-audio-player');
 			audio.addEventListener('loadedmetadata', function() {
@@ -75,6 +71,7 @@ $(window).load(
 
 			document.getElementById('record-btn').addEventListener('click',
 					function() {
+						Script.saveCurrentMasterscript();
 						clickRecord(this, audio);
 					});
 
@@ -85,7 +82,10 @@ $(window).load(
 			// Save button for masterscript
 			document.getElementById('save-btn').addEventListener('click',
 					function() {
+				
+						Script.saveCurrentMasterscript();
 						clickSave();
+						saveMasterscriptToServer(masterscript);
 					});
 
 			document.getElementById('refresh-btn').addEventListener('click',
@@ -95,6 +95,29 @@ $(window).load(
 						realign();
 						reprint();
 					});
+			
+			
+			var masterscriptaudio = document.getElementById("ms-audio-player");
+			masterscriptaudio.oncanplay = function() {
+				function updateMSTime() {
+			        masterscript_playtime = masterscriptaudio.currentTime;
+			        if (!masterscriptaudio.paused) {
+			        	highlightCurrentMasterScriptWord();
+			        }
+			    }
+			    setInterval(updateMSTime, 1000);
+			};
+			
+			var transcriptaudio = document.getElementById("tran-audio-player");
+			transcriptaudio.oncanplay = function() {
+				function updateTranTime() {
+					transcript_playtime = transcriptaudio.currentTime;
+					if (!transcriptaudio.paused)
+						highlightCurrentTranscriptWord();
+				}
+				 setInterval(updateTranTime, 1000);
+			}
+
 		});
 
 function realign() {
@@ -152,6 +175,21 @@ function loadMasterscript(filename) {
 	request.send(null);
 	masterscript = new Script();
 	masterscript.initFromText(request.responseText);
+};
+
+function loadMasterscriptFromJSON(filename) {
+	$.getJSON(filename, function(data) {
+		var newtoks = [];
+		for (var temp = 0; temp < data.length; temp++) {
+			console.log(data[temp].word);
+			var t = Token.fromObject(data[temp]);
+			newtoks.push(t);
+		}
+		masterscript.reset(newtoks);
+		reprint();
+		Script.saveCurrentMasterscript();
+		
+	});
 };
 
 function loadTranscript(filename, audiofilename) {
@@ -263,8 +301,6 @@ function addTranscriptTab(id) {
 		'data-toggle' : 'tab'
 	}, id));
 	ul.append(li);
-
-	selectTranscript(li[0])
 };
 
 function addTranscriptPanel(filename, transcript, mtc) {
@@ -291,20 +327,66 @@ function addTranscriptPanel(filename, transcript, mtc) {
 	contentdiv.append(d);
 };
 
-// TODO: bug in CHROME
+function highlightCurrentMasterScriptWord() {
+	var ms_spans = $('#script-texts .masterscript-seg span');
+	ms_spans = ms_spans.filter(":visible");
+	var span;
+	for (var i = 0; i < ms_spans.length; i++) {
+		span = $(ms_spans[i]);
+		var startt = span.attr('data-ms-tstart');
+		var endt = span.attr('data-ms-tend');
+		if (startt <= masterscript_playtime && masterscript_playtime < endt) {
+			span.addClass('highlightplaying');
+		} else {
+			span.removeClass('highlightplaying');
+		}
+	}
+};
+
+function highlightCurrentTranscriptWord() {
+	var tran_spans = $('#script-texts .transcript-seg span');
+	tran_spans = tran_spans.filter(":visible");
+	var span;
+	for (var i = 0; i < tran_spans.length; i++) {
+		span = $(tran_spans[i]);
+		var startt = span.attr('data-tstart');
+		var endt = span.attr('data-tend');
+		if (startt <= transcript_playtime && transcript_playtime <= endt) {
+			span.addClass('highlightplaying');
+		} else {
+			span.removeClass('highlightplaying');
+		}
+	}
+};
+
 function playAudioFrom(start_sec, end_sec, audiofile) {
+	var masteraudio = document.getElementById('ms-audio-player');
+	masteraudio.pause();
 	var audio = document.getElementById('tran-audio-player');
 	audio.pause();
 	if (curid == 'All') {
-		console.log(audiofile);
 		var ablob = audioblobs[audiofile];
 		audio.src = URL.createObjectURL(ablob);
 	} else {
 		audio.src = audiosrcs[curid];
 	}
-	audio.src = audio.src + '#t=' + start_sec + ',' + end_sec;
+	if (end_sec == undefined)
+		audio.src = audio.src+'#t=' + start_sec;
+	else
+		audio.src = audio.src + '#t=' + start_sec + ',' + end_sec;
 	// audio.currentTime = Number(start_sec);
 	// console.log(audio.currentTime);
+	audio.play();
+};
+
+function playMasterscriptAudioFrom(start_sec) {
+	var tranaudio = document.getElementById('tran-audio-player');
+	tranaudio.pause();
+	var audio = document.getElementById('ms-audio-player');
+	var url = audio.src;
+	audio.pause();
+	audio.src = msaudiosrc + '#t=' + start_sec;
+	console.log(audio.src);
 	audio.play();
 };
 

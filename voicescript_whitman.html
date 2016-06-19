@@ -5,8 +5,10 @@
 <title>Voice Script</title>
 
 
-<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 <!-- Latest compiled and minified CSS -->
 <link href='https://fonts.googleapis.com/css?family=Lato'
@@ -37,7 +39,7 @@
 <script src="RecordRTC.min.js" type="text/javascript"></script>
 <script src="https://cdn.webrtc-experiment.com/gumadapter.js"></script>
 
-<script src="initpage.js" type="text/javascript"></script>
+<script src="init_whitman.js" type="text/javascript"></script>
 <script src="nwunsch.js" type="text/javascript"></script>
 <script src="segment.js" type="text/javascript"></script>
 <script src="audioseg.js" type="text/javascript"></script>
@@ -57,6 +59,11 @@
 			<h1>Voice Script</h1>
 			<p>Text-based interface for recording & editing narrative audio
 				stories.</p>
+			<p>
+				Your task is to compose the audio story in the script. Parts of the
+				script is pre-recorded. You should record missing parts. <a
+					href="http://www.npr.org/2016/03/12/470214579/walt-whitmans-letter-for-a-dying-soldier-to-his-wife-discovered">[Text
+					Source]</a>
 		</div>
 	</div>
 	</nav>
@@ -77,19 +84,26 @@
 							<i class="glyphicon glyphicon-floppy-save" data-toggle="tooltip"
 								data-placement="top" title="Save"></i>
 						</button>
-						<div class="btn-group" role="group" aria-label="Refresh">
+					</div>
+					<div class="btn-group" role="group" aria-label="Refresh">
 						<button type="button" class="btn btn-primary btn-circle"
 							id="refresh-btn" data-state="refresh">
 							<i class="glyphicon glyphicon-refresh" data-toggle="tooltip"
 								data-placement="top" title="Refresh"></i>
 						</button>
 					</div>
-					</div>
 					<div class="btn-group" role="group" aria-label="Player">
 						<audio id="ms-audio-player" src="" preload="auto" controls>
 						</audio>
-
 					</div>
+					<div class="btn-group" role="group" aria-label="status-help">
+						<p>
+							&nbsp;<span id="helper-unrecorded">Unrecorded</span>&nbsp;&nbsp;
+							<span id="helper-recorded-out">Recorded</span>&nbsp;&nbsp; <span
+								id="helper-recorded-in">Recorded & Accepted</span>
+						</p>
+					</div>
+
 				</td>
 				<td class="col-md-6 transcript script-tools"><input
 					type="checkbox" name="align-checkbox" id="btn-align"

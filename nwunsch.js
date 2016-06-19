@@ -12,12 +12,37 @@ function NeedlemanWunsch() {
 	this.setScripts = function(script_1, script_2) {
 		this.script1 = script_1;
 		this.script2 = script_2;
+		this.cost = [];
+		this.directions = [];
 	};
 
-	this.align = function() {
+	this.alignUtter = function() {
 		var text1 = this.script1.getWords();
-		var text2 = this.script2.getWords();
+		var text2utters = this.script2.getUtterances();
+		var nutter = text2utters.length;
+		var begin = 0;
+		var end;
+		var text2;
+		var umatch, umatch1to2, umatch2to1;
+		var match1to2 = [];
+		var match2to1 = [];
+		for (var i = 0; i < nutter; i++) {
+			var utterance = text2utters[i];
+			end = begin + utterance.length;
+			text2 = this.script2.getWordsRange(begin, end);
+			umatch = this.alignTexts(text1, text2);
+			umatch1to2 = umatch.match1to2;
+			umatch2to1 = umatch.match2to1;
+			for (var m = 0; m < umatch1to2.length; m++) {
+				var fixedm = umatch1to2[m] + begin;
+				match1to2.push(fixedm);
+			}
+			match2to1 = match2to1.concat(umatch2to1);
+		}
+		return new Match(this.script1, this.script2, match1to2, match2to1);
+	};
 
+	this.alignTexts = function(text1, text2) {
 		this.length1 = text1.length;
 		this.length2 = text2.length;
 
@@ -62,6 +87,13 @@ function NeedlemanWunsch() {
 		}
 		var matches = this.getMatchArrays();
 		return new Match(this.script1, this.script2, matches[0], matches[1]);
+	}
+
+	this.align = function() {
+		var text1 = this.script1.getWords();
+		var text2 = this.script2.getWords();
+
+		return this.alignTexts(text1, text2);
 	};
 
 	this.makeCostTable = function() {

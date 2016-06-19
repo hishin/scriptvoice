@@ -37,7 +37,7 @@
 <script src="RecordRTC.min.js" type="text/javascript"></script>
 <script src="https://cdn.webrtc-experiment.com/gumadapter.js"></script>
 
-<script src="initpage.js" type="text/javascript"></script>
+<script src="init_empty_page.js" type="text/javascript"></script>
 <script src="nwunsch.js" type="text/javascript"></script>
 <script src="segment.js" type="text/javascript"></script>
 <script src="audioseg.js" type="text/javascript"></script>
@@ -47,6 +47,7 @@
 <script src="editscript.js" type="text/javascript"></script>
 <script src="ibmspeech.js" type="text/javascript"></script>
 <script src="wave/wav.js"></script>
+
 <link rel="stylesheet" href="voicescript.css">
 
 </head>
@@ -55,8 +56,7 @@
 	<div class="jumbotron title-header">
 		<div class="container">
 			<h1>Voice Script</h1>
-			<p>Text-based interface for recording & editing narrative audio
-				stories.</p>
+			<p>Authoring tool for iterative production of audio recordings</p>
 		</div>
 	</div>
 	</nav>
@@ -65,7 +65,7 @@
 			<tr>
 				<th class="col-md-6 masterscript"><h3>Master Script</h3></th>
 				<th class="col-md-6 transcript"><h3>
-						Audio Transcript <span id="audio-duration"></span>
+						Audio Transcript <span id="audio-duration"></span></span>
 					</h3></th>
 			</tr>
 
@@ -73,23 +73,30 @@
 				<td class="col-md-6 masterscript script-tools">
 					<div class="btn-group" role="group" aria-label="Save">
 						<button type="button" class="btn btn-success btn-circle"
-							id="save-btn" data-state="start-record">
+							id="save-btn">
 							<i class="glyphicon glyphicon-floppy-save" data-toggle="tooltip"
 								data-placement="top" title="Save"></i>
 						</button>
-						<div class="btn-group" role="group" aria-label="Refresh">
+					</div>
+					<div class="btn-group" role="group" aria-label="Refresh">
 						<button type="button" class="btn btn-primary btn-circle"
 							id="refresh-btn" data-state="refresh">
 							<i class="glyphicon glyphicon-refresh" data-toggle="tooltip"
 								data-placement="top" title="Refresh"></i>
 						</button>
 					</div>
-					</div>
 					<div class="btn-group" role="group" aria-label="Player">
 						<audio id="ms-audio-player" src="" preload="auto" controls>
 						</audio>
-
 					</div>
+					<div class="btn-group" role="group" aria-label="status-help">
+						<!-- 						<p>
+							&nbsp;<span id="helper-unrecorded">Unrecorded</span>&nbsp;&nbsp;
+							<span id="helper-recorded-out">Recorded</span>&nbsp;&nbsp; <span
+								id="helper-recorded-in">Recorded & Accepted</span>
+						</p> -->
+					</div>
+
 				</td>
 				<td class="col-md-6 transcript script-tools"><input
 					type="checkbox" name="align-checkbox" id="btn-align"
@@ -166,9 +173,11 @@
 
 	<ul id="contextEditMenu" class="dropdown-menu" role="menu"
 		style="display: none">
-		<li><a tabindex="-1" href="#markdirty" onclick="markSelectedDirty()" id="markdirty"><i
+		<li><a tabindex="-1" href="#markdirty"
+			onclick="markSelectedDirty()" id="markdirty"><i
 				class="glyphicon glyphicon-exclamation-sign"></i>&nbsp;Mark as dirty</a></li>
-		<li><a tabindex="-1" href="#markclean" onclick="markSelectedClean()" id="markclean"><i
+		<li><a tabindex="-1" href="#markclean"
+			onclick="markSelectedClean()" id="markclean"><i
 				class="glyphicon glyphicon-ok-sign"></i>&nbsp;Mark as clean</a></li>
 		<!-- <li><a tabindex="-1" href="#"><i
 				class="glyphicon glyphicon-comment"></i>&nbsp;View / Add Comments</a></li> -->
