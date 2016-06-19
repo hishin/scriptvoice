@@ -48,6 +48,7 @@ $(window).load(
 
 			// load transcripts
 			loadTranscript('darkmatter1.json', 'darkmatter1.wav');
+			loadTranscript('darkmatter2.json', 'darkmatter2.wav');
 //			loadTranscript('take2.json', 'take2.wav');
 //			loadTranscript('take3.json', 'take3.wav');
 //			loadTranscript('take4.json', 'take4.wav');
@@ -117,7 +118,7 @@ $(window).load(
 			        	highlightCurrentMasterScriptWord();
 			        }
 			    }
-			    setInterval(updateMSTime, 1000);
+			    setInterval(updateMSTime, 100);
 			};
 			
 			var transcriptaudio = document.getElementById("tran-audio-player");
@@ -127,7 +128,7 @@ $(window).load(
 					if (!transcriptaudio.paused)
 						highlightCurrentTranscriptWord();
 				}
-				 setInterval(updateTranTime, 1000);
+				 setInterval(updateTranTime, 100);
 			}
 			
 

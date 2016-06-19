@@ -105,7 +105,7 @@ $(window).load(
 			        	highlightCurrentMasterScriptWord();
 			        }
 			    }
-			    setInterval(updateMSTime, 1000);
+			    setInterval(updateMSTime, 100);
 			};
 			
 			var transcriptaudio = document.getElementById("tran-audio-player");
@@ -115,7 +115,7 @@ $(window).load(
 					if (!transcriptaudio.paused)
 						highlightCurrentTranscriptWord();
 				}
-				 setInterval(updateTranTime, 1000);
+				 setInterval(updateTranTime, 100);
 			}
 
 		});
