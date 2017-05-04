@@ -165,7 +165,7 @@ var Script = function() {
 	};
 
 	this.getWords = function() {
-		var words = tokens.map(function(a) {
+		var words = this.tokens.map(function(a) {
 			return a.word;
 		});
 		return words;
@@ -233,11 +233,11 @@ var Script = function() {
 	};
 
 	this.initFromText = function(text_string) {
-		tokens = Script.tokenizeText(text_string);
+		this.tokens = Script.tokenizeText(text_string);
 	};
 
 	this.initFromAudio = function(json_string, audio_file) {
-		tokens = Script.tokenizeJSON(json_string, audio_file);
+		this.tokens = Script.tokenizeJSON(json_string, audio_file);
 	};
 
 	this.initFromAudio_old = function(json_string, audio_file) {

@@ -27,6 +27,7 @@
 		request.open("GET", filename, false);
 		request.send(null);
 		transcript = new Script();
+//		console.log(request.responseText);
 		transcript.initFromAudio(request.responseText, null);
 		$('#transcript_span').empty().append(
 				Script.tokens2spans(transcript.getTokens()));
@@ -71,7 +72,7 @@
 			function() {
 
 				// Load sample transcript
-				loadTranscript();
+//				loadTranscript();
 
 				// Align two texts
 				$('#btn-align').click(
@@ -81,25 +82,30 @@
 							masterscript = new Script();
 							masterscript.initFromText(mstext);
 
+							var transcripttext = $('#transcript_span')[0].innerText;
+							transcript = new Script();
+							transcript.initFromText(transcripttext);
+
 							// Compute alignment of two texts
 							var pmatch = +$('#pmatch').val();
 							var pmis = +$('#pmis').val();
 							var pgap = +$('#pgap').val();
 
-							var aligner = new NeedlemanWunsch(masterscript,
-									transcript, pmatch, pmis, pgap);
+							var aligner = new NeedlemanWunsch();
+							aligner.setScripts(masterscript, transcript);
 							match = aligner.align();
-
+							var costtable = aligner.makeCostTable();
 							// Visualize correspondence per word.
-							var textspan1 = visualizeMatch(Script
-									.tokens2spans(masterscript.getTokens()),
-									match.match1to2);
-							var textspan2 = visualizeMatch(Script
-									.tokens2spans(transcript.getTokens()),
-									match.match2to1);
+//							var textspan1 = visualizeMatch(Script
+//									.tokens2spans(masterscript.getTokens()),
+//									match.match1to2);
+//							var textspan2 = visualizeMatch(Script
+//									.tokens2spans(transcript.getTokens()),
+//									match.match2to1);
 
-							$('#script_span').empty().append(textspan1);
-							$('#transcript_span').empty().append(textspan2);
+//							$('#script_span').empty().append(textspan1);
+//							$('#transcript_span').empty().append(textspan2);
+							$('#cost-table').append(costtable);
 
 						});
 
@@ -217,7 +223,7 @@
 				<h3>
 					Audio transcription &nbsp;&nbsp; <select id="transcript_file"
 						onchange="loadTranscript()">
-						<option value="audio1.json">audio1.json</option>
+						<option value="Take1.json">Take1.json</option>
 						<option value="audio2.json">audio2.json</option>
 						<option value="audio3.json">audio3.json</option>
 						<option value="audio4.json">audio4.json</option>
