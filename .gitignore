@@ -1,3 +1,4 @@
 *.m4a
 .settings
 .project
+.DS_Store
